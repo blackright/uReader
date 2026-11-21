@@ -1,0 +1,33 @@
+{
+  "officialPackage": "pocket-tts 3.3.0",
+  "status": "verified_aligned_reference_failed_listening",
+  "directory": "validation/private/reference-fr-3.3-default",
+  "downloadFiles": [
+    {
+      "relativePath": "model.safetensors",
+      "byteSize": 219029196,
+      "sha256": "32e575398f06a5dbca16a7dfb8048e3cd3440502d80b07089adfb3318f79dec2",
+      "url": "https://huggingface.co/kyutai/pocket-tts-without-voice-cloning/resolve/8843db76457a91db32077edf8dfcd1c0e3e755fd/languages/french/model.safetensors"
+    },
+    {
+      "relativePath": "estelle.safetensors",
+      "byteSize": 8259384,
+      "sha256": "f763800c6865a7c13e3368db7c24345d7ab22abd06c2ca40a3428d14c5357248",
+      "url": "https://huggingface.co/kyutai/pocket-tts-without-voice-cloning/resolve/4e1e0a3e611c51c0b4ed8174fc10f32a54644303/languages/french/embeddings/estelle.safetensors"
+    }
+  ],
+  "sourceEvidence": {
+    "frenchConfigSha256": "cd0b9ac2c4f96f547689e796455badf69eaf5107056e7927ea56f9641a4baaa5",
+    "voiceResolverSourceSha256": "8308eecd49d89f5329ce362175584f73a50e0d804fdd874cde34f0f74d02fdc4"
+  },
+  "previousWeightsSha256": "56366cfed6c25bfcd3bf4c61e66e06efaf52e78a5d06e1dcade1c588495bc699",
+  "previousVoiceSha256": "d9efd55657f74ba9483caec23f9fd1d155e121b058feef86af3760d54ea8aa15",
+  "sameArchitectureProven": true,
+  "causalExplanationProven": false,
+  "tokenizerAlreadyAvailable": true,
+  "g0": "failed_for_current_candidate",
+  "manualDownloadsVerified": true,
+  "alignedReferenceReport": "validation/reports/g0/aligned-default-numbers-02.json",
+  "architectureCheckScope": "Matching tensor names, dtypes and shapes plus successful load with official French 3.3.0 configuration; not inference-quality equivalence",
+  "noAutomaticBinaryDownload": true
+}

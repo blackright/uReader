@@ -1,0 +1,185 @@
+{
+  "schemaVersion": 1,
+  "id": "interim-g0-us1-01",
+  "createdAt": "2026-11-12T00:00:00.000Z",
+  "finalReport": false,
+  "physicalDevice": true,
+  "localFrenchListening": true,
+  "configuration": {
+    "model": "SM-G965F",
+    "androidApi": 29,
+    "abi": "arm64-v8a",
+    "ramKiB": 5755748,
+    "pageSize": 4096,
+    "buildMode": "debug",
+    "bundleDigest": "535c816a3cbf75cda69c5b8c3f8c4edfb7f711012a3757dee800cc5a532d2ed8",
+    "fontScale": 2.0,
+    "talkBack": true
+  },
+  "results": {
+    "FR-001": {
+      "status": "not_evaluated",
+      "evidence": [],
+      "reason": "not_measured",
+      "nextAction": "evaluate"
+    },
+    "FR-002": {
+      "status": "not_evaluated",
+      "evidence": [],
+      "reason": "not_measured",
+      "nextAction": "evaluate"
+    },
+    "FR-003": {
+      "status": "not_evaluated",
+      "evidence": [],
+      "reason": "not_measured",
+      "nextAction": "evaluate"
+    },
+    "FR-004": {
+      "status": "not_evaluated",
+      "evidence": [],
+      "reason": "not_measured",
+      "nextAction": "evaluate"
+    },
+    "FR-005": {
+      "status": "not_evaluated",
+      "evidence": [],
+      "reason": "not_measured",
+      "nextAction": "evaluate"
+    },
+    "FR-006": {
+      "status": "not_evaluated",
+      "evidence": [],
+      "reason": "not_measured",
+      "nextAction": "evaluate"
+    },
+    "FR-007": {
+      "status": "not_evaluated",
+      "evidence": [],
+      "reason": "not_measured",
+      "nextAction": "evaluate"
+    },
+    "FR-008": {
+      "status": "not_evaluated",
+      "evidence": [],
+      "reason": "not_measured",
+      "nextAction": "evaluate"
+    },
+    "FR-009": {
+      "status": "not_evaluated",
+      "evidence": [],
+      "reason": "not_measured",
+      "nextAction": "evaluate"
+    },
+    "FR-010": {
+      "status": "not_evaluated",
+      "evidence": [],
+      "reason": "not_measured",
+      "nextAction": "evaluate"
+    },
+    "FR-011": {
+      "status": "not_evaluated",
+      "evidence": [],
+      "reason": "not_measured",
+      "nextAction": "evaluate"
+    },
+    "FR-012": {
+      "status": "not_evaluated",
+      "evidence": [],
+      "reason": "not_measured",
+      "nextAction": "evaluate"
+    },
+    "FR-013": {
+      "status": "not_evaluated",
+      "evidence": [],
+      "reason": "not_measured",
+      "nextAction": "evaluate"
+    },
+    "FR-014": {
+      "status": "not_evaluated",
+      "evidence": [],
+      "reason": "not_measured",
+      "nextAction": "evaluate"
+    },
+    "FR-015": {
+      "status": "not_evaluated",
+      "evidence": [],
+      "reason": "not_measured",
+      "nextAction": "evaluate"
+    },
+    "SC-001": {
+      "status": "passed",
+      "evidence": [
+        "validation/reports/us1/t024-acceptance-01.json"
+      ],
+      "reason": "ten_texts_accepted",
+      "nextAction": "retain_evidence"
+    },
+    "SC-002": {
+      "status": "not_evaluated",
+      "evidence": [
+        "validation/reports/us1/report.md"
+      ],
+      "reason": "arbitrary_passage_change_pending",
+      "nextAction": "complete_protocol"
+    },
+    "SC-003": {
+      "status": "not_evaluated",
+      "evidence": [],
+      "reason": "not_measured",
+      "nextAction": "evaluate"
+    },
+    "SC-004": {
+      "status": "not_evaluated",
+      "evidence": [],
+      "reason": "not_measured",
+      "nextAction": "evaluate"
+    },
+    "SC-005": {
+      "status": "not_evaluated",
+      "evidence": [],
+      "reason": "not_measured",
+      "nextAction": "evaluate"
+    },
+    "SC-006": {
+      "status": "not_evaluated",
+      "evidence": [
+        "validation/reports/us1/report.md"
+      ],
+      "reason": "second_independent_evaluator_missing",
+      "nextAction": "complete_protocol"
+    },
+    "SC-007": {
+      "status": "not_evaluated",
+      "evidence": [
+        "validation/reports/us1/report.md"
+      ],
+      "reason": "accepted_accessibility_reservation",
+      "nextAction": "complete_protocol"
+    },
+    "SC-008": {
+      "status": "not_evaluated",
+      "evidence": [
+        "validation/reports/us1/report.md"
+      ],
+      "reason": "cold_warm_measurements_missing",
+      "nextAction": "complete_protocol"
+    }
+  },
+  "measurements": [],
+  "scores": {},
+  "provenance": {
+    "commit": "1100eabee3e20eeac188f427e690f0bcfb975ce2",
+    "flutter": "3.47.5",
+    "dart": "3.13.4",
+    "java": "JBR OpenJDK 25.0.3",
+    "gradle": "9.3.1",
+    "kotlin": "2.4.0",
+    "runtime": "onnxruntime-android-1.25.0",
+    "corpusDigest": "00e59c76fee34dddfe8975a48b3a1544eeb5a3758c341065fbd8c03c8a90799e",
+    "network": "airplane_mode_wifi_off",
+    "power": "USB_connected",
+    "licenseEvidence": "assets/models/POCKET_TTS_LICENSE.txt",
+    "protocolEvidence": "validation/protocols/measurement.md"
+  }
+}

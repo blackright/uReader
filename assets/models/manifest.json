@@ -1,0 +1,1291 @@
+{
+  "schemaVersion": 1,
+  "bundleId": "fr-official-aligned",
+  "bundleVersion": "1.1.0-alignment-preview",
+  "language": "fr",
+  "engineProtocolVersion": 1,
+  "deliveryMode": "local_g0_derivation",
+  "activationGate": {
+    "requiresPositiveG0": true,
+    "g0Verdict": "passed",
+    "evidenceReport": "validation/reports/g0/g0-consolidation-04.json"
+  },
+  "sourceRevisions": {
+    "officialCode": "3dbee45d343d7dddd0d105468d17f8dcba14db3e",
+    "officialWheelSha256": "77b2eb5554cb710e92888f84e28816f2361dba075e0ace47108458794db99111",
+    "weightsSha256": "32e575398f06a5dbca16a7dfb8048e3cd3440502d80b07089adfb3318f79dec2",
+    "sourceUris": {
+      "weights": "https://huggingface.co/kyutai/pocket-tts-without-voice-cloning/resolve/8843db76457a91db32077edf8dfcd1c0e3e755fd/languages/french/model.safetensors",
+      "tokenizer": "https://huggingface.co/kyutai/pocket-tts-without-voice-cloning/resolve/8843db76457a91db32077edf8dfcd1c0e3e755fd/languages/french/tokenizer.json",
+      "voice": "https://huggingface.co/kyutai/pocket-tts-without-voice-cloning/resolve/4e1e0a3e611c51c0b4ed8174fc10f32a54644303/languages/french/embeddings/estelle.safetensors"
+    },
+    "exportRecipe": {
+      "sourceSelection": "official_3.3_default_aligned",
+      "weightsSha256": "32e575398f06a5dbca16a7dfb8048e3cd3440502d80b07089adfb3318f79dec2",
+      "voiceSha256": "f763800c6865a7c13e3368db7c24345d7ab22abd06c2ca40a3428d14c5357248",
+      "assemblyScriptSha256": "eba043d959895c24c0c434b92ca94fef6784493ff0dfe40e3208190d33763b1e",
+      "exportScriptDigests": {
+        "main": "37af9912fc027a4503417083f7e48f8e49069f3db6542ab08b6ed69f6dc3bd3c",
+        "flow": "3f688f6a65794b74f4cdf70e1558133b9c928d70cef63a751c8cdfba7205241b",
+        "mimi": "37af9912fc027a4503417083f7e48f8e49069f3db6542ab08b6ed69f6dc3bd3c"
+      }
+    },
+    "prototypeSourceDigest": "dbbee825cfdc6d8ce93259c038c829d71f9584e1605486996bca80e685b67430",
+    "prototypeSources": [
+      {
+        "path": "android/app/src/main/kotlin/com/ureader/prototype/MainActivity.kt",
+        "sha256": "8742024a9f3fed712af734366c8ca4b4e67e6b4fb5c4958927b2e49d6350e39d"
+      },
+      {
+        "path": "android/app/src/main/kotlin/com/ureader/prototype/speech/FrenchUnigramTokenizer.kt",
+        "sha256": "62b0d022edf769ddebe1c0773651758bfb047e43dfb82de58b7c45a2ef0ccb59"
+      },
+      {
+        "path": "android/app/src/main/kotlin/com/ureader/prototype/speech/OnnxFrenchSynthesizer.kt",
+        "sha256": "761151b8bff6ce292f625b13f099a0fa0efc53bd2456e862ed4360d2fa3ffab9"
+      },
+      {
+        "path": "android/app/src/main/kotlin/com/ureader/prototype/speech/PocketSpeechEngine.kt",
+        "sha256": "83084aa6e8fd51ab046c0b33d79d0f02c3ee4d2094510db77c6685576a36eb9d"
+      },
+      {
+        "path": "android/app/src/main/kotlin/com/ureader/prototype/speech/SpeechPlugin.kt",
+        "sha256": "b1163c14ffab737399d9b9277529df04d5ee4fc713cffb09b06426b3c9c513fa"
+      },
+      {
+        "path": "android/app/src/main/kotlin/com/ureader/prototype/speech/SpeechWireCommand.kt",
+        "sha256": "b00a8bd12bdff8d61d6b3012209e4f7101d01bc5e914904337469e2f58113e2c"
+      },
+      {
+        "path": "android/app/src/main/kotlin/com/ureader/prototype/speech/TrustedSpeechBundle.kt",
+        "sha256": "5f6fd2f291243acd47cff0f28566e11a3716a3013f5f924f3bcd807034dd202d"
+      },
+      {
+        "path": "android/app/src/main/kotlin/com/ureader/prototype/reports/ReportExportPlugin.kt",
+        "sha256": "4842583a1b999dedd48bc75e664c50f726ca2674e23a2bb0fc53af745e6f8669"
+      },
+      {
+        "path": "android/app/src/main/kotlin/com/ureader/prototype/models/LocalBundlePlugin.kt",
+        "sha256": "f8a0d5598dbe5d7d2acd20b7c7ff485f424a21efc286a4effa5b2d889686aac7"
+      },
+      {
+        "path": "android/app/src/main/kotlin/com/ureader/prototype/epub/BookExternalLink.kt",
+        "sha256": "368e72ffe0521363eb5a85d34e09f9f95383274ebf84ff18a13961d9b0d6060c"
+      },
+      {
+        "path": "android/app/src/main/kotlin/com/ureader/prototype/epub/BoundedZipReader.kt",
+        "sha256": "c45c4f3df8debf6e1a51ee947fc00b3b0e5cc14e8071b8b3af81015b204b36ee"
+      },
+      {
+        "path": "android/app/src/main/kotlin/com/ureader/prototype/epub/EpubDocumentPlugin.kt",
+        "sha256": "32158dff67fb3e3b3932cb574bbb78e5c667a93275bb739f67c5b18e3c491e80"
+      },
+      {
+        "path": "android/app/src/main/kotlin/com/ureader/prototype/epub/EpubSession.kt",
+        "sha256": "561d4299eb1e00262a7223130e6e64e66fe767c844526ab4183d6b1651710181"
+      },
+      {
+        "path": "android/app/src/main/kotlin/com/ureader/prototype/epub/SearchKeyNormalizer.kt",
+        "sha256": "148c4837d054fd51c5eec9071293aea282fa5ba94f1bdec46c64e6ceafa0d194"
+      },
+      {
+        "path": "android/app/src/main/kotlin/com/ureader/prototype/epub/ZipIndexGate.kt",
+        "sha256": "29bac567b58b12b4e23c15628007bdaaa07ea1f685132f4c6bbeb40901670395"
+      }
+    ],
+    "voiceSha256": "f763800c6865a7c13e3368db7c24345d7ab22abd06c2ca40a3428d14c5357248",
+    "alignedAuditSha256": "84d09fe4c684995e2ab86d000d3d289c36aa15e00dc7c539b5c2045e63ce6db3"
+  },
+  "voice": {
+    "id": "estelle",
+    "language": "fr",
+    "provenance": "https://huggingface.co/kyutai/pocket-tts-without-voice-cloning/resolve/4e1e0a3e611c51c0b4ed8174fc10f32a54644303/languages/french/embeddings/estelle.safetensors",
+    "license": "CC-BY-4.0",
+    "recordingOrigin": "hf://kyutai/tts-voices/unmute-prod-website/developpeuse-3.wav@1fc7395b7e012e2bbebfca14b942a4ef62ccc899"
+  },
+  "files": [
+    {
+      "role": "main",
+      "relativePath": "flow_lm_main_int8.onnx",
+      "byteSize": 76063101,
+      "sha256": "c3a3a6c25cdea1d7f897ae74a287e4538722d7f31395ab84edf03e0f92d24453",
+      "delivery": {
+        "kind": "local_g0_derivation",
+        "recipeRevision": "sha256-aec3f64b072c3770a13de34f5b85e41d1962de2064a5a8223b82370dd070553a"
+      }
+    },
+    {
+      "role": "flow",
+      "relativePath": "flow_lm_flow_int8.onnx",
+      "byteSize": 9963760,
+      "sha256": "1d8be136978a316e4fb3c7d253dda79758011e5cc43142ad685422ec2e48b745",
+      "delivery": {
+        "kind": "local_g0_derivation",
+        "recipeRevision": "sha256-aec3f64b072c3770a13de34f5b85e41d1962de2064a5a8223b82370dd070553a"
+      }
+    },
+    {
+      "role": "decoder",
+      "relativePath": "mimi_decoder_int8.onnx",
+      "byteSize": 22684903,
+      "sha256": "a6bcd98e8533f28256574d0a981bdcc2449082241a982e9b2e2cd3b97d3531e8",
+      "delivery": {
+        "kind": "local_g0_derivation",
+        "recipeRevision": "sha256-aec3f64b072c3770a13de34f5b85e41d1962de2064a5a8223b82370dd070553a"
+      }
+    },
+    {
+      "role": "text_embeddings",
+      "relativePath": "text_embeddings.f16",
+      "byteSize": 8194048,
+      "sha256": "0913e335d98213a675a6f34971cf57c8dbf4c43f92bb07e11f87f8ee4653d63f",
+      "delivery": {
+        "kind": "local_g0_derivation",
+        "recipeRevision": "sha256-aec3f64b072c3770a13de34f5b85e41d1962de2064a5a8223b82370dd070553a"
+      }
+    },
+    {
+      "role": "tokenizer",
+      "relativePath": "tokenizer.json",
+      "byteSize": 246403,
+      "sha256": "6211acffe9cb95172f71f0051f18e26ea305b2b32ea00b331ee976551c70887f",
+      "delivery": {
+        "kind": "local_g0_derivation",
+        "recipeRevision": "sha256-aec3f64b072c3770a13de34f5b85e41d1962de2064a5a8223b82370dd070553a"
+      }
+    },
+    {
+      "role": "voice_state",
+      "relativePath": "estelle.f16",
+      "byteSize": 4128768,
+      "sha256": "29c74fba15f93744dd96ba628304d2cdd1337edde4f8169302f3889868c22c3d",
+      "delivery": {
+        "kind": "local_g0_derivation",
+        "recipeRevision": "sha256-aec3f64b072c3770a13de34f5b85e41d1962de2064a5a8223b82370dd070553a"
+      }
+    },
+    {
+      "role": "inference_protocol",
+      "relativePath": "manifest.json",
+      "byteSize": 7290,
+      "sha256": "3703e929841814aa6366ee5036fca78881338de2fe85e652824408f73e9408fe",
+      "delivery": {
+        "kind": "local_g0_derivation",
+        "recipeRevision": "sha256-aec3f64b072c3770a13de34f5b85e41d1962de2064a5a8223b82370dd070553a"
+      }
+    }
+  ],
+  "tensorProtocol": {
+    "graphs": {
+      "main": {
+        "opsets": [
+          {
+            "domain": "",
+            "version": 18
+          }
+        ],
+        "inputs": [
+          {
+            "name": "sequence",
+            "type": "FLOAT",
+            "shape": [
+              1,
+              "sequence_length",
+              32
+            ]
+          },
+          {
+            "name": "text_embeddings",
+            "type": "FLOAT",
+            "shape": [
+              1,
+              "text_length",
+              1024
+            ]
+          },
+          {
+            "name": "cache_0",
+            "type": "FLOAT",
+            "shape": [
+              2,
+              1,
+              "past_length",
+              16,
+              64
+            ]
+          },
+          {
+            "name": "offset_0",
+            "type": "INT64",
+            "shape": [
+              1
+            ]
+          },
+          {
+            "name": "cache_1",
+            "type": "FLOAT",
+            "shape": [
+              2,
+              1,
+              "past_length",
+              16,
+              64
+            ]
+          },
+          {
+            "name": "offset_1",
+            "type": "INT64",
+            "shape": [
+              1
+            ]
+          },
+          {
+            "name": "cache_2",
+            "type": "FLOAT",
+            "shape": [
+              2,
+              1,
+              "past_length",
+              16,
+              64
+            ]
+          },
+          {
+            "name": "offset_2",
+            "type": "INT64",
+            "shape": [
+              1
+            ]
+          },
+          {
+            "name": "cache_3",
+            "type": "FLOAT",
+            "shape": [
+              2,
+              1,
+              "past_length",
+              16,
+              64
+            ]
+          },
+          {
+            "name": "offset_3",
+            "type": "INT64",
+            "shape": [
+              1
+            ]
+          },
+          {
+            "name": "cache_4",
+            "type": "FLOAT",
+            "shape": [
+              2,
+              1,
+              "past_length",
+              16,
+              64
+            ]
+          },
+          {
+            "name": "offset_4",
+            "type": "INT64",
+            "shape": [
+              1
+            ]
+          },
+          {
+            "name": "cache_5",
+            "type": "FLOAT",
+            "shape": [
+              2,
+              1,
+              "past_length",
+              16,
+              64
+            ]
+          },
+          {
+            "name": "offset_5",
+            "type": "INT64",
+            "shape": [
+              1
+            ]
+          }
+        ],
+        "outputs": [
+          {
+            "name": "conditioning",
+            "type": "FLOAT",
+            "shape": [
+              "Gatherconditioning_dim_0",
+              1024
+            ]
+          },
+          {
+            "name": "eos",
+            "type": "FLOAT",
+            "shape": [
+              "Gatherconditioning_dim_0",
+              1
+            ]
+          },
+          {
+            "name": "next_cache_0",
+            "type": "FLOAT",
+            "shape": [
+              2,
+              1,
+              "total_length",
+              16,
+              64
+            ]
+          },
+          {
+            "name": "next_offset_0",
+            "type": "INT64",
+            "shape": [
+              1
+            ]
+          },
+          {
+            "name": "next_cache_1",
+            "type": "FLOAT",
+            "shape": [
+              2,
+              1,
+              "total_length",
+              16,
+              64
+            ]
+          },
+          {
+            "name": "next_offset_1",
+            "type": "INT64",
+            "shape": [
+              1
+            ]
+          },
+          {
+            "name": "next_cache_2",
+            "type": "FLOAT",
+            "shape": [
+              2,
+              1,
+              "total_length",
+              16,
+              64
+            ]
+          },
+          {
+            "name": "next_offset_2",
+            "type": "INT64",
+            "shape": [
+              1
+            ]
+          },
+          {
+            "name": "next_cache_3",
+            "type": "FLOAT",
+            "shape": [
+              2,
+              1,
+              "total_length",
+              16,
+              64
+            ]
+          },
+          {
+            "name": "next_offset_3",
+            "type": "INT64",
+            "shape": [
+              1
+            ]
+          },
+          {
+            "name": "next_cache_4",
+            "type": "FLOAT",
+            "shape": [
+              2,
+              1,
+              "total_length",
+              16,
+              64
+            ]
+          },
+          {
+            "name": "next_offset_4",
+            "type": "INT64",
+            "shape": [
+              1
+            ]
+          },
+          {
+            "name": "next_cache_5",
+            "type": "FLOAT",
+            "shape": [
+              2,
+              1,
+              "total_length",
+              16,
+              64
+            ]
+          },
+          {
+            "name": "next_offset_5",
+            "type": "INT64",
+            "shape": [
+              1
+            ]
+          }
+        ]
+      },
+      "flow": {
+        "opsets": [
+          {
+            "domain": "",
+            "version": 18
+          }
+        ],
+        "inputs": [
+          {
+            "name": "c",
+            "type": "FLOAT",
+            "shape": [
+              1,
+              1024
+            ]
+          },
+          {
+            "name": "s",
+            "type": "FLOAT",
+            "shape": [
+              1,
+              1
+            ]
+          },
+          {
+            "name": "t",
+            "type": "FLOAT",
+            "shape": [
+              1,
+              1
+            ]
+          },
+          {
+            "name": "x",
+            "type": "FLOAT",
+            "shape": [
+              1,
+              32
+            ]
+          }
+        ],
+        "outputs": [
+          {
+            "name": "direction",
+            "type": "FLOAT",
+            "shape": [
+              1,
+              32
+            ]
+          }
+        ]
+      },
+      "decoder": {
+        "opsets": [
+          {
+            "domain": "",
+            "version": 18
+          }
+        ],
+        "inputs": [
+          {
+            "name": "latent",
+            "type": "FLOAT",
+            "shape": [
+              1,
+              "latent_length",
+              32
+            ]
+          },
+          {
+            "name": "mimi_0",
+            "type": "FLOAT",
+            "shape": [
+              1,
+              512,
+              6
+            ]
+          },
+          {
+            "name": "mimi_1",
+            "type": "BOOL",
+            "shape": [
+              1
+            ]
+          },
+          {
+            "name": "mimi_2",
+            "type": "FLOAT",
+            "shape": [
+              1,
+              256,
+              6
+            ]
+          },
+          {
+            "name": "mimi_3",
+            "type": "FLOAT",
+            "shape": [
+              1,
+              256,
+              2
+            ]
+          },
+          {
+            "name": "mimi_4",
+            "type": "BOOL",
+            "shape": [
+              1
+            ]
+          },
+          {
+            "name": "mimi_5",
+            "type": "FLOAT",
+            "shape": [
+              1,
+              128,
+              0
+            ]
+          },
+          {
+            "name": "mimi_6",
+            "type": "BOOL",
+            "shape": [
+              1
+            ]
+          },
+          {
+            "name": "mimi_7",
+            "type": "FLOAT",
+            "shape": [
+              1,
+              128,
+              5
+            ]
+          },
+          {
+            "name": "mimi_8",
+            "type": "FLOAT",
+            "shape": [
+              1,
+              128,
+              2
+            ]
+          },
+          {
+            "name": "mimi_9",
+            "type": "BOOL",
+            "shape": [
+              1
+            ]
+          },
+          {
+            "name": "mimi_10",
+            "type": "FLOAT",
+            "shape": [
+              1,
+              64,
+              0
+            ]
+          },
+          {
+            "name": "mimi_11",
+            "type": "BOOL",
+            "shape": [
+              1
+            ]
+          },
+          {
+            "name": "mimi_12",
+            "type": "FLOAT",
+            "shape": [
+              1,
+              64,
+              4
+            ]
+          },
+          {
+            "name": "mimi_13",
+            "type": "FLOAT",
+            "shape": [
+              1,
+              64,
+              2
+            ]
+          },
+          {
+            "name": "mimi_14",
+            "type": "BOOL",
+            "shape": [
+              1
+            ]
+          },
+          {
+            "name": "mimi_15",
+            "type": "FLOAT",
+            "shape": [
+              1,
+              32,
+              0
+            ]
+          },
+          {
+            "name": "mimi_16",
+            "type": "BOOL",
+            "shape": [
+              1
+            ]
+          },
+          {
+            "name": "mimi_17",
+            "type": "FLOAT",
+            "shape": [
+              1,
+              64,
+              2
+            ]
+          },
+          {
+            "name": "mimi_18",
+            "type": "BOOL",
+            "shape": [
+              1
+            ]
+          },
+          {
+            "name": "mimi_19",
+            "type": "INT64",
+            "shape": [
+              1
+            ]
+          },
+          {
+            "name": "mimi_20",
+            "type": "FLOAT",
+            "shape": [
+              2,
+              1,
+              "past_length",
+              8,
+              64
+            ]
+          },
+          {
+            "name": "mimi_21",
+            "type": "INT64",
+            "shape": [
+              1
+            ]
+          },
+          {
+            "name": "mimi_22",
+            "type": "FLOAT",
+            "shape": [
+              2,
+              1,
+              "past_length",
+              8,
+              64
+            ]
+          },
+          {
+            "name": "mimi_23",
+            "type": "FLOAT",
+            "shape": [
+              1,
+              512,
+              16
+            ]
+          }
+        ],
+        "outputs": [
+          {
+            "name": "audio",
+            "type": "FLOAT",
+            "shape": [
+              1,
+              1,
+              "audio_length"
+            ]
+          },
+          {
+            "name": "next_mimi_0",
+            "type": "FLOAT",
+            "shape": [
+              1,
+              512,
+              6
+            ]
+          },
+          {
+            "name": "next_mimi_1",
+            "type": "BOOL",
+            "shape": [
+              1
+            ]
+          },
+          {
+            "name": "next_mimi_2",
+            "type": "FLOAT",
+            "shape": [
+              1,
+              256,
+              6
+            ]
+          },
+          {
+            "name": "next_mimi_3",
+            "type": "FLOAT",
+            "shape": [
+              1,
+              256,
+              2
+            ]
+          },
+          {
+            "name": "next_mimi_4",
+            "type": "BOOL",
+            "shape": [
+              1
+            ]
+          },
+          {
+            "name": "next_mimi_5",
+            "type": "FLOAT",
+            "shape": [
+              1,
+              128,
+              0
+            ]
+          },
+          {
+            "name": "next_mimi_6",
+            "type": "BOOL",
+            "shape": [
+              1
+            ]
+          },
+          {
+            "name": "next_mimi_7",
+            "type": "FLOAT",
+            "shape": [
+              1,
+              128,
+              5
+            ]
+          },
+          {
+            "name": "next_mimi_8",
+            "type": "FLOAT",
+            "shape": [
+              1,
+              128,
+              2
+            ]
+          },
+          {
+            "name": "next_mimi_9",
+            "type": "BOOL",
+            "shape": [
+              1
+            ]
+          },
+          {
+            "name": "next_mimi_10",
+            "type": "FLOAT",
+            "shape": [
+              1,
+              64,
+              0
+            ]
+          },
+          {
+            "name": "next_mimi_11",
+            "type": "BOOL",
+            "shape": [
+              1
+            ]
+          },
+          {
+            "name": "next_mimi_12",
+            "type": "FLOAT",
+            "shape": [
+              1,
+              64,
+              4
+            ]
+          },
+          {
+            "name": "next_mimi_13",
+            "type": "FLOAT",
+            "shape": [
+              1,
+              64,
+              2
+            ]
+          },
+          {
+            "name": "next_mimi_14",
+            "type": "BOOL",
+            "shape": [
+              1
+            ]
+          },
+          {
+            "name": "next_mimi_15",
+            "type": "FLOAT",
+            "shape": [
+              1,
+              32,
+              0
+            ]
+          },
+          {
+            "name": "next_mimi_16",
+            "type": "BOOL",
+            "shape": [
+              1
+            ]
+          },
+          {
+            "name": "next_mimi_17",
+            "type": "FLOAT",
+            "shape": [
+              1,
+              64,
+              2
+            ]
+          },
+          {
+            "name": "next_mimi_18",
+            "type": "BOOL",
+            "shape": [
+              1
+            ]
+          },
+          {
+            "name": "next_mimi_19",
+            "type": "INT64",
+            "shape": [
+              1
+            ]
+          },
+          {
+            "name": "next_mimi_20",
+            "type": "FLOAT",
+            "shape": [
+              2,
+              1,
+              "total_length",
+              8,
+              64
+            ]
+          },
+          {
+            "name": "next_mimi_21",
+            "type": "INT64",
+            "shape": [
+              1
+            ]
+          },
+          {
+            "name": "next_mimi_22",
+            "type": "FLOAT",
+            "shape": [
+              2,
+              1,
+              "total_length",
+              8,
+              64
+            ]
+          },
+          {
+            "name": "next_mimi_23",
+            "type": "FLOAT",
+            "shape": [
+              1,
+              512,
+              16
+            ]
+          }
+        ]
+      }
+    },
+    "sampleRate": 24000,
+    "channels": 1,
+    "encoding": "pcm16",
+    "bos": "NaN sequence sentinel replaced by official learned BOS embedding",
+    "eos": {
+      "threshold": -4.0,
+      "minimumFrames": 6,
+      "finalizationTail": "(3 for <=4 words else 1) + 2"
+    },
+    "voiceOffsets": [
+      168,
+      168,
+      168,
+      168,
+      168,
+      168
+    ],
+    "mimiStates": [
+      {
+        "name": "decoder.model.0",
+        "key": "previous",
+        "dtype": "float32",
+        "shape": [
+          1,
+          512,
+          6
+        ]
+      },
+      {
+        "name": "decoder.model.0",
+        "key": "first",
+        "dtype": "bool",
+        "shape": [
+          1
+        ]
+      },
+      {
+        "name": "decoder.model.2",
+        "key": "partial",
+        "dtype": "float32",
+        "shape": [
+          1,
+          256,
+          6
+        ]
+      },
+      {
+        "name": "decoder.model.3.block.1",
+        "key": "previous",
+        "dtype": "float32",
+        "shape": [
+          1,
+          256,
+          2
+        ]
+      },
+      {
+        "name": "decoder.model.3.block.1",
+        "key": "first",
+        "dtype": "bool",
+        "shape": [
+          1
+        ]
+      },
+      {
+        "name": "decoder.model.3.block.3",
+        "key": "previous",
+        "dtype": "float32",
+        "shape": [
+          1,
+          128,
+          0
+        ]
+      },
+      {
+        "name": "decoder.model.3.block.3",
+        "key": "first",
+        "dtype": "bool",
+        "shape": [
+          1
+        ]
+      },
+      {
+        "name": "decoder.model.5",
+        "key": "partial",
+        "dtype": "float32",
+        "shape": [
+          1,
+          128,
+          5
+        ]
+      },
+      {
+        "name": "decoder.model.6.block.1",
+        "key": "previous",
+        "dtype": "float32",
+        "shape": [
+          1,
+          128,
+          2
+        ]
+      },
+      {
+        "name": "decoder.model.6.block.1",
+        "key": "first",
+        "dtype": "bool",
+        "shape": [
+          1
+        ]
+      },
+      {
+        "name": "decoder.model.6.block.3",
+        "key": "previous",
+        "dtype": "float32",
+        "shape": [
+          1,
+          64,
+          0
+        ]
+      },
+      {
+        "name": "decoder.model.6.block.3",
+        "key": "first",
+        "dtype": "bool",
+        "shape": [
+          1
+        ]
+      },
+      {
+        "name": "decoder.model.8",
+        "key": "partial",
+        "dtype": "float32",
+        "shape": [
+          1,
+          64,
+          4
+        ]
+      },
+      {
+        "name": "decoder.model.9.block.1",
+        "key": "previous",
+        "dtype": "float32",
+        "shape": [
+          1,
+          64,
+          2
+        ]
+      },
+      {
+        "name": "decoder.model.9.block.1",
+        "key": "first",
+        "dtype": "bool",
+        "shape": [
+          1
+        ]
+      },
+      {
+        "name": "decoder.model.9.block.3",
+        "key": "previous",
+        "dtype": "float32",
+        "shape": [
+          1,
+          32,
+          0
+        ]
+      },
+      {
+        "name": "decoder.model.9.block.3",
+        "key": "first",
+        "dtype": "bool",
+        "shape": [
+          1
+        ]
+      },
+      {
+        "name": "decoder.model.11",
+        "key": "previous",
+        "dtype": "float32",
+        "shape": [
+          1,
+          64,
+          2
+        ]
+      },
+      {
+        "name": "decoder.model.11",
+        "key": "first",
+        "dtype": "bool",
+        "shape": [
+          1
+        ]
+      },
+      {
+        "name": "decoder_transformer.transformer.layers.0.self_attn",
+        "key": "offset",
+        "dtype": "int64",
+        "shape": [
+          1
+        ]
+      },
+      {
+        "name": "decoder_transformer.transformer.layers.0.self_attn",
+        "key": "cache",
+        "dtype": "float32",
+        "shape": [
+          2,
+          1,
+          0,
+          8,
+          64
+        ]
+      },
+      {
+        "name": "decoder_transformer.transformer.layers.1.self_attn",
+        "key": "offset",
+        "dtype": "int64",
+        "shape": [
+          1
+        ]
+      },
+      {
+        "name": "decoder_transformer.transformer.layers.1.self_attn",
+        "key": "cache",
+        "dtype": "float32",
+        "shape": [
+          2,
+          1,
+          0,
+          8,
+          64
+        ]
+      },
+      {
+        "name": "upsample.convtr",
+        "key": "partial",
+        "dtype": "float32",
+        "shape": [
+          1,
+          512,
+          16
+        ]
+      }
+    ],
+    "textEmbeddings": {
+      "rows": 4001,
+      "dim": 1024,
+      "dtype": "float16"
+    },
+    "tokenizer": "French Unigram 4000 with UTF-8 byte fallback; no implicit Unicode normalization",
+    "samplerDecodeSteps": 1,
+    "temperature": 0.3
+  },
+  "licenseNotices": [
+    {
+      "component": "Official Pocket TTS code",
+      "license": "MIT",
+      "noticeAsset": "assets/models/POCKET_TTS_LICENSE.txt",
+      "source": "https://github.com/kyutai-labs/pocket-tts/tree/3dbee45d343d7dddd0d105468d17f8dcba14db3e"
+    },
+    {
+      "component": "ONNX Runtime Android 1.25.0",
+      "license": "MIT",
+      "source": "https://github.com/microsoft/onnxruntime/blob/v1.25.0/LICENSE"
+    },
+    {
+      "component": "French weights, tokenizer, locally derived ONNX and FP16 embeddings",
+      "license": "CC-BY-4.0",
+      "attribution": "Kyutai; local ONNX export, INT8 quantization and FP16 conversion for uReader",
+      "source": "https://huggingface.co/kyutai/pocket-tts-without-voice-cloning/tree/8843db76457a91db32077edf8dfcd1c0e3e755fd"
+    },
+    {
+      "component": "Fixed Estelle state and locally derived FP16 voice cache",
+      "license": "CC-BY-4.0",
+      "attribution": "Kyutai; local ONNX export, INT8 quantization and FP16 conversion for uReader",
+      "source": "https://huggingface.co/kyutai/pocket-tts-without-voice-cloning/tree/4e1e0a3e611c51c0b4ed8174fc10f32a54644303"
+    }
+  ],
+  "runtimeCompatibility": {
+    "androidOrt": "1.25.0",
+    "prototypeSourceDigest": "dbbee825cfdc6d8ce93259c038c829d71f9584e1605486996bca80e685b67430",
+    "validatedConfiguration": {
+      "model": "SM-G965F",
+      "androidApi": 29,
+      "abi": "arm64-v8a",
+      "pageSizeBytes": 4096
+    },
+    "otherDevicesValidated": false,
+    "expectedVoiceOffset": 168
+  },
+  "limits": {
+    "maxBundleBytes": 121288273,
+    "allowedFiles": [
+      "flow_lm_main_int8.onnx",
+      "flow_lm_flow_int8.onnx",
+      "mimi_decoder_int8.onnx",
+      "text_embeddings.f16",
+      "tokenizer.json",
+      "estelle.f16",
+      "manifest.json"
+    ],
+    "maxDownloadBytes": 0,
+    "maxInputUtf16": 4096,
+    "maxTokensPerSegment": 50,
+    "maxFrames": 250,
+    "generationBudgetMs": 120000,
+    "maxPcmSamples": 480000,
+    "scope": "Prototype safety bounds; not a latency or guaranteed memory SLA",
+    "inputScope": "Each native request after normalization and segmentation"
+  },
+  "evidence": {
+    "repeatedExports": "aligned-export-reproducibility-01.json",
+    "nativeGeneration": "aligned-android-01-cases.json",
+    "cancellation": "aligned-android-01-cancellation.json",
+    "memoryCycles": "aligned-cycles-01-memory.json",
+    "licenceMetadata": "aligned-license-metadata-01.json"
+  },
+  "textPreparation": {
+    "version": "fr-numbers-v3",
+    "sourcePath": "lib/features/listening/french_text_normalizer.dart",
+    "sourceSha256": "6265421f2d0b63cc01c215dc4ed5832a815de8ab8b1131cb4d8c679a9f166c39",
+    "sourceOffsets": "UTF-16",
+    "segmentAfterNormalization": true,
+    "status": "wired_to_phase3_coordinator",
+    "knownLimitations": [
+      "feminine_noun_agreement_not_implemented",
+      "general_ambiguous_decimals_not_expanded",
+      "unlisted_abbreviations_not_expanded",
+      "model_intonation_requires_human_evaluation"
+    ],
+    "segmenterSourceSha256": "e4a468aac4d6a3403b7be3d4c1ad3a3b664e6643d682918e5f48b1ff766bcfdb",
+    "punctuationAudio": {
+      "version": "punctuation-tail-v1",
+      "sourcePath": "lib/infrastructure/audio/punctuation_audio.dart",
+      "sourceSha256": "d708215f5a71b73351d04d579407ad7c60515f54771ba0c636fb18554c12f352",
+      "minimumQuietMs": {
+        "sentence": 350,
+        "colonSemicolon": 220,
+        "comma": 120
+      },
+      "operation": "append_quiet_only_within_existing_480000_sample_limit",
+      "quietAmplitudeThreshold": 128
+    },
+    "modelInputPunctuation": {
+      "colonAndSemicolon": "comma_at_explicit_clause_boundary",
+      "questionAndExclamation": "preserved",
+      "punctuationOnlySegments": "not_synthesized"
+    }
+  },
+  "localInstallation": {
+    "enabled": true,
+    "source": "explicit_android_local_document_tree",
+    "network": false,
+    "persistSourcePermission": false,
+    "fileSelection": "embedded_allowlist_only",
+    "sourceFilesModified": false
+  },
+  "wordAlignment": {
+    "version": 1,
+    "mode": "development_preview",
+    "g1Verdict": "not_evaluated",
+    "alignerVersion": "attention-l3h9-v1",
+    "outputName": "/transformer/layers.3/self_attn/Softmax_output_0",
+    "modelSha256": "c3a3a6c25cdea1d7f897ae74a287e4538722d7f31395ab84edf03e0f92d24453",
+    "parityEvidenceSha256": "eee9df9e16e2b7aeee6be8bf5f317acc714abe3d82b4d94d2f84944090fff036",
+    "parityEvidenceReport": "validation/reader/reports/phase5-corpus-parity-20261120.json"
+  }
+}

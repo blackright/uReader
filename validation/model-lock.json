@@ -1,0 +1,569 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-11-11",
+  "status": "reproduced_bundle_g0_failed_on_numbers",
+  "language": "fr",
+  "trustedBundle": {
+    "id": "fr-official-aligned",
+    "version": "1.0.0-g0",
+    "manifestDigest": "6136034a15cb0a78d6b02311c878cd9c5322ca6d1c2dcc8e9d2250305e15a268",
+    "deliveryMode": "local_g0_derivation",
+    "audit": "passed",
+    "ready": false,
+    "g0": "passed",
+    "embeddedGateSnapshot": "passed_in_integrated_APK",
+    "localPlaybackEnabled": true
+  },
+  "verifiedFiles": [
+    {
+      "relativePath": "flow_lm_main_int8.onnx",
+      "byteSize": 76063417,
+      "sha256": "fbdafb5f3f004565114aca628ebf96c4c5c6e861d953f293351c2c585fbc211f",
+      "verification": "local_size_and_sha256"
+    },
+    {
+      "relativePath": "flow_lm_flow_int8.onnx",
+      "byteSize": 9966003,
+      "sha256": "edee960ed0d3783bc31c9d3ae182884562193d78bbc3ab28fefa23bd2949e0e4",
+      "verification": "local_size_and_sha256"
+    },
+    {
+      "relativePath": "mimi_decoder_int8.onnx",
+      "byteSize": 22688110,
+      "sha256": "b7fd081d6ee991521553a32ffc19981bc40a68042c3219cd1b6845c983c84e21",
+      "verification": "local_size_and_sha256"
+    },
+    {
+      "relativePath": "text_embeddings.f16",
+      "byteSize": 8194048,
+      "sha256": "00cbfe5ea0e0a93689e07917750cc99193af02800e35190333dbbcef50a6d2af",
+      "verification": "local_size_and_sha256"
+    },
+    {
+      "relativePath": "tokenizer.json",
+      "byteSize": 246403,
+      "sha256": "6211acffe9cb95172f71f0051f18e26ea305b2b32ea00b331ee976551c70887f",
+      "verification": "local_size_and_sha256"
+    },
+    {
+      "relativePath": "voices/estelle.f16",
+      "byteSize": 3784704,
+      "sha256": "24b8fed0f9b0b959960c05008b77c1df7d436bd269121dc235b1cc8bd48b26f1",
+      "verification": "local_size_and_sha256"
+    },
+    {
+      "relativePath": "manifest.json",
+      "byteSize": 5318,
+      "sha256": "feeefe94c2accd81f4f4d87901dc0fe2d318bab5c073ff4fd38bed1b6aa584d8",
+      "verification": "local_size_and_sha256"
+    }
+  ],
+  "candidate": {
+    "repository": "Vincweb/pocket-tts-french-onnx",
+    "revision": "84541283b060685dbc7f9f9d8066f4b00235820c",
+    "variant": "french-6-layer-int8",
+    "voice": "estelle",
+    "totalBytes": 120948003,
+    "localDirectory": "validation/private/models/fr-6l",
+    "evidence": "API pinned revision; large-file hashes from publisher LFS metadata; text hashes calculated from fetched bytes",
+    "tokenizerMatchesOfficial": true
+  },
+  "downloadFiles": [
+    {
+      "relativePath": "flow_lm_main_int8.onnx",
+      "byteSize": 76063417,
+      "sha256": "fbdafb5f3f004565114aca628ebf96c4c5c6e861d953f293351c2c585fbc211f",
+      "url": "https://huggingface.co/Vincweb/pocket-tts-french-onnx/resolve/84541283b060685dbc7f9f9d8066f4b00235820c/flow_lm_main_int8.onnx",
+      "hashEvidence": "publisher_lfs_metadata"
+    },
+    {
+      "relativePath": "flow_lm_flow_int8.onnx",
+      "byteSize": 9966003,
+      "sha256": "edee960ed0d3783bc31c9d3ae182884562193d78bbc3ab28fefa23bd2949e0e4",
+      "url": "https://huggingface.co/Vincweb/pocket-tts-french-onnx/resolve/84541283b060685dbc7f9f9d8066f4b00235820c/flow_lm_flow_int8.onnx",
+      "hashEvidence": "publisher_lfs_metadata"
+    },
+    {
+      "relativePath": "mimi_decoder_int8.onnx",
+      "byteSize": 22688110,
+      "sha256": "b7fd081d6ee991521553a32ffc19981bc40a68042c3219cd1b6845c983c84e21",
+      "url": "https://huggingface.co/Vincweb/pocket-tts-french-onnx/resolve/84541283b060685dbc7f9f9d8066f4b00235820c/mimi_decoder_int8.onnx",
+      "hashEvidence": "publisher_lfs_metadata"
+    },
+    {
+      "relativePath": "text_embeddings.f16",
+      "byteSize": 8194048,
+      "sha256": "00cbfe5ea0e0a93689e07917750cc99193af02800e35190333dbbcef50a6d2af",
+      "url": "https://huggingface.co/Vincweb/pocket-tts-french-onnx/resolve/84541283b060685dbc7f9f9d8066f4b00235820c/text_embeddings.f16",
+      "hashEvidence": "publisher_lfs_metadata"
+    },
+    {
+      "relativePath": "tokenizer.json",
+      "byteSize": 246403,
+      "sha256": "6211acffe9cb95172f71f0051f18e26ea305b2b32ea00b331ee976551c70887f",
+      "url": "https://huggingface.co/Vincweb/pocket-tts-french-onnx/resolve/84541283b060685dbc7f9f9d8066f4b00235820c/tokenizer.json",
+      "hashEvidence": "text_bytes_observed"
+    },
+    {
+      "relativePath": "voices/estelle.f16",
+      "byteSize": 3784704,
+      "sha256": "24b8fed0f9b0b959960c05008b77c1df7d436bd269121dc235b1cc8bd48b26f1",
+      "url": "https://huggingface.co/Vincweb/pocket-tts-french-onnx/resolve/84541283b060685dbc7f9f9d8066f4b00235820c/voices/estelle.f16",
+      "hashEvidence": "publisher_lfs_metadata"
+    },
+    {
+      "relativePath": "manifest.json",
+      "byteSize": 5318,
+      "sha256": "feeefe94c2accd81f4f4d87901dc0fe2d318bab5c073ff4fd38bed1b6aa584d8",
+      "url": "https://huggingface.co/Vincweb/pocket-tts-french-onnx/resolve/84541283b060685dbc7f9f9d8066f4b00235820c/manifest.json",
+      "hashEvidence": "text_bytes_observed"
+    }
+  ],
+  "exporterRevision": "84541283b060685dbc7f9f9d8066f4b00235820c",
+  "upstreamCodeRevision": null,
+  "androidRuntimeVersion": "1.25.0",
+  "tokenizerBindingVersion": "ureader-french-unigram-v1 (Kotlin; golden reference tokenizers 0.22.2)",
+  "blockers": [
+    "G0 failed: reproduced INT8 output incoherent for fr-05-p1 at 50 tokens",
+    "T020/T021/T023/T024 remain blocked; investigate before activation"
+  ],
+  "provenance": "model-provenance.md",
+  "localIntegrityVerification": {
+    "checkedAtUtc": "2026-11-11T12:53:31.892048+00:00",
+    "files": 7,
+    "totalBytes": 120948003,
+    "status": "passed",
+    "activation": false,
+    "androidCompatibility": "not_tested"
+  },
+  "hostInspection": {
+    "structuralCheck": "passed",
+    "graphs": 3,
+    "report": "reports/g0/onnx-structure.json",
+    "runtime": "onnxruntime 1.25.0 CPU Windows AMD64",
+    "smokeReport": "reports/g0/onnx-smoke-01.json",
+    "g0": "not_demonstrated"
+  },
+  "officialReference": {
+    "package": "pocket-tts",
+    "version": "3.3.0",
+    "codeRevision": "3dbee45d343d7dddd0d105468d17f8dcba14db3e",
+    "localDirectory": "validation/private/reference-fr",
+    "status": "executed_on_host",
+    "note": "Pinned comparison reference; not asserted to be the original exporter environment",
+    "downloadFiles": [
+      {
+        "relativePath": "model.safetensors",
+        "byteSize": 219029196,
+        "sha256": "56366cfed6c25bfcd3bf4c61e66e06efaf52e78a5d06e1dcade1c588495bc699",
+        "url": "https://huggingface.co/kyutai/pocket-tts-without-voice-cloning/resolve/1e08e6a23401048648a9fdcfde2f89348215c2a7/languages/french/model.safetensors"
+      },
+      {
+        "relativePath": "estelle.safetensors",
+        "byteSize": 7571256,
+        "sha256": "d9efd55657f74ba9483caec23f9fd1d155e121b058feef86af3760d54ea8aa15",
+        "url": "https://huggingface.co/kyutai/pocket-tts-without-voice-cloning/resolve/1e08e6a23401048648a9fdcfde2f89348215c2a7/languages/french/embeddings/estelle.safetensors"
+      },
+      {
+        "relativePath": "pocket_tts-3.3.0-py3-none-any.whl",
+        "byteSize": 86452,
+        "sha256": "77b2eb5554cb710e92888f84e28816f2361dba075e0ace47108458794db99111",
+        "url": "https://files.pythonhosted.org/packages/1e/c0/9bf4453c170bfe15cbe71d9ec7bbd7052bea0275e5c0645f59be373b83ab/pocket_tts-3.3.0-py3-none-any.whl"
+      },
+      {
+        "relativePath": "einops-0.8.1-py3-none-any.whl",
+        "byteSize": 64359,
+        "sha256": "919387eb55330f5757c6bea9165c5ff5cfe63a642682ea788a6d472576d81737",
+        "url": "https://files.pythonhosted.org/packages/87/62/9773de14fe6c45c23649e98b83231fffd7b9892b6cf863251dc2afa73643/einops-0.8.1-py3-none-any.whl"
+      },
+      {
+        "relativePath": "sentencepiece-0.2.1-cp312-cp312-win_amd64.whl",
+        "byteSize": 1054671,
+        "sha256": "4cdc7c36234fda305e85c32949c5211faaf8dd886096c7cea289ddc12a2d02de",
+        "url": "https://files.pythonhosted.org/packages/2d/81/92df5673c067148c2545b1bfe49adfd775bcc3a169a047f5a0e6575ddaca/sentencepiece-0.2.1-cp312-cp312-win_amd64.whl"
+      }
+    ],
+    "totalBytes": 227805934,
+    "verifiedAtUtc": "2026-11-11T13:37:30.003024+00:00",
+    "verifiedFiles": [
+      {
+        "relativePath": "model.safetensors",
+        "byteSize": 219029196,
+        "sha256": "56366cfed6c25bfcd3bf4c61e66e06efaf52e78a5d06e1dcade1c588495bc699"
+      },
+      {
+        "relativePath": "estelle.safetensors",
+        "byteSize": 7571256,
+        "sha256": "d9efd55657f74ba9483caec23f9fd1d155e121b058feef86af3760d54ea8aa15"
+      },
+      {
+        "relativePath": "pocket_tts-3.3.0-py3-none-any.whl",
+        "byteSize": 86452,
+        "sha256": "77b2eb5554cb710e92888f84e28816f2361dba075e0ace47108458794db99111"
+      },
+      {
+        "relativePath": "einops-0.8.1-py3-none-any.whl",
+        "byteSize": 64359,
+        "sha256": "919387eb55330f5757c6bea9165c5ff5cfe63a642682ea788a6d472576d81737"
+      },
+      {
+        "relativePath": "sentencepiece-0.2.1-cp312-cp312-win_amd64.whl",
+        "byteSize": 1054671,
+        "sha256": "4cdc7c36234fda305e85c32949c5211faaf8dd886096c7cea289ddc12a2d02de"
+      }
+    ],
+    "report": "reports/g0/official-reference-01.json",
+    "installation": "private venv with system-site-packages; three verified local wheels installed --no-index --no-deps"
+  },
+  "androidRuntimeCandidate": {
+    "coordinates": "com.microsoft.onnxruntime:onnxruntime-android:1.25.0",
+    "status": "corrected_flow_preflight_passed_speech_engine_pending",
+    "guide": "runtime-android.md",
+    "files": [
+      {
+        "name": "onnxruntime-android-1.25.0.aar",
+        "byteSize": 42942188,
+        "publishedSha1": "a6095526c8b4eb9cb9eae7d6567eda6579de162c",
+        "localSha256": "22b8f3741ecb2566abfe9486b8dd040057536c3d020dc5de7e38e692275ea282"
+      },
+      {
+        "name": "onnxruntime-android-1.25.0.pom",
+        "byteSize": 1520,
+        "publishedSha1": "95cb045f8ca14e884b39d678540d6b905dbfc187",
+        "localSha256": "6feb7bc96d1352d7d3ae3099d67343aefa56365ef5daaad4628485be2fb92985"
+      }
+    ],
+    "localDirectory": "validation/private/android-runtime",
+    "report": "native-runtime.md",
+    "scope": "implementation: pinned experimental main-source native worker; no Flutter activation"
+  },
+  "nativePreflight": {
+    "device": "SM-G965F",
+    "androidApi": 29,
+    "loadReport": "reports/g0/native-runtime-load-01.json",
+    "loadTest": "passed",
+    "strictFlowComparison": "historical_failure_against_saturated_windows_ort_reference",
+    "maxAbsoluteError": 0.014525175094604492,
+    "initialAbsoluteTolerance": 0.0001,
+    "toleranceChanged": false,
+    "diagnosticReport": "reports/g0/native-flow-diagnostic-01.json",
+    "referenceComparison": "reports/g0/native-flow-reference-comparison-01.json",
+    "speechGeneratedOnAndroid": true,
+    "g0": "not_demonstrated",
+    "correctedOracle": {
+      "backend": "onnx.reference.ReferenceEvaluator",
+      "version": "1.21.0",
+      "capturedAndroidInitialCaseMaxError": 0.0,
+      "absoluteTolerance": 0.0001,
+      "fiveCaseNativeRerun": "passed",
+      "traceReport": "reports/g0/flow-intermediates-01.json",
+      "rootCauseReport": "reports/g0/flow-integer-root-cause-02.json",
+      "portableReferenceReport": "reports/g0/flow-portable-reference-01.json",
+      "deviceTraceFinalOutputUnchanged": true,
+      "nativeReport": "reports/g0/native-runtime-probe-02.json",
+      "maxAbsoluteError": 1.9073486328125e-06,
+      "flowRuns": 10
+    },
+    "generationProbe": {
+      "status": "completed_not_g0",
+      "report": "french-generation-android-01.json",
+      "tokenizerReport": "tokenizer-android-01.json",
+      "tokenizerCases": 134,
+      "durationSeconds": 2.88,
+      "generationAndDecodeMs": 3388,
+      "intelligibility": "user_reported_complete_and_intelligible_one_android_segment",
+      "cancellationReport": "cancellation-android-probe-01.json",
+      "cancelToWorkerExitMs": 162,
+      "subsequentGeneration": "passed",
+      "productionBridgeImplemented": false
+    }
+  },
+  "mainWorker": {
+    "build": "passed_offline",
+    "instrumentedTestsPassed": 6,
+    "testsLog": "validation/raw/main-worker-tests-02.log",
+    "report": "validation/main-worker.md",
+    "memoryReports": [
+      "main-worker-memory-01.json",
+      "main-worker-memory-02.json"
+    ],
+    "sampledPeakPssKiB": 380686,
+    "memoryScope": "Sampled PSS in instrumented process, not guaranteed peak or product limit",
+    "nativeCancellationReport": "main-worker-cancel-01.json",
+    "nativeCancellationMs": 203,
+    "productionBridgeImplemented": false,
+    "mainApkZip16kAlignment": "passed",
+    "device16kPagesTested": false,
+    "g0": "not_demonstrated"
+  },
+  "speechBridge": {
+    "nativePluginRegistered": true,
+    "nativeCodecTestsPassed": 4,
+    "realDartIntegrationTest": "passed_per_flutter_log",
+    "dartAnalysis": "no_issues",
+    "defaultResolver": "no_ready_trusted_bundle",
+    "audioEnabledInApplication": false,
+    "testOnlyOnnxResolver": "real_generation_passed",
+    "pendingLoadDisposalTest": "passed",
+    "report": "validation/speech-bridge.md",
+    "nativeEvidence": "speech-bridge-codec-01.json",
+    "provenanceRecheck": "exporter-provenance-recheck-01.json",
+    "g0": "not_demonstrated",
+    "normalReaderRestored": true
+  },
+  "officialReexport": {
+    "status": "flow_only_repeated_export_passed",
+    "officialReferenceCodeRevision": "3dbee45d343d7dddd0d105468d17f8dcba14db3e",
+    "independentRuns": 2,
+    "fp32CasesPassedPerRun": 5,
+    "fp32AndInt8ByteIdenticalBetweenRuns": true,
+    "exportedGraphs": 1,
+    "requiredGraphs": 3,
+    "existingCandidateReplaced": false,
+    "androidExecuted": false,
+    "report": "validation/reproducible-export.md",
+    "evidence": "official-flow-reexport-01.json",
+    "g0": "not_demonstrated"
+  },
+  "reproducedBundle": {
+    "status": "three_graphs_reproduced_manifest_audited_g0_pending",
+    "graphs": 3,
+    "repeatedExportsByteIdentical": true,
+    "mainStateCases": 5,
+    "mimiStateCases": 4,
+    "nativeGraphLoad": "passed",
+    "nativeGeneration": "passed",
+    "durationSeconds": 2.88,
+    "generationAndDecodeMs": 3605,
+    "sampledPeakPssKiB": 387179,
+    "nativeCancellationMs": 196,
+    "intelligibility": "user_reported_complete_and_intelligible_one_reproduced_android_segment",
+    "manifest": "assets/models/manifest.json",
+    "manifestSha256": "934b37a260b0d675b07e4b262fc8ad2bb33610b8782e899f143f7d33950f7660",
+    "manifestAudit": "trusted-manifest-audit-01.json",
+    "manifestPackagedInApk": true,
+    "applicationActivated": false,
+    "report": "validation/reproducible-export.md",
+    "g0": "not_demonstrated"
+  },
+  "candidateRole": "Historical community comparison and verified FP16/tokenizer source; not the source of the reproduced ONNX graphs",
+  "selectedCandidate": {
+    "kind": "official_aligned_local_reexport",
+    "officialCodeRevision": "3dbee45d343d7dddd0d105468d17f8dcba14db3e",
+    "recipe": {
+      "sourceSelection": "official_3.3_default_aligned",
+      "weightsSha256": "32e575398f06a5dbca16a7dfb8048e3cd3440502d80b07089adfb3318f79dec2",
+      "voiceSha256": "f763800c6865a7c13e3368db7c24345d7ab22abd06c2ca40a3428d14c5357248",
+      "assemblyScriptSha256": "eba043d959895c24c0c434b92ca94fef6784493ff0dfe40e3208190d33763b1e",
+      "exportScriptDigests": {
+        "main": "37af9912fc027a4503417083f7e48f8e49069f3db6542ab08b6ed69f6dc3bd3c",
+        "flow": "3f688f6a65794b74f4cdf70e1558133b9c928d70cef63a751c8cdfba7205241b",
+        "mimi": "37af9912fc027a4503417083f7e48f8e49069f3db6542ab08b6ed69f6dc3bd3c"
+      }
+    },
+    "communityOnnxGraphsUsed": false
+  },
+  "g0ReferenceProtocol": {
+    "status": "reference_protocol_and_private_provisioning_complete",
+    "passages": [
+      "fr-01-p1",
+      "fr-04-p1",
+      "fr-05-p1"
+    ],
+    "tokens": [
+      17,
+      20,
+      50
+    ],
+    "sourceUtf16EndOffsets": [
+      50,
+      40,
+      87
+    ],
+    "referenceReports": [
+      "official-reference-repro-fr01-01.json",
+      "official-reference-repro-fr04-01.json",
+      "official-reference-repro-fr05-01.json"
+    ],
+    "referenceAndroidInputIdentity": "verified",
+    "fixturesTransferredWithSha256": true,
+    "offlineAndroidTestBuild": "passed",
+    "offlineAndroidTestExecuted": true,
+    "pending": "Quality failure on numbers; diagnostic in progress",
+    "protocol": "validation/protocols/g0.md",
+    "evidence": "g0-reference-cases-01.json",
+    "g0": "not_demonstrated"
+  },
+  "offlineG0": {
+    "status": "offline_mechanics_passed_quality_failed",
+    "report": "offline-cases-01.json",
+    "cases": 3,
+    "intelligibleCases": 2,
+    "failedCase": "fr-05-p1",
+    "failure": "User reports incoherent unclear words",
+    "airplaneModeBeforeAfter": true,
+    "wifiDisabledBeforeAfter": true,
+    "sampledPeakPssKiB": 385053,
+    "baselinePssKiB": 50718,
+    "afterDisposePssKiB": 384265,
+    "offlineCancellationMs": 157,
+    "g0": "failed"
+  },
+  "officialAlignmentDiagnostic": {
+    "status": "aligned_reference_also_failed_numbers_listening",
+    "lock": "validation/reference-3.3-aligned-lock.json",
+    "causeProven": false,
+    "manualDownloadsRequired": 0,
+    "referenceReport": "aligned-default-numbers-02.json",
+    "durationSeconds": 6.08,
+    "changedWeightTensors": 125,
+    "voiceOffsets": {
+      "transformer.layers.0.self_attn": 168,
+      "transformer.layers.1.self_attn": 168,
+      "transformer.layers.2.self_attn": 168,
+      "transformer.layers.3.self_attn": 168,
+      "transformer.layers.4.self_attn": 168,
+      "transformer.layers.5.self_attn": 168
+    },
+    "androidExecuted": false
+  },
+  "shortChunkDiagnostic": {
+    "scope": "Official aligned PC API only",
+    "maxTokensPerChunk": 20,
+    "chunkTokens": [
+      13,
+      18,
+      19
+    ],
+    "sourceContentPreserved": true,
+    "durationSeconds": 4.8,
+    "listening": "failed_user_reports_incorrect_words_or_numbers",
+    "report": "aligned-numbers-short-chunks-01.json",
+    "applicationChanged": false,
+    "userFeedback": "Toujours des mots ou nombres incorrects"
+  },
+  "numbersInWordsDiagnostic": {
+    "scope": "single_manually_transformed_official_aligned_pc_fixture",
+    "report": "validation/reports/g0/aligned-numbers-in-words-01.json",
+    "listening": "passed_user_confirms_complete_phrase_and_correct_quantities",
+    "androidExecuted": false,
+    "productionNormalizationImplemented": false,
+    "g0": "not_demonstrated"
+  },
+  "frenchNormalizationValidation": {
+    "report": "validation/reports/g0/normalization-verification-01.json",
+    "scope": "isolated_component_and_pc_only",
+    "listening": "three_pc_cases_correct_with_linked_variant_for_21",
+    "applicationWired": false,
+    "androidExecuted": false,
+    "g0": "not_demonstrated",
+    "normalizerVersion": "fr-numbers-v2",
+    "verification": "validation/reports/g0/normalization-v2-verification-01.json",
+    "genderAgreement": "known_limitation"
+  },
+  "alignedAndroidCandidate": {
+    "bundleDirectory": "validation/private/aligned-bundle-01",
+    "auditSha256": "84d09fe4c684995e2ab86d000d3d289c36aa15e00dc7c539b5c2045e63ce6db3",
+    "sourceSelection": "official_3.3_default_aligned",
+    "expectedVoiceOffset": 168,
+    "normalizerVersion": "fr-numbers-v2",
+    "casesReport": "validation/reports/g0/aligned-android-01-cases.json",
+    "cancellationReport": "validation/reports/g0/aligned-android-01-cancellation.json",
+    "instrumentationTestsPassed": 2,
+    "listening": "three_android_cases_passed_by_user",
+    "ready": false,
+    "g0": "passed",
+    "applicationActivated": false,
+    "existingNativeRegressionTestsPassed": 10,
+    "memoryCampaign": {
+      "analysis": "validation/reports/g0/aligned-cycles-01-analysis.json",
+      "status": "short_cycle_measurement_completed",
+      "cycles": 6,
+      "testCountPassed": 1,
+      "strictlyMonotonicPssGrowth": false,
+      "permanentLeakExcluded": false
+    },
+    "consolidation": {
+      "report": "validation/reports/g0/g0-consolidation-04.json",
+      "verdict": "passed",
+      "remaining": []
+    },
+    "embeddedManifest": {
+      "bundleId": "fr-official-aligned",
+      "sha256": "6136034a15cb0a78d6b02311c878cd9c5322ca6d1c2dcc8e9d2250305e15a268",
+      "verification": "validation/reports/g0/aligned-manifest-verification-01.json",
+      "ready": false,
+      "g0": "passed",
+      "apkVerification": "validation/reports/g0/aligned-manifest-apk-01.json",
+      "integrationVerification": "validation/reports/g0/audio-integration-final-01.json"
+    },
+    "protocolExtracts": {
+      "verification": "validation/reports/g0/aligned-protocol-verification-01.json",
+      "instrumentationTestsPassed": 1,
+      "listening": "PC_and_Android_fr01_fr04_passed_by_user"
+    },
+    "embeddedGateSnapshot": "passed_in_integrated_APK",
+    "localPlaybackEnabled": true
+  },
+  "previousSelectionBeforeAlignedManifest": {
+    "selectedCandidate": {
+      "kind": "official_local_reexport",
+      "officialCodeRevision": "3dbee45d343d7dddd0d105468d17f8dcba14db3e",
+      "recipe": {
+        "officialCodeRevision": "3dbee45d343d7dddd0d105468d17f8dcba14db3e",
+        "exportScriptDigests": {
+          "main": "814edddaa118ebd478d8f3be8fe8ad831230c675c364e92b0d133433140fe9ec",
+          "flow": "28035fb995d5a539595858e94506c45f3c6c6b2c318e6fbf2f2a3bd2b081f51b",
+          "mimi": "814edddaa118ebd478d8f3be8fe8ad831230c675c364e92b0d133433140fe9ec"
+        },
+        "exportedGraphDigests": {
+          "main": "321417eab83a31f9128fef38c848f8d5553c7aabe025af93d8f0dcdf00a3a4f7",
+          "flow": "9206d1a86d588a16da989e49405f7bd453936a305604391617caabffa46bd1c5",
+          "mimi": "aeecc8df360d89a06686c76ae82d134ecebc8f341d2af3942917c91c863b4da4"
+        },
+        "scope": "Local G0 derivation only; not a product trust root"
+      },
+      "communityOnnxGraphsUsed": false
+    },
+    "trustedBundle": {
+      "id": "fr-official-reproduced",
+      "version": "1.0.0-g0",
+      "manifestDigest": "934b37a260b0d675b07e4b262fc8ad2bb33610b8782e899f143f7d33950f7660",
+      "deliveryMode": "local_g0_derivation",
+      "audit": "passed",
+      "ready": false,
+      "g0": "failed"
+    }
+  },
+  "audioIntegration": {
+    "report": "validation/reports/g0/audio-integration-final-01.json",
+    "status": "implemented_and_physically_tested",
+    "explicitPlayOnly": true,
+    "manifestSha256": "6136034a15cb0a78d6b02311c878cd9c5322ca6d1c2dcc8e9d2250305e15a268",
+    "normalReaderInstalled": true
+  },
+  "currentTextPreparation": {
+    "normalizerVersion": "fr-numbers-v3",
+    "punctuationVersion": "punctuation-tail-v1",
+    "manifestSha256": "5cea4d6144ffc32a0ef3aac14c1e0b9d5901ae9fa909aadbf06754b3508f9f09",
+    "verification": "validation/reports/us1/normalization-v3-manifest-01.json",
+    "targetedPhysicalReport": "validation/reports/us1/corpus-listening-03.json",
+    "humanListening": "all_ten_accepted_campaign02_plus_corrected_campaign03",
+    "flutterTestsPassed": 72,
+    "staticAnalysis": "passed",
+    "priorNegativeFeedbackPreserved": true,
+    "acceptanceReport": "validation/reports/us1/t024-acceptance-01.json"
+  },
+  "phase4": {
+    "status": "completed_with_documented_measurement_limits",
+    "checks": "validation/reports/us5/checks-01.json",
+    "currentManifestSha256": "535c816a3cbf75cda69c5b8c3f8c4edfb7f711012a3757dee800cc5a532d2ed8",
+    "interimReport": "validation/reports/interim/report.md"
+  },
+  "phase5": {
+    "status": "closed_with_user_accepted_reservations",
+    "report": "validation/reports/us2/checks-01.json",
+    "currentManifestSha256": "8cb42556f7aef2622293073ee0e993172c93bdab28360f747d53b624bb39bc2a",
+    "networkDelivery": false
+  }
+}

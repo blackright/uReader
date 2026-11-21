@@ -1,0 +1,221 @@
+{
+  "schemaVersion": 1,
+  "corpusVersion": 1,
+  "language": "fr",
+  "texts": [
+    {
+      "id": "fr-01",
+      "title": "Le jardin du matin",
+      "language": "fr",
+      "category": "narrative",
+      "attribution": "Texte original généré pour les essais uReader ; aucune citation d’œuvre tierce.",
+      "referenceTranscript": "Chaque matin, Léa ouvre la petite porte du jardin. La rosée brille sur les feuilles et un merle chante près du puits. Elle pose son panier, respire lentement et observe les premières fleurs.\n\nAujourd’hui, une graine a percé la terre. Léa appelle son frère pour lui montrer cette minuscule pousse. Ils décident de revenir demain, sans la déranger.",
+      "passages": [
+        {
+          "id": "fr-01-p1",
+          "textId": "fr-01",
+          "ordinal": 0,
+          "text": "Chaque matin, Léa ouvre la petite porte du jardin. La rosée brille sur les feuilles et un merle chante près du puits. Elle pose son panier, respire lentement et observe les premières fleurs."
+        },
+        {
+          "id": "fr-01-p2",
+          "textId": "fr-01",
+          "ordinal": 1,
+          "text": "Aujourd’hui, une graine a percé la terre. Léa appelle son frère pour lui montrer cette minuscule pousse. Ils décident de revenir demain, sans la déranger."
+        }
+      ]
+    },
+    {
+      "id": "fr-02",
+      "title": "Le dernier tramway",
+      "language": "fr",
+      "category": "narrative",
+      "attribution": "Texte original généré pour les essais uReader ; aucune citation d’œuvre tierce.",
+      "referenceTranscript": "Malik arrive à l’arrêt au moment où le tramway ralentit. Il monte, s’assied près de la fenêtre et regarde les lumières de la ville.\n\nÀ la station suivante, une voyageuse cherche sa rue sur un plan. Malik lui indique le chemin. Elle sourit ; le trajet semble soudain moins long.",
+      "passages": [
+        {
+          "id": "fr-02-p1",
+          "textId": "fr-02",
+          "ordinal": 0,
+          "text": "Malik arrive à l’arrêt au moment où le tramway ralentit. Il monte, s’assied près de la fenêtre et regarde les lumières de la ville."
+        },
+        {
+          "id": "fr-02-p2",
+          "textId": "fr-02",
+          "ordinal": 1,
+          "text": "À la station suivante, une voyageuse cherche sa rue sur un plan. Malik lui indique le chemin. Elle sourit ; le trajet semble soudain moins long."
+        }
+      ]
+    },
+    {
+      "id": "fr-03",
+      "title": "Une lettre retrouvée",
+      "language": "fr",
+      "category": "narrative",
+      "attribution": "Texte original généré pour les essais uReader ; aucune citation d’œuvre tierce.",
+      "referenceTranscript": "En rangeant un tiroir, Jeanne découvre une enveloppe bleue. Elle reconnaît l’écriture de sa grand-mère et s’installe près de la fenêtre pour lire.\n\nLa lettre raconte une promenade au bord de la mer. Jeanne imagine le vent, les vagues et les oiseaux. Elle décide de conserver ce souvenir dans une boîte en bois.",
+      "passages": [
+        {
+          "id": "fr-03-p1",
+          "textId": "fr-03",
+          "ordinal": 0,
+          "text": "En rangeant un tiroir, Jeanne découvre une enveloppe bleue. Elle reconnaît l’écriture de sa grand-mère et s’installe près de la fenêtre pour lire."
+        },
+        {
+          "id": "fr-03-p2",
+          "textId": "fr-03",
+          "ordinal": 1,
+          "text": "La lettre raconte une promenade au bord de la mer. Jeanne imagine le vent, les vagues et les oiseaux. Elle décide de conserver ce souvenir dans une boîte en bois."
+        }
+      ]
+    },
+    {
+      "id": "fr-04",
+      "title": "Accents et apostrophes",
+      "language": "fr",
+      "category": "pronunciation",
+      "attribution": "Texte original généré pour les essais uReader ; aucune citation d’œuvre tierce.",
+      "referenceTranscript": "À Noël, Émilie prépare une crème brûlée. L’aîné goûte un morceau de gâteau, tandis qu’Anaïs apporte des poires mûres. « Où est passée la cuillère ? » demande-t-elle. Le garçon répond : « Elle est là, près du café ! »",
+      "passages": [
+        {
+          "id": "fr-04-p1",
+          "textId": "fr-04",
+          "ordinal": 0,
+          "text": "À Noël, Émilie prépare une crème brûlée. L’aîné goûte un morceau de gâteau, tandis qu’Anaïs apporte des poires mûres. « Où est passée la cuillère ? » demande-t-elle. Le garçon répond : « Elle est là, près du café ! »"
+        }
+      ]
+    },
+    {
+      "id": "fr-05",
+      "title": "Nombres au marché",
+      "language": "fr",
+      "category": "pronunciation",
+      "attribution": "Texte original généré pour les essais uReader ; aucune citation d’œuvre tierce.",
+      "referenceTranscript": "Le 12 avril 2026, à 9 h 30, nous achetons 3 pommes, 2 poires et 250 grammes de fromage. Le total est de 12,50 euros. Il reste 7,50 euros sur les 20 euros apportés. À midi, nous partagerons le repas à quatre.",
+      "passages": [
+        {
+          "id": "fr-05-p1",
+          "textId": "fr-05",
+          "ordinal": 0,
+          "text": "Le 12 avril 2026, à 9 h 30, nous achetons 3 pommes, 2 poires et 250 grammes de fromage. Le total est de 12,50 euros. Il reste 7,50 euros sur les 20 euros apportés. À midi, nous partagerons le repas à quatre."
+        }
+      ]
+    },
+    {
+      "id": "fr-06",
+      "title": "Abréviations et ponctuation",
+      "language": "fr",
+      "category": "pronunciation",
+      "attribution": "Texte original généré pour les essais uReader ; aucune citation d’œuvre tierce.",
+      "referenceTranscript": "Mme Martin rejoint M. Bernard au 8, rue des Lilas. Le Dr Petit arrive à 14 h. « Faut-il apporter un dossier, une carte, etc. ? » demande Mme Martin. Réponse : oui, mais seulement les documents utiles ; le reste peut attendre.",
+      "passages": [
+        {
+          "id": "fr-06-p1",
+          "textId": "fr-06",
+          "ordinal": 0,
+          "text": "Mme Martin rejoint M. Bernard au 8, rue des Lilas. Le Dr Petit arrive à 14 h. « Faut-il apporter un dossier, une carte, etc. ? » demande Mme Martin. Réponse : oui, mais seulement les documents utiles ; le reste peut attendre."
+        }
+      ]
+    },
+    {
+      "id": "fr-07",
+      "title": "Préparer une randonnée",
+      "language": "fr",
+      "category": "multi_paragraph",
+      "attribution": "Texte original généré pour les essais uReader ; aucune citation d’œuvre tierce.",
+      "referenceTranscript": "Avant de partir, nous consultons la météo. Le ciel devrait rester clair jusqu’au soir, mais le vent peut se renforcer au sommet.\n\nNous remplissons les gourdes et plaçons une veste dans chaque sac. La carte reste dans une poche facile à ouvrir.\n\nSur le chemin, nous avançons au rythme du groupe. Au premier croisement, nous vérifions la direction avant de continuer.",
+      "passages": [
+        {
+          "id": "fr-07-p1",
+          "textId": "fr-07",
+          "ordinal": 0,
+          "text": "Avant de partir, nous consultons la météo. Le ciel devrait rester clair jusqu’au soir, mais le vent peut se renforcer au sommet."
+        },
+        {
+          "id": "fr-07-p2",
+          "textId": "fr-07",
+          "ordinal": 1,
+          "text": "Nous remplissons les gourdes et plaçons une veste dans chaque sac. La carte reste dans une poche facile à ouvrir."
+        },
+        {
+          "id": "fr-07-p3",
+          "textId": "fr-07",
+          "ordinal": 2,
+          "text": "Sur le chemin, nous avançons au rythme du groupe. Au premier croisement, nous vérifions la direction avant de continuer."
+        }
+      ]
+    },
+    {
+      "id": "fr-08",
+      "title": "La bibliothèque du quartier",
+      "language": "fr",
+      "category": "multi_paragraph",
+      "attribution": "Texte original généré pour les essais uReader ; aucune citation d’œuvre tierce.",
+      "referenceTranscript": "La bibliothèque ouvre ses portes à dix heures. Une affiche annonce une rencontre autour des récits de voyage.\n\nDans la salle principale, les tables sont espacées. Chacun peut s’installer pour lire, écrire ou consulter un ouvrage.\n\nÀ la fin de la journée, les visiteurs rangent leurs livres sur un chariot. L’équipe prépare tranquillement l’accueil du lendemain.",
+      "passages": [
+        {
+          "id": "fr-08-p1",
+          "textId": "fr-08",
+          "ordinal": 0,
+          "text": "La bibliothèque ouvre ses portes à dix heures. Une affiche annonce une rencontre autour des récits de voyage."
+        },
+        {
+          "id": "fr-08-p2",
+          "textId": "fr-08",
+          "ordinal": 1,
+          "text": "Dans la salle principale, les tables sont espacées. Chacun peut s’installer pour lire, écrire ou consulter un ouvrage."
+        },
+        {
+          "id": "fr-08-p3",
+          "textId": "fr-08",
+          "ordinal": 2,
+          "text": "À la fin de la journée, les visiteurs rangent leurs livres sur un chariot. L’équipe prépare tranquillement l’accueil du lendemain."
+        }
+      ]
+    },
+    {
+      "id": "fr-09",
+      "title": "Réparer un vélo",
+      "language": "fr",
+      "category": "multi_paragraph",
+      "attribution": "Texte original généré pour les essais uReader ; aucune citation d’œuvre tierce.",
+      "referenceTranscript": "Nous installons le vélo sur un support stable. Avant de toucher à la roue, nous vérifions que rien ne risque de tomber.\n\nLa chambre à air est percée près de la valve. Nous la remplaçons puis contrôlons soigneusement l’intérieur du pneu.\n\nUne fois la roue remontée, nous testons les freins. Un court trajet dans la cour permet de vérifier que tout fonctionne.",
+      "passages": [
+        {
+          "id": "fr-09-p1",
+          "textId": "fr-09",
+          "ordinal": 0,
+          "text": "Nous installons le vélo sur un support stable. Avant de toucher à la roue, nous vérifions que rien ne risque de tomber."
+        },
+        {
+          "id": "fr-09-p2",
+          "textId": "fr-09",
+          "ordinal": 1,
+          "text": "La chambre à air est percée près de la valve. Nous la remplaçons puis contrôlons soigneusement l’intérieur du pneu."
+        },
+        {
+          "id": "fr-09-p3",
+          "textId": "fr-09",
+          "ordinal": 2,
+          "text": "Une fois la roue remontée, nous testons les freins. Un court trajet dans la cour permet de vérifier que tout fonctionne."
+        }
+      ]
+    },
+    {
+      "id": "fr-10",
+      "title": "Une longue promenade au bord du canal",
+      "language": "fr",
+      "category": "long_paragraph",
+      "attribution": "Texte original généré pour les essais uReader ; aucune citation d’œuvre tierce.",
+      "referenceTranscript": "Le dimanche matin, nous quittons la maison sans nous presser et suivons le chemin qui mène au canal. L’air est frais, mais le soleil éclaire déjà les façades. Sur la première passerelle, nous nous arrêtons pour regarder une péniche traverser l’écluse. Le gardien ferme une porte, vérifie le niveau de l’eau et fait un signe au pilote. Peu à peu, le bateau s’élève ; les cordages glissent doucement contre les anneaux de métal. Nous reprenons notre promenade lorsque les portes s’ouvrent. Un peu plus loin, une famille installe une couverture sur l’herbe. Les enfants comptent les canards, puis recommencent parce qu’un petit groupe vient de se cacher derrière les roseaux. Sur l’autre rive, un cycliste ralentit pour laisser passer deux personnes âgées. Chacun trouve sa place sur ce chemin étroit, avec un mot, un sourire ou un simple geste. Nous passons devant une ancienne maison de briques transformée en atelier. Derrière une fenêtre, une artisane répare une chaise ; les outils sont rangés dans l’ordre sur le mur. Une odeur de bois coupé accompagne quelques instants notre marche. À midi, nous choisissons un banc à l’ombre pour partager du pain, des tomates et du fromage. Nous n’avons aucun horaire à respecter et prenons le temps d’écouter ce qui nous entoure : les feuilles, les pas, une conversation lointaine, puis le silence entre deux passages. Après le repas, le chemin tourne vers un petit pont de pierre. Une plaque raconte qu’il a été construit pour relier les jardins aux champs. Nous lisons ces quelques lignes à voix haute, puis cherchons les traces de l’ancien passage sur les berges. Les pierres portent des marques différentes, certaines presque effacées, d’autres encore nettes malgré les années. Nous imaginons les personnes qui ont traversé ce pont avec un panier, une charrette ou un sac de provisions. Le retour se fait par un sentier plus haut, d’où l’on aperçoit les toits du quartier. Nous reconnaissons la boulangerie, l’école et le grand arbre de la place. À chaque détour, le paysage familier apparaît sous un angle nouveau. Lorsque nous retrouvons la maison, la lumière a changé et nos chaussures sont couvertes de poussière. Nous posons les sacs près de la porte, préparons une boisson chaude et ouvrons la fenêtre. La promenade est terminée, mais il nous reste le souvenir de l’eau, du pont et de toutes ces petites scènes que nous aurions manquées en allant plus vite.",
+      "passages": [
+        {
+          "id": "fr-10-p1",
+          "textId": "fr-10",
+          "ordinal": 0,
+          "text": "Le dimanche matin, nous quittons la maison sans nous presser et suivons le chemin qui mène au canal. L’air est frais, mais le soleil éclaire déjà les façades. Sur la première passerelle, nous nous arrêtons pour regarder une péniche traverser l’écluse. Le gardien ferme une porte, vérifie le niveau de l’eau et fait un signe au pilote. Peu à peu, le bateau s’élève ; les cordages glissent doucement contre les anneaux de métal. Nous reprenons notre promenade lorsque les portes s’ouvrent. Un peu plus loin, une famille installe une couverture sur l’herbe. Les enfants comptent les canards, puis recommencent parce qu’un petit groupe vient de se cacher derrière les roseaux. Sur l’autre rive, un cycliste ralentit pour laisser passer deux personnes âgées. Chacun trouve sa place sur ce chemin étroit, avec un mot, un sourire ou un simple geste. Nous passons devant une ancienne maison de briques transformée en atelier. Derrière une fenêtre, une artisane répare une chaise ; les outils sont rangés dans l’ordre sur le mur. Une odeur de bois coupé accompagne quelques instants notre marche. À midi, nous choisissons un banc à l’ombre pour partager du pain, des tomates et du fromage. Nous n’avons aucun horaire à respecter et prenons le temps d’écouter ce qui nous entoure : les feuilles, les pas, une conversation lointaine, puis le silence entre deux passages. Après le repas, le chemin tourne vers un petit pont de pierre. Une plaque raconte qu’il a été construit pour relier les jardins aux champs. Nous lisons ces quelques lignes à voix haute, puis cherchons les traces de l’ancien passage sur les berges. Les pierres portent des marques différentes, certaines presque effacées, d’autres encore nettes malgré les années. Nous imaginons les personnes qui ont traversé ce pont avec un panier, une charrette ou un sac de provisions. Le retour se fait par un sentier plus haut, d’où l’on aperçoit les toits du quartier. Nous reconnaissons la boulangerie, l’école et le grand arbre de la place. À chaque détour, le paysage familier apparaît sous un angle nouveau. Lorsque nous retrouvons la maison, la lumière a changé et nos chaussures sont couvertes de poussière. Nous posons les sacs près de la porte, préparons une boisson chaude et ouvrons la fenêtre. La promenade est terminée, mais il nous reste le souvenir de l’eau, du pont et de toutes ces petites scènes que nous aurions manquées en allant plus vite."
+        }
+      ]
+    }
+  ]
+}

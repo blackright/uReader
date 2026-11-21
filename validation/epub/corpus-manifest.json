@@ -1,0 +1,1195 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-11-14",
+  "rights": "Original synthetic uReader fixture, dedicated to CC0-1.0; no personal or third-party book.",
+  "rightsUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "generator": "scripts/generate-fixtures.py",
+  "pythonVersion": "3.12.10",
+  "zlibVersion": "1.3.1",
+  "purpose": "Authored content references; no importer, renderer, EPUBCheck or TTS success inferred.",
+  "books": [
+    {
+      "id": "epub-01",
+      "epubVersion": 2,
+      "language": "fr",
+      "titleAbsent": false,
+      "authorAbsent": false,
+      "coverAbsent": false,
+      "features": [],
+      "chapters": [
+        {
+          "chapterId": "c0",
+          "href": "OEBPS/chapter1.xhtml",
+          "title": "Chapitre 1",
+          "initialCanonicalBlocks": [
+            {
+              "id": "c0-b0-s0",
+              "text": "Chapitre 1"
+            },
+            {
+              "id": "c0-b1-s0",
+              "text": "Léa ouvre le chapitre 1 et suit le chemin du jardin."
+            }
+          ],
+          "additionalVisibleMainTextInOrder": [],
+          "expectedAnchors": [
+            "start",
+            "passage"
+          ],
+          "lastMainText": "Léa ouvre le chapitre 1 et suit le chemin du jardin."
+        },
+        {
+          "chapterId": "c1",
+          "href": "OEBPS/chapter2.xhtml",
+          "title": "Chapitre 2",
+          "initialCanonicalBlocks": [
+            {
+              "id": "c1-b0-s0",
+              "text": "Chapitre 2"
+            },
+            {
+              "id": "c1-b1-s0",
+              "text": "Léa ouvre le chapitre 2 et suit le chemin du jardin."
+            }
+          ],
+          "additionalVisibleMainTextInOrder": [],
+          "expectedAnchors": [
+            "start",
+            "passage"
+          ],
+          "lastMainText": "Léa ouvre le chapitre 2 et suit le chemin du jardin."
+        },
+        {
+          "chapterId": "c2",
+          "href": "OEBPS/chapter3.xhtml",
+          "title": "Chapitre 3",
+          "initialCanonicalBlocks": [
+            {
+              "id": "c2-b0-s0",
+              "text": "Chapitre 3"
+            },
+            {
+              "id": "c2-b1-s0",
+              "text": "Léa ouvre le chapitre 3 et suit le chemin du jardin."
+            }
+          ],
+          "additionalVisibleMainTextInOrder": [],
+          "expectedAnchors": [
+            "start",
+            "passage"
+          ],
+          "lastMainText": "Léa ouvre le chapitre 3 et suit le chemin du jardin."
+        }
+      ],
+      "expectedImport": "ready",
+      "conformance": "synthetic import-profile input; not EPUBCheck certified; absent mandatory metadata is intentional",
+      "rights": "Original synthetic uReader fixture, dedicated to CC0-1.0; no personal or third-party book.",
+      "path": "private/corpus/epub-01.epub",
+      "bytes": 2695,
+      "sha256": "227a224b10f482f555dc5c3a3e5a958ca992e058406ba58b9a4e5b5fabe3f806",
+      "referenceSha256": "1b4f994e936473f839cadc47d965dee1552f5c2fd051444d77bbaf5baee0cf81"
+    },
+    {
+      "id": "epub-02",
+      "epubVersion": 2,
+      "language": "fr",
+      "titleAbsent": true,
+      "authorAbsent": true,
+      "coverAbsent": true,
+      "features": [],
+      "chapters": [
+        {
+          "chapterId": "c0",
+          "href": "OEBPS/chapter1.xhtml",
+          "title": "Chapitre 1",
+          "initialCanonicalBlocks": [
+            {
+              "id": "c0-b0-s0",
+              "text": "Chapitre 1"
+            },
+            {
+              "id": "c0-b1-s0",
+              "text": "Léa ouvre le chapitre 1 et suit le chemin du jardin."
+            }
+          ],
+          "additionalVisibleMainTextInOrder": [],
+          "expectedAnchors": [
+            "start",
+            "passage"
+          ],
+          "lastMainText": "Léa ouvre le chapitre 1 et suit le chemin du jardin."
+        },
+        {
+          "chapterId": "c1",
+          "href": "OEBPS/chapter2.xhtml",
+          "title": "Chapitre 2",
+          "initialCanonicalBlocks": [
+            {
+              "id": "c1-b0-s0",
+              "text": "Chapitre 2"
+            },
+            {
+              "id": "c1-b1-s0",
+              "text": "Léa ouvre le chapitre 2 et suit le chemin du jardin."
+            }
+          ],
+          "additionalVisibleMainTextInOrder": [],
+          "expectedAnchors": [
+            "start",
+            "passage"
+          ],
+          "lastMainText": "Léa ouvre le chapitre 2 et suit le chemin du jardin."
+        },
+        {
+          "chapterId": "c2",
+          "href": "OEBPS/chapter3.xhtml",
+          "title": "Chapitre 3",
+          "initialCanonicalBlocks": [
+            {
+              "id": "c2-b0-s0",
+              "text": "Chapitre 3"
+            },
+            {
+              "id": "c2-b1-s0",
+              "text": "Léa ouvre le chapitre 3 et suit le chemin du jardin."
+            }
+          ],
+          "additionalVisibleMainTextInOrder": [],
+          "expectedAnchors": [
+            "start",
+            "passage"
+          ],
+          "lastMainText": "Léa ouvre le chapitre 3 et suit le chemin du jardin."
+        }
+      ],
+      "expectedImport": "ready_with_metadata_fallback",
+      "conformance": "synthetic import-profile input; not EPUBCheck certified; absent mandatory metadata is intentional",
+      "rights": "Original synthetic uReader fixture, dedicated to CC0-1.0; no personal or third-party book.",
+      "path": "private/corpus/epub-02.epub",
+      "bytes": 2390,
+      "sha256": "557098f617651d5945b37b95384e6d8540a054fe5c4d9c35db619bb0c7753417",
+      "referenceSha256": "1b4f994e936473f839cadc47d965dee1552f5c2fd051444d77bbaf5baee0cf81"
+    },
+    {
+      "id": "epub-03",
+      "epubVersion": 2,
+      "language": "fr",
+      "titleAbsent": false,
+      "authorAbsent": false,
+      "coverAbsent": false,
+      "features": [
+        "inline",
+        "br",
+        "entities",
+        "combining_unicode",
+        "surrogate_pair",
+        "preformatted"
+      ],
+      "chapters": [
+        {
+          "chapterId": "c0",
+          "href": "OEBPS/chapter1.xhtml",
+          "title": "Chapitre 1",
+          "initialCanonicalBlocks": [
+            {
+              "id": "c0-b0-s0",
+              "text": "Chapitre 1"
+            },
+            {
+              "id": "c0-b1-s0",
+              "text": "Léa ouvre le chapitre 1 et suit le chemin du jardin."
+            }
+          ],
+          "additionalVisibleMainTextInOrder": [
+            "Bonjour Léa\nA  B & C : é é; 😀.",
+            " A  B\nC "
+          ],
+          "expectedAnchors": [
+            "start",
+            "passage"
+          ],
+          "lastMainText": " A  B\nC "
+        },
+        {
+          "chapterId": "c1",
+          "href": "OEBPS/chapter2.xhtml",
+          "title": "Chapitre 2",
+          "initialCanonicalBlocks": [
+            {
+              "id": "c1-b0-s0",
+              "text": "Chapitre 2"
+            },
+            {
+              "id": "c1-b1-s0",
+              "text": "Léa ouvre le chapitre 2 et suit le chemin du jardin."
+            }
+          ],
+          "additionalVisibleMainTextInOrder": [],
+          "expectedAnchors": [
+            "start",
+            "passage"
+          ],
+          "lastMainText": "Léa ouvre le chapitre 2 et suit le chemin du jardin."
+        },
+        {
+          "chapterId": "c2",
+          "href": "OEBPS/chapter3.xhtml",
+          "title": "Chapitre 3",
+          "initialCanonicalBlocks": [
+            {
+              "id": "c2-b0-s0",
+              "text": "Chapitre 3"
+            },
+            {
+              "id": "c2-b1-s0",
+              "text": "Léa ouvre le chapitre 3 et suit le chemin du jardin."
+            }
+          ],
+          "additionalVisibleMainTextInOrder": [],
+          "expectedAnchors": [
+            "start",
+            "passage"
+          ],
+          "lastMainText": "Léa ouvre le chapitre 3 et suit le chemin du jardin."
+        }
+      ],
+      "expectedImport": "ready",
+      "conformance": "synthetic import-profile input; not EPUBCheck certified; absent mandatory metadata is intentional",
+      "rights": "Original synthetic uReader fixture, dedicated to CC0-1.0; no personal or third-party book.",
+      "path": "private/corpus/epub-03.epub",
+      "bytes": 2772,
+      "sha256": "2221b4f77abb2e2da37d03bbf3b1cd7421f4215a75f7287cda5a283ddc535fae",
+      "referenceSha256": "e487a72a82b445bd51d196f637ca83b8c8342ebfe002cd43f25cbee5171a8082"
+    },
+    {
+      "id": "epub-04",
+      "epubVersion": 2,
+      "language": "fr",
+      "titleAbsent": false,
+      "authorAbsent": false,
+      "coverAbsent": false,
+      "features": [
+        "css_visibility",
+        "hidden_attribute"
+      ],
+      "chapters": [
+        {
+          "chapterId": "c0",
+          "href": "OEBPS/chapter1.xhtml",
+          "title": "Chapitre 1",
+          "initialCanonicalBlocks": [
+            {
+              "id": "c0-b0-s0",
+              "text": "Chapitre 1"
+            },
+            {
+              "id": "c0-b1-s0",
+              "text": "Léa ouvre le chapitre 1 et suit le chemin du jardin."
+            }
+          ],
+          "additionalVisibleMainTextInOrder": [],
+          "expectedAnchors": [
+            "start",
+            "passage"
+          ],
+          "lastMainText": "Léa ouvre le chapitre 1 et suit le chemin du jardin."
+        },
+        {
+          "chapterId": "c1",
+          "href": "OEBPS/chapter2.xhtml",
+          "title": "Chapitre 2",
+          "initialCanonicalBlocks": [
+            {
+              "id": "c1-b0-s0",
+              "text": "Chapitre 2"
+            },
+            {
+              "id": "c1-b1-s0",
+              "text": "Léa ouvre le chapitre 2 et suit le chemin du jardin."
+            }
+          ],
+          "additionalVisibleMainTextInOrder": [],
+          "expectedAnchors": [
+            "start",
+            "passage"
+          ],
+          "lastMainText": "Léa ouvre le chapitre 2 et suit le chemin du jardin."
+        },
+        {
+          "chapterId": "c2",
+          "href": "OEBPS/chapter3.xhtml",
+          "title": "Chapitre 3",
+          "initialCanonicalBlocks": [
+            {
+              "id": "c2-b0-s0",
+              "text": "Chapitre 3"
+            },
+            {
+              "id": "c2-b1-s0",
+              "text": "Léa ouvre le chapitre 3 et suit le chemin du jardin."
+            }
+          ],
+          "additionalVisibleMainTextInOrder": [],
+          "expectedAnchors": [
+            "start",
+            "passage"
+          ],
+          "lastMainText": "Léa ouvre le chapitre 3 et suit le chemin du jardin."
+        }
+      ],
+      "expectedImport": "ready",
+      "conformance": "synthetic import-profile input; not EPUBCheck certified; absent mandatory metadata is intentional",
+      "rights": "Original synthetic uReader fixture, dedicated to CC0-1.0; no personal or third-party book.",
+      "path": "private/corpus/epub-04.epub",
+      "bytes": 2769,
+      "sha256": "fc8fa31eb1b0f2ed5829f172297e0c0053ab9c12ebcd2fd83fec1cf35b9702f1",
+      "referenceSha256": "1b4f994e936473f839cadc47d965dee1552f5c2fd051444d77bbaf5baee0cf81"
+    },
+    {
+      "id": "epub-05",
+      "epubVersion": 2,
+      "language": "en",
+      "titleAbsent": false,
+      "authorAbsent": false,
+      "coverAbsent": false,
+      "features": [],
+      "chapters": [
+        {
+          "chapterId": "c0",
+          "href": "OEBPS/chapter1.xhtml",
+          "title": "Chapter 1",
+          "initialCanonicalBlocks": [
+            {
+              "id": "c0-b0-s0",
+              "text": "Chapter 1"
+            },
+            {
+              "id": "c0-b1-s0",
+              "text": "The reader opens chapter 1 and follows the garden path."
+            }
+          ],
+          "additionalVisibleMainTextInOrder": [],
+          "expectedAnchors": [
+            "start",
+            "passage"
+          ],
+          "lastMainText": "The reader opens chapter 1 and follows the garden path."
+        },
+        {
+          "chapterId": "c1",
+          "href": "OEBPS/chapter2.xhtml",
+          "title": "Chapter 2",
+          "initialCanonicalBlocks": [
+            {
+              "id": "c1-b0-s0",
+              "text": "Chapter 2"
+            },
+            {
+              "id": "c1-b1-s0",
+              "text": "The reader opens chapter 2 and follows the garden path."
+            }
+          ],
+          "additionalVisibleMainTextInOrder": [],
+          "expectedAnchors": [
+            "start",
+            "passage"
+          ],
+          "lastMainText": "The reader opens chapter 2 and follows the garden path."
+        },
+        {
+          "chapterId": "c2",
+          "href": "OEBPS/chapter3.xhtml",
+          "title": "Chapter 3",
+          "initialCanonicalBlocks": [
+            {
+              "id": "c2-b0-s0",
+              "text": "Chapter 3"
+            },
+            {
+              "id": "c2-b1-s0",
+              "text": "The reader opens chapter 3 and follows the garden path."
+            }
+          ],
+          "additionalVisibleMainTextInOrder": [],
+          "expectedAnchors": [
+            "start",
+            "passage"
+          ],
+          "lastMainText": "The reader opens chapter 3 and follows the garden path."
+        }
+      ],
+      "expectedImport": "ready",
+      "conformance": "synthetic import-profile input; not EPUBCheck certified; absent mandatory metadata is intentional",
+      "rights": "Original synthetic uReader fixture, dedicated to CC0-1.0; no personal or third-party book.",
+      "path": "private/corpus/epub-05.epub",
+      "bytes": 2686,
+      "sha256": "d00f448dc43e6f283185c0310badca453cd5e758934d73922b48cf2935aa9f11",
+      "referenceSha256": "62d7e1946dd55025e4a31613342b4e530a75e737e3a5b80d3f91fc8f67acf623"
+    },
+    {
+      "id": "epub-06",
+      "epubVersion": 3,
+      "language": "fr",
+      "titleAbsent": false,
+      "authorAbsent": false,
+      "coverAbsent": false,
+      "features": [
+        "internal_link",
+        "blockquote",
+        "list"
+      ],
+      "chapters": [
+        {
+          "chapterId": "c0",
+          "href": "OEBPS/chapter1.xhtml",
+          "title": "Chapitre 1",
+          "initialCanonicalBlocks": [
+            {
+              "id": "c0-b0-s0",
+              "text": "Chapitre 1"
+            },
+            {
+              "id": "c0-b1-s0",
+              "text": "Léa ouvre le chapitre 1 et suit le chemin du jardin."
+            }
+          ],
+          "additionalVisibleMainTextInOrder": [
+            "Une citation interne.",
+            "Le jardin reste ouvert.",
+            "Une pomme",
+            "Deux poires"
+          ],
+          "expectedAnchors": [
+            "start",
+            "passage"
+          ],
+          "lastMainText": "Deux poires"
+        },
+        {
+          "chapterId": "c1",
+          "href": "OEBPS/chapter2.xhtml",
+          "title": "Chapitre 2",
+          "initialCanonicalBlocks": [
+            {
+              "id": "c1-b0-s0",
+              "text": "Chapitre 2"
+            },
+            {
+              "id": "c1-b1-s0",
+              "text": "Léa ouvre le chapitre 2 et suit le chemin du jardin."
+            }
+          ],
+          "additionalVisibleMainTextInOrder": [],
+          "expectedAnchors": [
+            "start",
+            "passage"
+          ],
+          "lastMainText": "Léa ouvre le chapitre 2 et suit le chemin du jardin."
+        },
+        {
+          "chapterId": "c2",
+          "href": "OEBPS/chapter3.xhtml",
+          "title": "Chapitre 3",
+          "initialCanonicalBlocks": [
+            {
+              "id": "c2-b0-s0",
+              "text": "Chapitre 3"
+            },
+            {
+              "id": "c2-b1-s0",
+              "text": "Léa ouvre le chapitre 3 et suit le chemin du jardin."
+            }
+          ],
+          "additionalVisibleMainTextInOrder": [],
+          "expectedAnchors": [
+            "start",
+            "passage"
+          ],
+          "lastMainText": "Léa ouvre le chapitre 3 et suit le chemin du jardin."
+        }
+      ],
+      "expectedImport": "ready",
+      "conformance": "synthetic import-profile input; not EPUBCheck certified; absent mandatory metadata is intentional",
+      "rights": "Original synthetic uReader fixture, dedicated to CC0-1.0; no personal or third-party book.",
+      "path": "private/corpus/epub-06.epub",
+      "bytes": 2764,
+      "sha256": "098693857e2325ce50ea5d6b724c9cf6b91332f887a1d6935427ff83e11aff43",
+      "referenceSha256": "2437ebc28e21b1f5c9761b331d3bb17614324c267018ab81c1d891f0a7437620"
+    },
+    {
+      "id": "epub-07",
+      "epubVersion": 3,
+      "language": "fr",
+      "titleAbsent": false,
+      "authorAbsent": true,
+      "coverAbsent": true,
+      "features": [
+        "identified_footnote_excluded_from_narration"
+      ],
+      "chapters": [
+        {
+          "chapterId": "c0",
+          "href": "OEBPS/chapter1.xhtml",
+          "title": "Chapitre 1",
+          "initialCanonicalBlocks": [
+            {
+              "id": "c0-b0-s0",
+              "text": "Chapitre 1"
+            },
+            {
+              "id": "c0-b1-s0",
+              "text": "Léa ouvre le chapitre 1 et suit le chemin du jardin."
+            }
+          ],
+          "additionalVisibleMainTextInOrder": [
+            "Le texte principal continue."
+          ],
+          "expectedAnchors": [
+            "start",
+            "passage"
+          ],
+          "lastMainText": "Le texte principal continue."
+        },
+        {
+          "chapterId": "c1",
+          "href": "OEBPS/chapter2.xhtml",
+          "title": "Chapitre 2",
+          "initialCanonicalBlocks": [
+            {
+              "id": "c1-b0-s0",
+              "text": "Chapitre 2"
+            },
+            {
+              "id": "c1-b1-s0",
+              "text": "Léa ouvre le chapitre 2 et suit le chemin du jardin."
+            }
+          ],
+          "additionalVisibleMainTextInOrder": [],
+          "expectedAnchors": [
+            "start",
+            "passage"
+          ],
+          "lastMainText": "Léa ouvre le chapitre 2 et suit le chemin du jardin."
+        },
+        {
+          "chapterId": "c2",
+          "href": "OEBPS/chapter3.xhtml",
+          "title": "Chapitre 3",
+          "initialCanonicalBlocks": [
+            {
+              "id": "c2-b0-s0",
+              "text": "Chapitre 3"
+            },
+            {
+              "id": "c2-b1-s0",
+              "text": "Léa ouvre le chapitre 3 et suit le chemin du jardin."
+            }
+          ],
+          "additionalVisibleMainTextInOrder": [],
+          "expectedAnchors": [
+            "start",
+            "passage"
+          ],
+          "lastMainText": "Léa ouvre le chapitre 3 et suit le chemin du jardin."
+        }
+      ],
+      "expectedImport": "ready_with_metadata_fallback",
+      "conformance": "synthetic import-profile input; not EPUBCheck certified; absent mandatory metadata is intentional",
+      "rights": "Original synthetic uReader fixture, dedicated to CC0-1.0; no personal or third-party book.",
+      "path": "private/corpus/epub-07.epub",
+      "bytes": 2476,
+      "sha256": "c864a1dd2158ef5ae835f672554464952c214fc89ffb45390505548e6dc582a5",
+      "referenceSha256": "c5e4f783168839d3268b55de80a877be85bdbf86ead9ac4f051a77b8df441c1e"
+    },
+    {
+      "id": "epub-08",
+      "epubVersion": 3,
+      "language": "fr",
+      "titleAbsent": false,
+      "authorAbsent": false,
+      "coverAbsent": false,
+      "features": [
+        "table",
+        "external_https_confirmation"
+      ],
+      "chapters": [
+        {
+          "chapterId": "c0",
+          "href": "OEBPS/chapter1.xhtml",
+          "title": "Chapitre 1",
+          "initialCanonicalBlocks": [
+            {
+              "id": "c0-b0-s0",
+              "text": "Chapitre 1"
+            },
+            {
+              "id": "c0-b1-s0",
+              "text": "Léa ouvre le chapitre 1 et suit le chemin du jardin."
+            }
+          ],
+          "additionalVisibleMainTextInOrder": [
+            "Lien externe"
+          ],
+          "expectedAnchors": [
+            "start",
+            "passage"
+          ],
+          "lastMainText": "Lien externe"
+        },
+        {
+          "chapterId": "c1",
+          "href": "OEBPS/chapter2.xhtml",
+          "title": "Chapitre 2",
+          "initialCanonicalBlocks": [
+            {
+              "id": "c1-b0-s0",
+              "text": "Chapitre 2"
+            },
+            {
+              "id": "c1-b1-s0",
+              "text": "Léa ouvre le chapitre 2 et suit le chemin du jardin."
+            }
+          ],
+          "additionalVisibleMainTextInOrder": [],
+          "expectedAnchors": [
+            "start",
+            "passage"
+          ],
+          "lastMainText": "Léa ouvre le chapitre 2 et suit le chemin du jardin."
+        },
+        {
+          "chapterId": "c2",
+          "href": "OEBPS/chapter3.xhtml",
+          "title": "Chapitre 3",
+          "initialCanonicalBlocks": [
+            {
+              "id": "c2-b0-s0",
+              "text": "Chapitre 3"
+            },
+            {
+              "id": "c2-b1-s0",
+              "text": "Léa ouvre le chapitre 3 et suit le chemin du jardin."
+            }
+          ],
+          "additionalVisibleMainTextInOrder": [],
+          "expectedAnchors": [
+            "start",
+            "passage"
+          ],
+          "lastMainText": "Léa ouvre le chapitre 3 et suit le chemin du jardin."
+        }
+      ],
+      "expectedImport": "ready",
+      "conformance": "synthetic import-profile input; not EPUBCheck certified; absent mandatory metadata is intentional",
+      "rights": "Original synthetic uReader fixture, dedicated to CC0-1.0; no personal or third-party book.",
+      "path": "private/corpus/epub-08.epub",
+      "bytes": 2759,
+      "sha256": "1918619804d566c0bbdec712a0107cfb29383536399186ad8577f572fbc42353",
+      "referenceSha256": "0b1e3bbcffdd6bb1097aab83efea38daa20348bdaa6f644d5aa08690325eedd5"
+    },
+    {
+      "id": "epub-09",
+      "epubVersion": 3,
+      "language": "fr",
+      "titleAbsent": false,
+      "authorAbsent": false,
+      "coverAbsent": false,
+      "features": [
+        "long_chapter",
+        "block_split_8192_utf16",
+        "window_boundary_64_blocks"
+      ],
+      "chapters": [
+        {
+          "chapterId": "c0",
+          "href": "OEBPS/chapter1.xhtml",
+          "title": "Chapitre 1",
+          "initialCanonicalBlocks": [
+            {
+              "id": "c0-b0-s0",
+              "text": "Chapitre 1"
+            },
+            {
+              "id": "c0-b1-s0",
+              "text": "Léa ouvre le chapitre 1 et suit le chemin du jardin."
+            }
+          ],
+          "additionalVisibleMainTextInOrder": [
+            "ééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééé😀 fin.",
+            "Paragraphe de continuité numéro 1.",
+            "Paragraphe de continuité numéro 2.",
+            "Paragraphe de continuité numéro 3.",
+            "Paragraphe de continuité numéro 4.",
+            "Paragraphe de continuité numéro 5.",
+            "Paragraphe de continuité numéro 6.",
+            "Paragraphe de continuité numéro 7.",
+            "Paragraphe de continuité numéro 8.",
+            "Paragraphe de continuité numéro 9.",
+            "Paragraphe de continuité numéro 10.",
+            "Paragraphe de continuité numéro 11.",
+            "Paragraphe de continuité numéro 12.",
+            "Paragraphe de continuité numéro 13.",
+            "Paragraphe de continuité numéro 14.",
+            "Paragraphe de continuité numéro 15.",
+            "Paragraphe de continuité numéro 16.",
+            "Paragraphe de continuité numéro 17.",
+            "Paragraphe de continuité numéro 18.",
+            "Paragraphe de continuité numéro 19.",
+            "Paragraphe de continuité numéro 20.",
+            "Paragraphe de continuité numéro 21.",
+            "Paragraphe de continuité numéro 22.",
+            "Paragraphe de continuité numéro 23.",
+            "Paragraphe de continuité numéro 24.",
+            "Paragraphe de continuité numéro 25.",
+            "Paragraphe de continuité numéro 26.",
+            "Paragraphe de continuité numéro 27.",
+            "Paragraphe de continuité numéro 28.",
+            "Paragraphe de continuité numéro 29.",
+            "Paragraphe de continuité numéro 30.",
+            "Paragraphe de continuité numéro 31.",
+            "Paragraphe de continuité numéro 32.",
+            "Paragraphe de continuité numéro 33.",
+            "Paragraphe de continuité numéro 34.",
+            "Paragraphe de continuité numéro 35.",
+            "Paragraphe de continuité numéro 36.",
+            "Paragraphe de continuité numéro 37.",
+            "Paragraphe de continuité numéro 38.",
+            "Paragraphe de continuité numéro 39.",
+            "Paragraphe de continuité numéro 40.",
+            "Paragraphe de continuité numéro 41.",
+            "Paragraphe de continuité numéro 42.",
+            "Paragraphe de continuité numéro 43.",
+            "Paragraphe de continuité numéro 44.",
+            "Paragraphe de continuité numéro 45.",
+            "Paragraphe de continuité numéro 46.",
+            "Paragraphe de continuité numéro 47.",
+            "Paragraphe de continuité numéro 48.",
+            "Paragraphe de continuité numéro 49.",
+            "Paragraphe de continuité numéro 50.",
+            "Paragraphe de continuité numéro 51.",
+            "Paragraphe de continuité numéro 52.",
+            "Paragraphe de continuité numéro 53.",
+            "Paragraphe de continuité numéro 54.",
+            "Paragraphe de continuité numéro 55.",
+            "Paragraphe de continuité numéro 56.",
+            "Paragraphe de continuité numéro 57.",
+            "Paragraphe de continuité numéro 58.",
+            "Paragraphe de continuité numéro 59.",
+            "Paragraphe de continuité numéro 60.",
+            "Paragraphe de continuité numéro 61.",
+            "Paragraphe de continuité numéro 62.",
+            "Paragraphe de continuité numéro 63.",
+            "Paragraphe de continuité numéro 64.",
+            "Paragraphe de continuité numéro 65.",
+            "Paragraphe de continuité numéro 66.",
+            "Paragraphe de continuité numéro 67.",
+            "Paragraphe de continuité numéro 68.",
+            "Paragraphe de continuité numéro 69.",
+            "Paragraphe de continuité numéro 70.",
+            "Paragraphe de continuité numéro 71.",
+            "Paragraphe de continuité numéro 72.",
+            "Paragraphe de continuité numéro 73.",
+            "Paragraphe de continuité numéro 74.",
+            "Paragraphe de continuité numéro 75.",
+            "Paragraphe de continuité numéro 76.",
+            "Paragraphe de continuité numéro 77.",
+            "Paragraphe de continuité numéro 78.",
+            "Paragraphe de continuité numéro 79.",
+            "Paragraphe de continuité numéro 80.",
+            "Paragraphe de continuité numéro 81.",
+            "Paragraphe de continuité numéro 82.",
+            "Paragraphe de continuité numéro 83.",
+            "Paragraphe de continuité numéro 84.",
+            "Paragraphe de continuité numéro 85.",
+            "Paragraphe de continuité numéro 86.",
+            "Paragraphe de continuité numéro 87.",
+            "Paragraphe de continuité numéro 88.",
+            "Paragraphe de continuité numéro 89.",
+            "Paragraphe de continuité numéro 90.",
+            "Paragraphe de continuité numéro 91.",
+            "Paragraphe de continuité numéro 92.",
+            "Paragraphe de continuité numéro 93.",
+            "Paragraphe de continuité numéro 94.",
+            "Paragraphe de continuité numéro 95.",
+            "Paragraphe de continuité numéro 96.",
+            "Paragraphe de continuité numéro 97.",
+            "Paragraphe de continuité numéro 98.",
+            "Paragraphe de continuité numéro 99.",
+            "Paragraphe de continuité numéro 100.",
+            "Paragraphe de continuité numéro 101.",
+            "Paragraphe de continuité numéro 102.",
+            "Paragraphe de continuité numéro 103.",
+            "Paragraphe de continuité numéro 104.",
+            "Paragraphe de continuité numéro 105.",
+            "Paragraphe de continuité numéro 106.",
+            "Paragraphe de continuité numéro 107.",
+            "Paragraphe de continuité numéro 108.",
+            "Paragraphe de continuité numéro 109.",
+            "Paragraphe de continuité numéro 110.",
+            "Paragraphe de continuité numéro 111.",
+            "Paragraphe de continuité numéro 112.",
+            "Paragraphe de continuité numéro 113.",
+            "Paragraphe de continuité numéro 114.",
+            "Paragraphe de continuité numéro 115.",
+            "Paragraphe de continuité numéro 116.",
+            "Paragraphe de continuité numéro 117.",
+            "Paragraphe de continuité numéro 118.",
+            "Paragraphe de continuité numéro 119.",
+            "Paragraphe de continuité numéro 120."
+          ],
+          "expectedAnchors": [
+            "start",
+            "passage"
+          ],
+          "lastMainText": "Paragraphe de continuité numéro 120."
+        },
+        {
+          "chapterId": "c1",
+          "href": "OEBPS/chapter2.xhtml",
+          "title": "Chapitre 2",
+          "initialCanonicalBlocks": [
+            {
+              "id": "c1-b0-s0",
+              "text": "Chapitre 2"
+            },
+            {
+              "id": "c1-b1-s0",
+              "text": "Léa ouvre le chapitre 2 et suit le chemin du jardin."
+            }
+          ],
+          "additionalVisibleMainTextInOrder": [],
+          "expectedAnchors": [
+            "start",
+            "passage"
+          ],
+          "lastMainText": "Léa ouvre le chapitre 2 et suit le chemin du jardin."
+        },
+        {
+          "chapterId": "c2",
+          "href": "OEBPS/chapter3.xhtml",
+          "title": "Chapitre 3",
+          "initialCanonicalBlocks": [
+            {
+              "id": "c2-b0-s0",
+              "text": "Chapitre 3"
+            },
+            {
+              "id": "c2-b1-s0",
+              "text": "Léa ouvre le chapitre 3 et suit le chemin du jardin."
+            }
+          ],
+          "additionalVisibleMainTextInOrder": [],
+          "expectedAnchors": [
+            "start",
+            "passage"
+          ],
+          "lastMainText": "Léa ouvre le chapitre 3 et suit le chemin du jardin."
+        }
+      ],
+      "expectedImport": "ready",
+      "conformance": "synthetic import-profile input; not EPUBCheck certified; absent mandatory metadata is intentional",
+      "rights": "Original synthetic uReader fixture, dedicated to CC0-1.0; no personal or third-party book.",
+      "path": "private/corpus/epub-09.epub",
+      "bytes": 3134,
+      "sha256": "e51df04398059b2206d82001eca6ebdb57afc48199366ae9497f369f074158bf",
+      "referenceSha256": "a152b8ba35bdb27f7d23aa59bb3505ff6e1902829cb05c9a0633836a18cbb937"
+    },
+    {
+      "id": "epub-10",
+      "epubVersion": 3,
+      "language": "en",
+      "titleAbsent": false,
+      "authorAbsent": false,
+      "coverAbsent": false,
+      "features": [],
+      "chapters": [
+        {
+          "chapterId": "c0",
+          "href": "OEBPS/chapter1.xhtml",
+          "title": "Chapter 1",
+          "initialCanonicalBlocks": [
+            {
+              "id": "c0-b0-s0",
+              "text": "Chapter 1"
+            },
+            {
+              "id": "c0-b1-s0",
+              "text": "The reader opens chapter 1 and follows the garden path."
+            }
+          ],
+          "additionalVisibleMainTextInOrder": [],
+          "expectedAnchors": [
+            "start",
+            "passage"
+          ],
+          "lastMainText": "The reader opens chapter 1 and follows the garden path."
+        },
+        {
+          "chapterId": "c1",
+          "href": "OEBPS/chapter2.xhtml",
+          "title": "Chapter 2",
+          "initialCanonicalBlocks": [
+            {
+              "id": "c1-b0-s0",
+              "text": "Chapter 2"
+            },
+            {
+              "id": "c1-b1-s0",
+              "text": "The reader opens chapter 2 and follows the garden path."
+            }
+          ],
+          "additionalVisibleMainTextInOrder": [],
+          "expectedAnchors": [
+            "start",
+            "passage"
+          ],
+          "lastMainText": "The reader opens chapter 2 and follows the garden path."
+        },
+        {
+          "chapterId": "c2",
+          "href": "OEBPS/chapter3.xhtml",
+          "title": "Chapter 3",
+          "initialCanonicalBlocks": [
+            {
+              "id": "c2-b0-s0",
+              "text": "Chapter 3"
+            },
+            {
+              "id": "c2-b1-s0",
+              "text": "The reader opens chapter 3 and follows the garden path."
+            }
+          ],
+          "additionalVisibleMainTextInOrder": [],
+          "expectedAnchors": [
+            "start",
+            "passage"
+          ],
+          "lastMainText": "The reader opens chapter 3 and follows the garden path."
+        }
+      ],
+      "expectedImport": "ready",
+      "conformance": "synthetic import-profile input; not EPUBCheck certified; absent mandatory metadata is intentional",
+      "rights": "Original synthetic uReader fixture, dedicated to CC0-1.0; no personal or third-party book.",
+      "path": "private/corpus/epub-10.epub",
+      "bytes": 2674,
+      "sha256": "20e8fe981ae2a49c2d4c5cd8d988d10e41d33fb3bc0bed2348a92341ed628899",
+      "referenceSha256": "62d7e1946dd55025e4a31613342b4e530a75e737e3a5b80d3f91fc8f67acf623"
+    }
+  ],
+  "hostile": [
+    {
+      "id": "not-zip",
+      "path": "private/corpus/hostile/not-zip.epub",
+      "bytes": 20,
+      "sha256": "a79087ff9756ddd26f0c87a4d65cf48d040c3f298ef3f62178bb62c71a488ea4",
+      "expectedPolicy": "reject_container",
+      "actualImporterResult": "not_evaluated"
+    },
+    {
+      "id": "traversal",
+      "path": "private/corpus/hostile/traversal.epub",
+      "bytes": 2812,
+      "sha256": "7a9f6bd494eadf430c05a1d7196b97fd72327ac6e0827519c5b2fcf907ff0d32",
+      "expectedPolicy": "reject_archive",
+      "actualImporterResult": "not_evaluated"
+    },
+    {
+      "id": "absolute",
+      "path": "private/corpus/hostile/absolute.epub",
+      "bytes": 2808,
+      "sha256": "e39f2e0c57b3de8339a861cd7f325f39989bba757edc7b4a32431a394ee69c1d",
+      "expectedPolicy": "reject_archive",
+      "actualImporterResult": "not_evaluated"
+    },
+    {
+      "id": "backslash",
+      "path": "private/corpus/hostile/backslash.epub",
+      "bytes": 2818,
+      "sha256": "28da44334a71c3ec72b00b7c56f9f264762687cefe527d019177ad42776de198",
+      "expectedPolicy": "reject_archive",
+      "actualImporterResult": "not_evaluated"
+    },
+    {
+      "id": "duplicate-entry",
+      "path": "private/corpus/hostile/duplicate-entry.epub",
+      "bytes": 2822,
+      "sha256": "92c18ad1caf60975809bb34c8ce999f6b6283e3026c5a4a23aaebc0dc505bcc5",
+      "expectedPolicy": "reject_archive",
+      "actualImporterResult": "not_evaluated"
+    },
+    {
+      "id": "encrypted-flag",
+      "path": "private/corpus/hostile/encrypted-flag.epub",
+      "bytes": 2695,
+      "sha256": "7948f6ed480caf1b6cdb4af3cf5d067b918b5669159764258b782b2fe16edaeb",
+      "expectedPolicy": "reject_archive",
+      "actualImporterResult": "not_evaluated"
+    },
+    {
+      "id": "crc-mismatch",
+      "path": "private/corpus/hostile/crc-mismatch.epub",
+      "bytes": 2695,
+      "sha256": "e8352ac3754687589670f82cb15dcb8341fe8f4c56824addd569c7b755c818e7",
+      "expectedPolicy": "reject_archive",
+      "actualImporterResult": "not_evaluated"
+    },
+    {
+      "id": "symlink-entry",
+      "path": "private/corpus/hostile/symlink-entry.epub",
+      "bytes": 2695,
+      "sha256": "7a0c80f80003bda331746d58963d7c21c65ee575c7a849cfb8a3e0153c1a3cb6",
+      "expectedPolicy": "reject_archive",
+      "actualImporterResult": "not_evaluated"
+    },
+    {
+      "id": "offset-outside-source",
+      "path": "private/corpus/hostile/offset-outside-source.epub",
+      "bytes": 2695,
+      "sha256": "d5445ef8c7d6bf4238e0738f72270a915dc98a1fcd1b0459be462c63a39ea88e",
+      "expectedPolicy": "reject_archive",
+      "actualImporterResult": "not_evaluated"
+    },
+    {
+      "id": "truncated-eocd",
+      "path": "private/corpus/hostile/truncated-eocd.epub",
+      "bytes": 2683,
+      "sha256": "881f661b292c13a6fcacd1d9ad9435ab87d9566b7366d1c0903dde880af7e078",
+      "expectedPolicy": "reject_archive",
+      "actualImporterResult": "not_evaluated"
+    },
+    {
+      "id": "zip64-sentinel-without-index",
+      "path": "private/corpus/hostile/zip64-sentinel-without-index.epub",
+      "bytes": 2695,
+      "sha256": "71edcee95e8d820ef6acc21e3f60acac741397cec957d94793574f6cba9ce2bd",
+      "expectedPolicy": "reject_archive",
+      "actualImporterResult": "not_evaluated"
+    },
+    {
+      "id": "expansion-ratio",
+      "path": "private/corpus/hostile/expansion-ratio.epub",
+      "bytes": 3071,
+      "sha256": "6590418ab423bdb28680707b944a25ad682e9e19318a966ba5e443fb70bf5770",
+      "expectedPolicy": "reject_expansion_ratio",
+      "actualImporterResult": "not_evaluated"
+    },
+    {
+      "id": "too-many-entries",
+      "path": "private/corpus/hostile/too-many-entries.epub",
+      "bytes": 530581,
+      "sha256": "d5b9ed0a7835bd4a47327811ea8d5f5976afe350fe7b677b3601be26680cc700",
+      "expectedPolicy": "reject_entry_count",
+      "actualImporterResult": "not_evaluated"
+    },
+    {
+      "id": "entry-name-too-long",
+      "path": "private/corpus/hostile/entry-name-too-long.epub",
+      "bytes": 4823,
+      "sha256": "1d2929b09d39403c72ff8c396d54b35e3dc464e614a71bbe838161f7ab2fe24b",
+      "expectedPolicy": "reject_entry_name",
+      "actualImporterResult": "not_evaluated"
+    },
+    {
+      "id": "xml-depth",
+      "path": "private/corpus/hostile/xml-depth.epub",
+      "bytes": 2613,
+      "sha256": "531adcfaa4744ae96cd90c2ab9615174afedda0f349c755b3838970e47c80ce9",
+      "expectedPolicy": "reject_xml_depth",
+      "actualImporterResult": "not_evaluated"
+    },
+    {
+      "id": "xml-attributes",
+      "path": "private/corpus/hostile/xml-attributes.epub",
+      "bytes": 2736,
+      "sha256": "a598cd66aaf3fcc1ca1d2ba3d268a25c4991ae97d62555c8995d949b864e4b6c",
+      "expectedPolicy": "reject_xml_attribute_count",
+      "actualImporterResult": "not_evaluated"
+    },
+    {
+      "id": "xml-huge-attribute",
+      "path": "private/corpus/hostile/xml-huge-attribute.epub",
+      "bytes": 2646,
+      "sha256": "cfd90a063518f81811b8debf8ffa254c6332c32250843fde467aabb19bf78947",
+      "expectedPolicy": "reject_xml_attribute_size",
+      "actualImporterResult": "not_evaluated"
+    },
+    {
+      "id": "active-content",
+      "path": "private/corpus/hostile/active-content.epub",
+      "bytes": 2648,
+      "sha256": "78d5be91373d5419f93a8e6698fda65f702e4478935dd5dace3b94dbd67b5b85",
+      "expectedPolicy": "filter_active_content_no_execution_or_network",
+      "actualImporterResult": "not_evaluated"
+    },
+    {
+      "id": "unsafe-link",
+      "path": "private/corpus/hostile/unsafe-link.epub",
+      "bytes": 2626,
+      "sha256": "d9b4d5826319edbbf0a0ebd32b515280437a41778c0373d8d0eccec579fedaf5",
+      "expectedPolicy": "disable_unsafe_link_keep_text",
+      "actualImporterResult": "not_evaluated"
+    },
+    {
+      "id": "external-entity",
+      "path": "private/corpus/hostile/external-entity.epub",
+      "bytes": 2599,
+      "sha256": "22a755df173634ef6ac800e12269eb0103176f9eeaeadaf3d99763a4a173750c",
+      "expectedPolicy": "reject_dtd_internal_subset_no_network",
+      "actualImporterResult": "not_evaluated"
+    },
+    {
+      "id": "remote-css",
+      "path": "private/corpus/hostile/remote-css.epub",
+      "bytes": 2716,
+      "sha256": "46293921694f8a05ad9225d1c45eeefa4bf2e366fd2fb887ef2f4b5d7f6cd7d3",
+      "expectedPolicy": "ignore_remote_css_no_network",
+      "actualImporterResult": "not_evaluated"
+    },
+    {
+      "id": "css-selector-count",
+      "path": "private/corpus/hostile/css-selector-count.epub",
+      "bytes": 13982,
+      "sha256": "73ebef2b8b05b7ff7959373d0320ca109ba632420ebff29b3915e8836666b91c",
+      "expectedPolicy": "reject_css_selector_budget",
+      "actualImporterResult": "not_evaluated"
+    },
+    {
+      "id": "oversized-image-dimensions",
+      "path": "private/corpus/hostile/oversized-image-dimensions.epub",
+      "bytes": 2694,
+      "sha256": "b463a079c258db965ee74bd352464889304899b1fb513148a5d0dadb39d2d504",
+      "expectedPolicy": "placeholder_image_keep_main_text",
+      "actualImporterResult": "not_evaluated"
+    },
+    {
+      "id": "corrupt-image",
+      "path": "private/corpus/hostile/corrupt-image.epub",
+      "bytes": 2642,
+      "sha256": "982cf680080ec83d8dbd43ca10ce079522c66c572c3fa27c90bd74b91e7e8c95",
+      "expectedPolicy": "placeholder_image_keep_main_text",
+      "actualImporterResult": "not_evaluated"
+    },
+    {
+      "id": "metadata-document-too-large",
+      "path": "private/corpus/hostile/metadata-document-too-large.epub",
+      "bytes": 4373,
+      "sha256": "2f921dc30e68293d5e8b1267f6f9f883e3a6c5a44cd8935e5c0a16ab6f5aba68",
+      "expectedPolicy": "reject_metadata_or_expansion_budget",
+      "actualImporterResult": "not_evaluated"
+    }
+  ],
+  "futureOnDemandCases": [
+    "source >100 MiB",
+    "inflation >500 MiB",
+    "entry >50 MiB",
+    "central directory >8 MiB",
+    "valid ZIP64 boundaries",
+    "overlapping records",
+    "forged compressed sizes",
+    "deadline/cancellation",
+    "truncated JPEG and JPEG dimensions",
+    "CSS selector complexity",
+    "giant XML token",
+    "protected/fixed-layout/missing-spine package"
+  ]
+}

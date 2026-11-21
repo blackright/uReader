@@ -1,0 +1,88 @@
+/// Additive v2 schema. Physical paths remain generated/validated by BookFileStore.
+abstract final class BookSchema {
+  static const statements = [
+    """CREATE TABLE books (
+      book_id TEXT PRIMARY KEY NOT NULL,
+      source_sha256 TEXT UNIQUE CHECK(source_sha256 IS NULL OR
+        (length(source_sha256)=64 AND source_sha256 NOT GLOB '*[^0-9a-f]*')),
+      source_bytes INTEGER NOT NULL CHECK(source_bytes BETWEEN 0 AND 104857600),
+      title TEXT NOT NULL, authors_json TEXT NOT NULL, languages_json TEXT NOT NULL,
+      title_key TEXT NOT NULL, author_key TEXT NOT NULL,
+      search_key_version INTEGER NOT NULL CHECK(search_key_version>0),
+      narration_language TEXT CHECK(narration_language IS NULL OR narration_language='fr'),
+      cover_resource_id TEXT,
+      created_at INTEGER NOT NULL, updated_at INTEGER NOT NULL,
+      state TEXT NOT NULL CHECK(state IN ('staging','ready','deleting')),
+      projection_version INTEGER NOT NULL CHECK(projection_version>0),
+      manifest_sha256 TEXT CHECK(manifest_sha256 IS NULL OR
+        (length(manifest_sha256)=64 AND manifest_sha256 NOT GLOB '*[^0-9a-f]*')),
+      last_mode TEXT NOT NULL CHECK(last_mode IN ('visual','audio')),
+      UNIQUE(book_id,projection_version),
+      CHECK(state!='ready' OR (source_sha256 IS NOT NULL AND manifest_sha256 IS NOT NULL AND length(trim(title))>0)))""",
+    'CREATE INDEX books_title ON books(state,title_key,book_id)',
+    'CREATE INDEX books_author ON books(state,author_key,book_id)',
+    'CREATE INDEX books_updated ON books(state,updated_at,book_id)',
+    """CREATE TABLE book_operations (
+      operation_id TEXT PRIMARY KEY NOT NULL, book_id TEXT NOT NULL,
+      kind TEXT NOT NULL CHECK(kind IN ('import','delete')),
+      phase TEXT NOT NULL CHECK(phase IN ('copying','validating','validated','published','deleting','error')),
+      generation INTEGER NOT NULL CHECK(generation>0),
+      destination TEXT NOT NULL, validation_json TEXT,
+      source_bytes INTEGER NOT NULL CHECK(source_bytes>=0),
+      error_code TEXT, updated_at INTEGER NOT NULL,
+      FOREIGN KEY(book_id) REFERENCES books(book_id) ON DELETE CASCADE)""",
+    'CREATE INDEX book_operations_pending ON book_operations(updated_at,operation_id)',
+    """CREATE TABLE book_chapters (
+      book_id TEXT NOT NULL, chapter_id TEXT NOT NULL,
+      ordinal INTEGER NOT NULL CHECK(ordinal>=0), resource_href TEXT NOT NULL,
+      title TEXT NOT NULL, first_block_ordinal INTEGER NOT NULL CHECK(first_block_ordinal>=0),
+      block_count INTEGER NOT NULL CHECK(block_count>=0), text_units INTEGER NOT NULL CHECK(text_units>=0),
+      PRIMARY KEY(book_id,chapter_id), UNIQUE(book_id,ordinal),
+      FOREIGN KEY(book_id) REFERENCES books(book_id) ON DELETE CASCADE)""",
+    """CREATE TABLE book_blocks (
+      book_id TEXT NOT NULL, block_id TEXT NOT NULL, chapter_id TEXT NOT NULL,
+      ordinal INTEGER NOT NULL CHECK(ordinal>=0),
+      kind TEXT NOT NULL CHECK(kind IN ('heading','paragraph','listItem','quote','tableCell','preformatted','image')),
+      source_text TEXT NOT NULL, text_units INTEGER NOT NULL CHECK(text_units BETWEEN 0 AND 8192),
+      inline_json TEXT NOT NULL, speech_eligible INTEGER NOT NULL CHECK(speech_eligible IN (0,1)),
+      note_id TEXT, resource_id TEXT, alternative TEXT,
+      units_before INTEGER NOT NULL CHECK(units_before>=0),
+      PRIMARY KEY(book_id,block_id), UNIQUE(book_id,ordinal), UNIQUE(book_id,chapter_id,block_id),
+      CHECK(note_id IS NULL OR speech_eligible=0), CHECK(kind!='image' OR speech_eligible=0),
+      FOREIGN KEY(book_id,chapter_id) REFERENCES book_chapters(book_id,chapter_id) ON DELETE CASCADE)""",
+    'CREATE INDEX book_blocks_chapter ON book_blocks(book_id,chapter_id,ordinal)',
+    """CREATE TABLE book_anchors (
+      book_id TEXT NOT NULL, resource_href TEXT NOT NULL, fragment TEXT NOT NULL,
+      chapter_id TEXT NOT NULL, block_id TEXT NOT NULL, offset_utf16 INTEGER NOT NULL CHECK(offset_utf16>=0),
+      PRIMARY KEY(book_id,resource_href,fragment),
+      FOREIGN KEY(book_id,chapter_id,block_id) REFERENCES book_blocks(book_id,chapter_id,block_id) ON DELETE CASCADE)""",
+    """CREATE TABLE book_resources (
+      book_id TEXT NOT NULL, resource_id TEXT NOT NULL, logical_href TEXT NOT NULL,
+      relative_path TEXT NOT NULL, media_type TEXT NOT NULL,
+      byte_size INTEGER NOT NULL CHECK(byte_size BETWEEN 0 AND 52428800),
+      sha256 TEXT NOT NULL CHECK(length(sha256)=64 AND sha256 NOT GLOB '*[^0-9a-f]*'),
+      width INTEGER, height INTEGER, state TEXT NOT NULL CHECK(state IN ('retained','placeholder')),
+      PRIMARY KEY(book_id,resource_id), UNIQUE(book_id,logical_href),
+      FOREIGN KEY(book_id) REFERENCES books(book_id) ON DELETE CASCADE)""",
+    """CREATE TABLE book_positions (
+      book_id TEXT NOT NULL, mode TEXT NOT NULL CHECK(mode IN ('visual','audio')),
+      projection_version INTEGER NOT NULL CHECK(projection_version>0),
+      chapter_id TEXT NOT NULL, block_id TEXT NOT NULL, offset_utf16 INTEGER NOT NULL CHECK(offset_utf16>=0),
+      revision INTEGER NOT NULL CHECK(revision>0), updated_at INTEGER NOT NULL,
+      PRIMARY KEY(book_id,mode),
+      FOREIGN KEY(book_id,projection_version) REFERENCES books(book_id,projection_version) ON DELETE CASCADE,
+      FOREIGN KEY(book_id,chapter_id,block_id) REFERENCES book_blocks(book_id,chapter_id,block_id) ON DELETE CASCADE)""",
+    """CREATE TABLE book_audio_cache (
+      cache_key TEXT PRIMARY KEY NOT NULL, book_id TEXT NOT NULL,
+      projection_version INTEGER NOT NULL CHECK(projection_version>0),
+      voice_id TEXT NOT NULL, bundle_id TEXT NOT NULL, bundle_version TEXT NOT NULL,
+      normalizer_version TEXT NOT NULL, source_range_json TEXT NOT NULL,
+      byte_size INTEGER NOT NULL CHECK(byte_size>=0), relative_path TEXT NOT NULL, last_access_at INTEGER NOT NULL,
+      FOREIGN KEY(book_id,projection_version) REFERENCES books(book_id,projection_version) ON DELETE CASCADE)""",
+    'CREATE INDEX book_audio_owner ON book_audio_cache(book_id,last_access_at)',
+    """CREATE TABLE book_reader_preferences (
+      preference_key TEXT PRIMARY KEY NOT NULL CHECK(preference_key IN ('font_scale','theme')),
+      value_json TEXT NOT NULL CHECK(length(value_json) BETWEEN 1 AND 16384),
+      version INTEGER NOT NULL CHECK(version>0))""",
+  ];
+}

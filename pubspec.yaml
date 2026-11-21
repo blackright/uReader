@@ -1,0 +1,39 @@
+name: prototype
+description: "Prototype Android uReader — validation de la lecture française."
+publish_to: 'none'
+version: 0.1.0+1
+
+environment:
+  sdk: ^3.13.4
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+  audio_service: 0.18.19
+  just_audio: 0.10.6
+  audio_session: 0.2.4
+  drift: 2.35.4
+  path_provider: ^2.1.5
+  crypto: ^3.0.6
+  characters: 1.4.1
+  path: 1.9.1
+  xml: 7.1.0
+  csslib: 1.0.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  integration_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/reports/interim.json
+    - assets/corpus/fr_demo.json
+    - assets/models/manifest.json
+    - assets/models/POCKET_TTS_LICENSE.txt
+    - assets/models/THIRD_PARTY_NOTICES.txt
