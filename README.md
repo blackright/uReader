@@ -41,44 +41,110 @@ dans d’autres langues restent consultables ; la voix livrée vise le français
 
 ## Démarrer le projet
 
-### Prérequis
+### 1. Préparer les outils
 
-| Outil | Configuration |
+Installez Git, Flutter et Android Studio. Cette application vise actuellement
+**Android ARM64**, à partir d’Android 8.0 / API 26. Un téléphone physique ARM64
+est recommandé ; les émulateurs x86 ne correspondent pas à la cible compilée.
+
+| Élément | À vérifier |
 | --- | --- |
-| Flutter | Version compatible avec Dart **3.13.4 ou ultérieur**, selon `pubspec.yaml` |
-| Android | SDK et outils de compilation installés avec Android Studio |
-| Java | JDK compatible avec le wrapper Gradle du dépôt ; JDK d’Android Studio recommandé |
-| Appareil | Android **8.0 / API 26 minimum**, architecture **ARM64** |
+| Flutter / Dart | Flutter fournissant Dart **>= 3.13.4 et < 4.0.0**, selon `pubspec.yaml` ; configuration utilisée : Flutter 3.47.5 / Dart 3.13.4 |
+| Android Studio | SDK Android, SDK Platform-Tools, Build-Tools et Command-line Tools installés via SDK Manager |
+| Java / Gradle | Le wrapper et `android/gradle/gradle-daemon-jvm.properties` sont versionnés ; Gradle est configuré pour provisionner **Java 25** pour son daemon |
+| Téléphone | Options développeur et débogage USB activés ; autorisation de débogage acceptée |
 
-Les essais matériels effectués jusqu’ici concernent notamment un Samsung SM-G965F
-sous Android 10. Ils ne constituent pas une validation de tous les appareils.
+Le premier téléchargement des dépendances, outils SDK et de la JVM nécessite
+une connexion. L’application fonctionne ensuite localement une fois les livres
+et, pour l’écoute, la voix installés. Les essais matériels effectués notamment
+sur Samsung SM-G965F / Android 10 ne qualifient pas tous les appareils.
+
+### 2. Récupérer et lancer l’application
+
+Dans un terminal :
 
 ```bash
 git clone https://github.com/blackright/uReader.git
 cd uReader
-flutter doctor
+flutter --version
+flutter doctor -v
+flutter doctor --android-licenses
 flutter pub get
 flutter devices
-flutter run -d <identifiant-android>
 ```
 
-Le wrapper Gradle et `pubspec.lock` sont versionnés. Les chemins du SDK, clés de
-signature et caches restent propres à chaque machine.
+Corrigez les points signalés pour la chaîne Android dans `flutter doctor`.
+Branchez le téléphone, déverrouillez-le et acceptez l’autorisation USB. Remplacez
+`IDENTIFIANT_ANDROID` ci-dessous par l’identifiant affiché par `flutter devices` :
 
-### Installer la voix
+```bash
+flutter run -d IDENTIFIANT_ANDROID
+```
 
-La lecture visuelle est disponible sans poids vocaux. Pour l’audio, ouvrir
-**Voix → Installer depuis un dossier**, puis sélectionner un dossier contenant les
-sept fichiers du bundle compatible avec le catalogue embarqué.
+Les contrôles d’autres plateformes dans `flutter doctor` ne sont pas des
+prérequis pour ce projet Android. La première compilation peut être longue.
+Les chemins SDK, caches et clés restent locaux ; ne copiez pas le fichier
+`android/local.properties` d’une autre machine.
 
-**Les poids ne sont pas inclus dans Git.** Un ensemble quelconque de modèles
-Pocket TTS ne suffit pas : noms, versions, interfaces et empreintes doivent
-correspondre au [catalogue vocal](assets/models/manifest.json). Le bundle debug
-actuel contient une extension expérimentale d’alignement ; cette extension n’est
-pas une qualification de production.
+### 3. Lire son premier livre, sans modèle vocal
 
-Voir le [guide de développement](Documentation/Developpement.md) pour les
-ressources vocales, l’architecture et les outils de vérification.
+1. Placez un EPUB sans DRM à mise en page adaptable dans les fichiers du téléphone.
+2. Dans uReader, ouvrez **Livres**, puis **Importer un EPUB**.
+3. Sélectionnez le fichier avec le sélecteur Android et attendez la fin de l’import.
+4. Ouvrez sa couverture dans la bibliothèque. Utilisez les pages ou le défilement,
+   le sommaire et les réglages de lecture.
+5. Fermez puis rouvrez le livre pour retrouver votre repère visuel.
+
+Une copie privée est utilisée pour la lecture ; le fichier original est conservé.
+La narration n’est pas nécessaire pour lire. Les PDF, EPUB protégés et EPUB à mise
+en page fixe ne font pas partie du profil pris en charge.
+
+### 4. Activer la narration française
+
+**Le dépôt ne fournit pas actuellement de téléchargement public vérifié du bundle
+vocal prêt à installer.** Le guide permet de lancer et tester la lecture visuelle,
+mais ne permet pas encore à un nouvel utilisateur d’activer l’audio sans obtenir
+ou reconstruire le paquet exact. Le suivi de cette limitation est dans
+[l’issue #16](https://github.com/blackright/uReader/issues/16).
+
+Si vous disposez déjà du bundle compatible :
+
+1. Consultez le [catalogue vocal](assets/models/manifest.json). Les sept fichiers,
+   leur taille et leur SHA-256 doivent correspondre exactement ; ne remplacez pas
+   les graphes par d’autres modèles portant des noms semblables.
+2. Copiez les sept fichiers dans un même sous-dossier du téléphone, par exemple
+   `Téléchargements/uReader-voice-fr`. Ne sélectionnez pas le dossier Téléchargements
+   lui-même si Android en interdit l’accès.
+3. Ouvrez **Voix → Installer depuis un dossier**. Entrez dans ce sous-dossier,
+   choisissez **Utiliser ce dossier**, puis autorisez l’accès.
+4. Attendez la copie, la vérification et l’annonce de l’installation terminée.
+5. Revenez dans un livre français. Utilisez **Écouter ici**, ou un appui long sur
+   un mot/paragraphe et l’action de départ proposée. Le player permet pause et arrêt.
+
+Le catalogue debug actuel vise `1.1.0-alignment-preview`. Le nom `manifest.json`
+dans le paquet vocal désigne le manifeste d’exécution ; il ne faut pas y copier
+le catalogue de l’application `assets/models/manifest.json`.
+Le surlignage mot à mot reste expérimental. La commande distincte de préparation
+préalable du chapitre peut imposer une attente plus longue que l’écoute ordinaire.
+
+Le [guide de développement](Documentation/Developpement.md) détaille les fichiers,
+la vérification et les prérequis des outils d’export.
+
+### Dépannage rapide
+
+| Problème | Que vérifier |
+| --- | --- |
+| `flutter` introuvable ou Dart trop ancien | Installation Flutter, `PATH` du terminal et résultat de `flutter --version` ; ne pas diminuer la contrainte SDK pour contourner l’erreur |
+| Aucun appareil / appareil non autorisé | Câble de données, débogage USB, autorisation sur le téléphone, puis `flutter devices` |
+| SDK ou licences Android manquants | SDK Manager, Command-line Tools et `flutter doctor --android-licenses` |
+| Téléchargement Gradle, Java ou dépendances bloqué | Connexion/proxy, sortie complète de la compilation et configuration du wrapper ; le premier build n’est pas hors ligne |
+| Import refusé | EPUB sans DRM à mise en page adaptable, fichier non tronqué ; conserver le message précis du refus |
+| Voix absente ou bundle refusé | Bundle compatible complet, sept empreintes et bon sous-dossier ; la lecture visuelle reste possible |
+| Erreur de stockage | Espace libre et journal expurgé ; ne pas désinstaller ni effacer les données pour contourner le problème |
+
+Si le problème persiste, ouvrez une [issue](https://github.com/blackright/uReader/issues)
+avec étapes, résultat attendu/réel, versions et journaux expurgés. Ne joignez pas
+vos livres privés, clés ou chemins personnels.
 
 ## Développement et vérifications
 
@@ -97,6 +163,17 @@ La dernière série ciblée sur la lecture continue compte **102 tests hôte ré
 Le banc natif a également mesuré 60 segments synthétiques sur appareil. L’essai
 sonore de génération et lecture simultanées reste à exécuter : ces résultats ne
 prouvent pas encore une écoute prolongée sans interruption sur tous les livres.
+
+## Contribuer
+
+Les contributions au code, aux tests, à l’accessibilité et à la documentation sont
+bienvenues. Consultez les [issues ouvertes](https://github.com/blackright/uReader/issues)
+et le [guide de contribution](CONTRIBUTING.md) avant de commencer.
+
+En bref : choisissez une issue, proposez un périmètre clair, créez une branche
+dans votre fork, effectuez les vérifications adaptées et ouvrez une pull request
+vers `main`. Les issues portant `proposal` demandent une décision de périmètre
+avant une implémentation importante.
 
 ## Organisation du code
 
@@ -122,6 +199,7 @@ validation/         Sources des outils de reproduction et de mesure
 - [Décisions d’architecture](Documentation/ADR/README.md)
 - [Exigences produit](Documentation/PRD.md)
 - [Développement et ressources](Documentation/Developpement.md)
+- [Guide de contribution](CONTRIBUTING.md)
 
 ## Licence
 
