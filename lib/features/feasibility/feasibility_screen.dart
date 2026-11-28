@@ -122,7 +122,7 @@ class _FeasibilityScreenState extends State<FeasibilityScreen> {
             FeasibilityEvaluator.label(FeasibilityEvaluator.evaluate(report)),
           ),
           const Text(
-            'Bilan intermédiaire des essais documentés sur Samsung API 29. Ce bilan ne décrit pas une nouvelle mesure de ce téléphone.',
+            'Bilan historique Pocket TTS sur Samsung API 29. Il ne qualifie pas Kokoro et ne décrit pas une nouvelle mesure de ce téléphone.',
           ),
           const Text(
             'Mesures absentes : non évaluées. Un seul évaluateur ; session de vingt minutes, contrôles système et reprise durable encore non démontrés. Annonce TalkBack sans voix non testée : réserve acceptée.',

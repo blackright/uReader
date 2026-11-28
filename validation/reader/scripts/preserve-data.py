@@ -63,7 +63,7 @@ def inspect_archive(archive, destination):
                 'quickCheck':'ok','foreignKeyViolations':0,'files':files,'tables':tables}
     finally: db.close()
 
-def snapshot(run_id, stop_app):
+def snapshot(run_id, stop_app, database_only=False):
     if not re.fullmatch(r'[a-zA-Z0-9][a-zA-Z0-9_-]{0,63}',run_id): raise ValueError('Invalid snapshot ID')
     PRIVATE.mkdir(parents=True,exist_ok=True)
     destination=PRIVATE/run_id
@@ -84,9 +84,20 @@ def snapshot(run_id, stop_app):
         if call('shell','pidof',PACKAGE).stdout.strip(): raise ValueError('App still running')
         archive=destination/'product.tar.partial'
         # ADB streams only the fixed product root; no shell interpolation of personal paths.
-        if shutil.disk_usage(PRIVATE).free<MAX_BYTES+256*1024**2: raise ValueError('Need 4.25 GiB free for bounded snapshot')
+        if shutil.disk_usage(PRIVATE).free<(1024**3 if database_only else MAX_BYTES)+256*1024**2: raise ValueError('Insufficient bounded snapshot space')
+        entries=[APP_ROOT]
+        if database_only:
+            entries=[APP_ROOT+'/prototype.sqlite']
+            for suffix in ('-wal','-shm'):
+                name=APP_ROOT+'/prototype.sqlite'+suffix
+                result=call('shell','run-as',PACKAGE,'stat','-c','%F','files/'+name)
+                if result.returncode==0:
+                    if result.stdout.strip()!=b'regular file':raise ValueError('Unexpected database sidecar type')
+                    entries.append(name)
+                elif b'No such file or directory' not in result.stderr+result.stdout:
+                    raise ValueError('Unable to inspect database sidecar')
         with archive.open('xb') as output, (destination/'adb-stderr.txt').open('xb') as errors:
-            child=subprocess.Popen([adb,'-d','exec-out','run-as',PACKAGE,'tar','-cf','-','-C','files',APP_ROOT],stdout=output,stderr=errors)
+            child=subprocess.Popen([adb,'-d','exec-out','run-as',PACKAGE,'tar','-cf','-','-C','files',*entries],stdout=output,stderr=errors)
             started=time.monotonic()
             try:
                 while child.poll() is None:
@@ -99,6 +110,7 @@ def snapshot(run_id, stop_app):
         if call('shell','pidof',PACKAGE).stdout.strip(): raise ValueError('App restarted during snapshot; invalid snapshot')
         archive.rename(destination/'product.tar')
         report=inspect_archive(destination/'product.tar',destination)
+        report['scope']='database_only' if database_only else 'full_product_root'
         with (destination/'manifest.json').open('x',encoding='utf-8') as f: json.dump(report,f,indent=2)
         print(json.dumps({'status':'captured','snapshotId':run_id,'schema':report['schema'],
               'tables':len(report['tables']),'files':len(report['files']),'private':True}))
@@ -112,11 +124,14 @@ def compare(before,after):
         if not re.fullmatch(r'[a-zA-Z0-9][a-zA-Z0-9_-]{0,63}',run): raise ValueError('Invalid snapshot ID')
         return json.loads((PRIVATE/run/'manifest.json').read_text(encoding='utf-8'))
     a,b=load(before),load(after)
+    scope=a.get('scope','full_product_root')
+    if scope!=b.get('scope','full_product_root'):raise ValueError('Different snapshot scopes')
     tables={name:a['tables'][name]==b['tables'].get(name) for name in a['tables']}
     # Schema pages/WAL naturally change on migration; compare table values instead.
     files={name:meta==b['files'].get(name) for name,meta in a['files'].items()
            if name not in [APP_ROOT+'/prototype.sqlite'+suffix for suffix in ('','-wal','-shm')]}
     result={'status':'passed' if all(tables.values()) and all(files.values()) else 'failed',
+      'scope':scope,
       'beforeSchema':a['schema'],'afterSchema':b['schema'],'oldTablesCompared':len(tables),
       'unchangedOldTables':sum(tables.values()),'oldFilesCompared':len(files),
       'unchangedOldFiles':sum(files.values()),'quickCheck':b['quickCheck'],
@@ -128,11 +143,11 @@ def compare(before,after):
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
     sub=parser.add_subparsers(dest='command',required=True)
-    p=sub.add_parser('snapshot');p.add_argument('run_id');p.add_argument('--stop-app',action='store_true')
+    p=sub.add_parser('snapshot');p.add_argument('run_id');p.add_argument('--stop-app',action='store_true');p.add_argument('--database-only',action='store_true')
     p=sub.add_parser('compare');p.add_argument('before');p.add_argument('after')
     args=parser.parse_args()
     try:
-        if args.command=='snapshot': snapshot(args.run_id,args.stop_app);return 0
+        if args.command=='snapshot': snapshot(args.run_id,args.stop_app,args.database_only);return 0
         return compare(args.before,args.after)
     except (ValueError,OSError,sqlite3.Error,tarfile.TarError,subprocess.SubprocessError):
         print(json.dumps({'status':'failed','reason':'snapshot_or_comparison_unavailable','details':'Private artifacts retained; no data cleared or restored.'}))

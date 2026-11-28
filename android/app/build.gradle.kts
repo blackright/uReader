@@ -4,6 +4,12 @@ plugins {
     id("dev.flutter.flutter-gradle-plugin")
 }
 
+// Optional local frontend prototype. No dependency or model is fetched by Gradle.
+// Supply the audited source explicitly; ordinary Pocket builds remain supported.
+val pinnedEspeakSource = rootProject.file("../validation/reader/private/espeak-4870adf-source/espeak-ng-4870adfa25b1a32b4361592f1be8a40337c58d6c")
+val espeakSource = providers.gradleProperty("ureaderEspeakSource").orNull?.let { file(it) }
+    ?: pinnedEspeakSource.takeIf { it.isDirectory }
+
 android {
     namespace = "com.ureader.prototype"
     compileSdk = flutter.compileSdkVersion
@@ -21,6 +27,12 @@ android {
         minSdk = 26
         // This feasibility prototype and its validated native bundle target ARM64.
         ndk { abiFilters += listOf("arm64-v8a") }
+        if (espeakSource != null) {
+            require(espeakSource.resolve("src/include/espeak-ng/speak_lib.h").isFile)
+            externalNativeBuild {
+                cmake { arguments += "-DESPEAK_SOURCE_DIR=${espeakSource.absolutePath.replace('\\', '/')}" }
+            }
+        }
         targetSdk = flutter.targetSdkVersion
         // Uses the version code from pubspec.yaml. When using split APKs, 1000 * ABI_VERSION
         // is added automatically by Flutter. (https://developer.android.com/studio/build/configure-apk-splits#configure-APK-versions)
@@ -36,6 +48,14 @@ android {
             // TODO: Add your own signing config for the release build.
             // Signing with the debug keys for now, so `flutter run --release` works.
             signingConfig = signingConfigs.getByName("debug")
+        }
+    }
+    if (espeakSource != null) {
+        externalNativeBuild {
+            cmake {
+                path = file("src/main/cpp/CMakeLists.txt")
+                version = "3.22.1"
+            }
         }
     }
 }

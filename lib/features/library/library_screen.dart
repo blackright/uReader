@@ -20,12 +20,14 @@ class LibraryScreen extends StatefulWidget {
     required this.onOpen,
     this.recoveryIssues = const [],
     this.images,
+    this.onWelcome,
   });
   final LibraryController library;
   final BookImportController importController;
   final ValueChanged<Book> onOpen;
   final List<BookFailure> recoveryIssues;
   final BookNavigationSource? images;
+  final VoidCallback? onWelcome;
   @override
   State<LibraryScreen> createState() => _LibraryScreenState();
 }
@@ -172,6 +174,14 @@ class _LibraryScreenState extends State<LibraryScreen> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Bibliothèque'),
+        actions: [
+          if (widget.onWelcome != null)
+            IconButton(
+              tooltip: 'Découvrir uReader',
+              onPressed: widget.onWelcome,
+              icon: const Icon(Icons.help_outline),
+            ),
+        ],
         toolbarHeight: math.max(
           kToolbarHeight,
           MediaQuery.textScalerOf(context).scale(24) + 24,

@@ -1,0 +1,114 @@
+{
+  "schemaVersion": 1,
+  "bundleId": "fr-kokoro-siwis",
+  "bundleVersion": "1.0.0-development",
+  "engine": "kokoro",
+  "engineProtocolVersion": 1,
+  "language": "fr",
+  "deliveryMode": "local_native_preview",
+  "activationGate": {
+    "mode": "development_preview",
+    "requiresNativeProbe": true,
+    "nativeProbeVerdict": "passed",
+    "g0Verdict": "not_evaluated",
+    "evidenceSha256": "ca41188def41470bc5092bd594dae59081a19255012c6323c14fc9f00e9b1aec"
+  },
+  "voice": {
+    "id": "ff_siwis",
+    "language": "fr",
+    "displayName": "SIWIS — Kokoro",
+    "provenance": "https://huggingface.co/hexgrad/Kokoro-82M/tree/f3ff3571791e39611d31c381e3a41a3af07b4987"
+  },
+  "preparationVersion": "kokoro-baseline-lexical-v1",
+  "runtimeCompatibility": {
+    "onnxRuntime": "1.25.0",
+    "sampleRate": 24000,
+    "channels": 1,
+    "espeakSourceRevision": "4870adfa25b1a32b4361592f1be8a40337c58d6c",
+    "espeakLoaderVersion": "0.2.4",
+    "modelSha256": "c57e9396efb43672bb8b4c8b5e267a9cbd6ba0ce22e36cfe38565e4125e22a45"
+  },
+  "limits": {
+    "maxBundleBytes": 536870912,
+    "maxDownloadBytes": 0
+  },
+  "localInstallation": {
+    "enabled": true,
+    "network": false,
+    "sourceFilesModified": false
+  },
+  "licenseNotices": [
+    "Kokoro model and code: Apache-2.0; SIWIS attribution required.",
+    "eSpeak NG and phonetic data: GPL-3.0-or-later. Distribution review pending.",
+    "ONNX Runtime: MIT. No book content transmitted."
+  ],
+  "files": [
+    {
+      "relativePath": "espeak-data.zip",
+      "byteSize": 9207312,
+      "sha256": "829bf0c430dedeb3d6ed80433dc36067ee15db0c0b579188b3988938f77fea0a"
+    },
+    {
+      "relativePath": "kokoro.onnx",
+      "byteSize": 325563292,
+      "sha256": "c57e9396efb43672bb8b4c8b5e267a9cbd6ba0ce22e36cfe38565e4125e22a45"
+    },
+    {
+      "relativePath": "siwis.f32",
+      "byteSize": 522240,
+      "sha256": "a35f5675ad08948e326ae75fd0ea16ba5d0042e4f76b5f3d1df77d0a48c54861"
+    },
+    {
+      "relativePath": "tokenizer.json",
+      "byteSize": 246403,
+      "sha256": "6211acffe9cb95172f71f0051f18e26ea305b2b32ea00b331ee976551c70887f"
+    },
+    {
+      "relativePath": "vocab.json",
+      "byteSize": 1144,
+      "sha256": "70abefbe8a1c8865e43e0a43bbdc25b91a33e4aa053479d443ccf23e20a59e5d"
+    }
+  ],
+  "implementationSources": [
+    {
+      "path": "android/app/src/main/kotlin/com/ureader/prototype/speech/FrenchPhonemizer.kt",
+      "sha256": "00c43183b15236871b03af3677e9143308412e6609d4d24f9fd7ae76b65cb000"
+    },
+    {
+      "path": "android/app/src/main/kotlin/com/ureader/prototype/speech/KokoroInputs.kt",
+      "sha256": "483b04b08e3f6b710d69474cc1b12da5ba6308c0786a7549a32b5d65b5fe33ad"
+    },
+    {
+      "path": "android/app/src/main/kotlin/com/ureader/prototype/speech/OnnxKokoroSynthesizer.kt",
+      "sha256": "d20435b3831728011b42732712be179f96d2725b2fc219711fa7b6acf2f1d155"
+    },
+    {
+      "path": "android/app/src/main/cpp/french_frontend.cpp",
+      "sha256": "9e2fc4236488b9d144cef0cfa40139b9f6169da2284158e82b3e66dae68cfde6"
+    },
+    {
+      "path": "android/app/src/main/cpp/CMakeLists.txt",
+      "sha256": "2d6278449d8c12108af47b62bbb7fc955d4ad4b533f61078f0e8d163e6b235ca"
+    },
+    {
+      "path": "lib/features/listening/french_text_normalizer.dart",
+      "sha256": "e211356e2c5052ccfaf39c217215d533eff125d0987850156520915916ee2e98"
+    },
+    {
+      "path": "lib/features/listening/prepared_text_map.dart",
+      "sha256": "3d5beaa9c87757d17956460ab9b9b6ff22f8d97ab592fb29026b9ab96652af4c"
+    },
+    {
+      "path": "lib/features/listening/speech_segmenter.dart",
+      "sha256": "be363fa93dc2f7db90fc2cd4d7c026ce6ea2732f34599490368220b50cdee1be"
+    },
+    {
+      "path": "lib/infrastructure/audio/punctuation_audio.dart",
+      "sha256": "d708215f5a71b73351d04d579407ad7c60515f54771ba0c636fb18554c12f352"
+    },
+    {
+      "path": "lib/infrastructure/speech/platform_speech_engine.dart",
+      "sha256": "a74dfb02c7ea4de816298442348de7ee2f13efe1a35ed4386b36e6e9e2708cf5"
+    }
+  ]
+}

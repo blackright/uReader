@@ -115,6 +115,32 @@ void main() {
   }
 
   test(
+    'queued handoff does not stop while native current-source catches up',
+    () async {
+      await owner.play(text(8));
+      await pumpProducer();
+      await completeNext();
+      await completeNext();
+      final previous = player.token!;
+      final next = player.queue[1];
+      final stops = player.stops;
+      player.controller.add(PlayerEvent(PlayerEventKind.completed, previous));
+      await pumpProducer();
+      expect(
+        player.stops,
+        stops,
+        reason: 'A queued successor is not a buffer underrun',
+      );
+      player.token = next;
+      player.controller.add(PlayerEvent(PlayerEventKind.started, next));
+      await pumpProducer();
+      expect(player.opens, 1);
+      expect(player.queue.any((t) => t.matches(previous)), isFalse);
+      expect(owner.playedLocator!.passageId, 'p1');
+    },
+  );
+
+  test(
     'disk reserve outlives the native playlist window and remains leased',
     () async {
       await owner.close();
@@ -246,6 +272,14 @@ void main() {
     expect(speech.requests.length, 1);
   });
   test('chapter preparation finishes before playback and uses a bounded native window', () async {
+    Future<void> until(bool Function() ready, String message) async {
+      final deadline = DateTime.now().add(const Duration(seconds: 5));
+      while (!ready()) {
+        if (DateTime.now().isAfter(deadline)) fail(message);
+        await Future<void>.delayed(const Duration(milliseconds: 1));
+      }
+    }
+
     final f = ReaderFixture();
     await f.open();
     final key = await f.book(
@@ -267,9 +301,15 @@ void main() {
       );
       await pumpProducer();
       for (var i = 0; i < 6; i++) {
+        // SQLite runs on another worker; event-loop turns do not guarantee its reply.
+        await until(
+          () => speech.requests.length > i,
+          'Chapter request $i not produced',
+        );
         await completeNext();
         if (i < 5) expect(player.opens, 0);
       }
+      await until(() => player.opens == 1, 'Prepared chapter did not start');
       expect(speech.requests.length, 6);
       expect(player.opens, 1);
       expect(owner.preparedSegments, 6);

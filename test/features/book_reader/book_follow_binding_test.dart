@@ -11,6 +11,7 @@ import 'package:prototype/features/book_reader/book_follow_binding.dart';
 import 'package:prototype/features/book_reader/follow_controller.dart';
 import 'package:prototype/features/listening/content_source_adapter.dart';
 import 'package:prototype/features/listening/playback_coordinator.dart';
+import 'package:prototype/features/listening/prepared_text_map.dart';
 import 'package:prototype/features/listening/speech_segmenter.dart';
 
 import '../listening/playback_coordinator_test.dart'
@@ -78,7 +79,7 @@ void main() {
           samples: 2400,
           alignerVersion: 'attention-l3h9-v1',
           normalizerVersion: 'fr-numbers-v3',
-          preparerVersion: 'prepared-map-v1',
+          preparerVersion: PreparedTextMap.version,
           cues: [WordCue(0, 2400, SourceSpan(0, 7))],
         );
       }

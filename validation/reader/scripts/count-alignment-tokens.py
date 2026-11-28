@@ -2,6 +2,9 @@
 import hashlib,json,sys
 from pathlib import Path
 from tokenizers import Tokenizer
+# Dart sends UTF-8 JSON; the Windows pipe locale may otherwise decode it as CP1252.
+sys.stdin.reconfigure(encoding='utf-8')
+sys.stdout.reconfigure(encoding='utf-8')
 root=Path(__file__).resolve().parents[3]
 path=root/'validation/private/aligned-bundle-01/tokenizer.json'
 manifest=json.loads((root/'assets/models/manifest.json').read_text(encoding='utf-8'))

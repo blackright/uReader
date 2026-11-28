@@ -242,9 +242,18 @@ class AppDependencies {
 
       ModelCatalog? parsedCatalog;
       try {
+        const requestedProfile = String.fromEnvironment(
+          'UREADER_SPEECH_PROFILE',
+          defaultValue: 'kokoro',
+        );
+        final manifestAsset = switch (requestedProfile) {
+          'pocket' => 'assets/models/manifest.json',
+          'kokoro' => 'assets/models/kokoro-manifest.json',
+          _ => throw const AppError(ErrorCode.modelIntegrityFailed),
+        };
         final manifestData =
             await (loadSpeechManifest?.call() ??
-                rootBundle.load('assets/models/manifest.json'));
+                rootBundle.load(manifestAsset));
         parsedCatalog = ModelCatalog.fromBytes(
           manifestData.buffer.asUint8List(
             manifestData.offsetInBytes,
@@ -296,6 +305,8 @@ class AppDependencies {
         try {
           final session = await AudioSession.instance;
           playback = PlaybackCoordinator(
+            voiceId: catalog?.voiceId ?? 'estelle',
+            bundleId: catalog?.bundle.id ?? 'fr-official-aligned',
             speech: engine,
             player: LocalSegmentPlayer(cache),
             segmenter: SpeechSegmenter(engine.tokenCount),

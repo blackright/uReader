@@ -8,6 +8,21 @@ import 'package:prototype/app/dependencies.dart';
 import 'package:prototype/domain/app_error.dart';
 import 'package:prototype/features/demo_reader/corpus_repository.dart';
 import 'package:prototype/main.dart';
+import 'package:prototype/features/welcome/welcome_screen.dart';
+
+Future<void> settleStartup(WidgetTester tester) async {
+  for (var i = 0; i < 40; i++) {
+    await tester.runAsync(
+      () => Future<void>.delayed(const Duration(milliseconds: 10)),
+    );
+    await tester.pump(const Duration(milliseconds: 20));
+    if (find.text('Ouverture de votre bibliothèque').evaluate().isEmpty &&
+        find.byType(LinearProgressIndicator).evaluate().isEmpty) {
+      break;
+    }
+  }
+  await tester.pumpAndSettle();
+}
 
 void main() {
   late Directory directory;
@@ -21,6 +36,7 @@ void main() {
         read: () async => File('assets/corpus/fr_demo.json').readAsStringSync(),
       ),
     );
+    await WelcomeStore(dependencies.files.root).complete();
   });
   tearDown(() async {
     await dependencies.dispose();
@@ -39,15 +55,13 @@ void main() {
       ),
     ))!;
     addTearDown(fallback.dispose);
+    await tester.runAsync(() => WelcomeStore(fallback.files.root).complete());
     expect(fallback.models, isNull);
     await tester.pumpWidget(MainApp(createDependencies: () async => fallback));
-    await tester.pumpAndSettle();
+    await settleStartup(tester);
     expect(find.text('Bibliothèque'), findsOneWidget);
-    await tester.tap(find.text('Démo'));
-    await tester.pumpAndSettle();
-    expect(find.text('Choisir un texte'), findsOneWidget);
     await tester.tap(find.text('Voix'));
-    await tester.pumpAndSettle();
+    await settleStartup(tester);
     expect(
       find.text(
         'Le catalogue vocal est indisponible. Les textes restent consultables.',
@@ -64,7 +78,7 @@ void main() {
     await tester.pumpWidget(
       MainApp(createDependencies: () async => dependencies),
     );
-    await tester.pumpAndSettle();
+    await settleStartup(tester);
     expect(find.text('Bibliothèque'), findsOneWidget);
     expect(find.text('Importer un EPUB'), findsOneWidget);
     expect(find.textContaining('Votre bibliothèque est vide'), findsOneWidget);
@@ -84,22 +98,16 @@ void main() {
     await tester.pumpWidget(
       MainApp(createDependencies: () async => dependencies),
     );
-    await tester.pumpAndSettle();
+    await settleStartup(tester);
     await tester.tap(find.text('Voix'));
-    await tester.pumpAndSettle();
+    await settleStartup(tester);
     expect(find.text('Préparation de la voix'), findsOneWidget);
-    await tester.tap(find.text('Bilan'));
-    await tester.pumpAndSettle();
-    expect(find.text('Bilan de faisabilité'), findsOneWidget);
-    expect(find.text('Faisabilité partielle'), findsOneWidget);
-    await tester.tap(
-      find.descendant(
-        of: find.byType(NavigationBar),
-        matching: find.text('Démo'),
-      ),
-    );
-    await tester.pumpAndSettle();
-    expect(find.text('Choisir un texte'), findsOneWidget);
+    expect(find.text('Démo'), findsNothing);
+    expect(find.text('Bilan'), findsNothing);
+    expect(find.byType(NavigationDestination), findsNWidgets(2));
+    await tester.tap(find.text('Livres'));
+    await settleStartup(tester);
+    expect(find.text('Bibliothèque'), findsOneWidget);
     expect(await dependencies.database.pendingOperations(), isEmpty);
     await tester.pumpWidget(const SizedBox());
   });
@@ -112,7 +120,7 @@ void main() {
     await tester.pumpWidget(
       MainApp(createDependencies: () async => dependencies),
     );
-    await tester.pumpAndSettle();
+    await settleStartup(tester);
     expect(find.byType(NavigationBar), findsOneWidget);
     expect(tester.takeException(), isNull);
     await tester.pumpWidget(const SizedBox());
@@ -128,7 +136,7 @@ void main() {
         },
       ),
     );
-    await tester.pumpAndSettle();
+    await settleStartup(tester);
     expect(
       find.text(const AppError(ErrorCode.storageUnavailable).message),
       findsOneWidget,
@@ -147,7 +155,7 @@ void main() {
           },
         ),
       );
-      await tester.pumpAndSettle();
+      await settleStartup(tester);
       expect(
         find.text(const AppError(ErrorCode.unsupportedSchema).message),
         findsOneWidget,

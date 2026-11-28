@@ -48,12 +48,19 @@ class ExperiencePreferencesRepository implements ExperiencePreferenceStore {
           display is! String) {
         throw const BookFailure(BookError.invalidContent);
       }
+      if (values.containsKey('highlight_color') &&
+          values['highlight_color'] is! String) {
+        throw const BookFailure(BookError.invalidContent);
+      }
       return ExperiencePreferences(
         mode: ReaderMode.values.byName(mode),
         lineHeight: height.toDouble(),
         margins: margins.toDouble(),
         followEnabled: follow,
         presentation: AudioPresentation.values.byName(display),
+        highlightColor: HighlightColor.values.byName(
+          values['highlight_color'] as String? ?? 'yellow',
+        ),
       );
     } on BookFailure {
       rethrow;
@@ -77,6 +84,7 @@ class ExperiencePreferencesRepository implements ExperiencePreferenceStore {
             'margins': value.margins,
             'follow_enabled': value.followEnabled,
             'audio_presentation': value.presentation.name,
+            'highlight_color': value.highlightColor.name,
           }.entries) {
             await db.customStatement(
               'INSERT INTO experience_preferences VALUES (?,?,1) ON CONFLICT(preference_key) DO UPDATE SET value_json=excluded.value_json,version=1',

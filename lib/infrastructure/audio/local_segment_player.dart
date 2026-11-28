@@ -48,7 +48,7 @@ class LocalSegmentPlayer implements BufferedAudioPlayer, PlayerClock {
   late final StreamSubscription<Duration> _positions;
   late final StreamSubscription<local.PlayerState> _states;
   late final StreamSubscription<local.SequenceState> _sequence;
-  bool _resetting = false, _running = false;
+  bool _resetting = false, _running = false, _retiring = false;
   int _intent = 0;
   Future<void>? _disposal;
   @override
@@ -61,6 +61,7 @@ class LocalSegmentPlayer implements BufferedAudioPlayer, PlayerClock {
 
   @override
   bool isCurrent(SessionToken token) {
+    if (_retiring) return _current?.token.matches(token) == true;
     final tag = _player.sequenceState.currentSource?.tag;
     return tag is _QueuedFile && tag.token.matches(token);
   }
@@ -73,7 +74,7 @@ class LocalSegmentPlayer implements BufferedAudioPlayer, PlayerClock {
   }
 
   void _sync() {
-    if (_resetting || _disposal != null) return;
+    if (_resetting || _retiring || _disposal != null) return;
     final selected = _player.sequenceState.currentSource?.tag;
     if (selected is! _QueuedFile || !_queue.contains(selected)) return;
     if (_current != selected) {
@@ -187,10 +188,44 @@ class LocalSegmentPlayer implements BufferedAudioPlayer, PlayerClock {
     final index = _queue.indexWhere((f) => f.token.matches(token));
     if (index < 0) return;
     final entry = _queue[index];
-    if (entry == _current) return;
-    await _player.removeAudioSourceAt(index);
-    _queue.remove(entry);
-    entry.lease.release();
+    final active = _current;
+    if (active == null || entry == active) return;
+    final currentIndex = _queue.indexOf(active);
+    final expectedIndex = currentIndex - (index < currentIndex ? 1 : 0);
+    final intent = _intent;
+    _retiring = true;
+    try {
+      // just_audio broadcasts its shorter Dart sequence before Android reports
+      // the adjusted index. Reading that intermediate pair invents transitions
+      // and skips queued speech. Wait for the native index before reconciling.
+      await _player.removeAudioSourceAt(index);
+      if (intent != _intent) return;
+      if (_player.playbackEvent.currentIndex != expectedIndex) {
+        final settled = Completer<void>();
+        final subscription = _player.playbackEventStream.listen(
+          (event) {
+            if (!settled.isCompleted &&
+                (intent != _intent || event.currentIndex == expectedIndex)) {
+              settled.complete();
+            }
+          },
+          onError: (Object error, StackTrace stack) {
+            if (!settled.isCompleted) settled.completeError(error, stack);
+          },
+        );
+        try {
+          await settled.future.timeout(const Duration(seconds: 2));
+        } finally {
+          await subscription.cancel();
+        }
+      }
+      if (intent != _intent) return;
+      _queue.remove(entry);
+      entry.lease.release();
+    } finally {
+      _retiring = false;
+    }
+    if (intent == _intent) _sync();
   }
 
   void _start() {

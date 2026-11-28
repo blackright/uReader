@@ -20,6 +20,7 @@ void main() {
   });
   test('defaults and combined save keep legacy values authoritative', () async {
     expect((await store.read()).mode, ReaderMode.paged);
+    expect((await store.read()).highlightColor, HighlightColor.yellow);
     await store.save(
       ExperiencePreferences(
         mode: ReaderMode.scroll,
@@ -27,11 +28,13 @@ void main() {
         margins: 28,
         followEnabled: false,
         presentation: AudioPresentation.simple,
+        highlightColor: HighlightColor.blue,
       ),
       reader: ReaderPreferences(fontScale: 1.5, theme: ReaderTheme.dark),
     );
     final value = await store.read();
     expect(value.mode, ReaderMode.scroll);
+    expect(value.highlightColor, HighlightColor.blue);
     expect(value.followEnabled, false);
     expect((await store.readReader()).theme, ReaderTheme.dark);
     expect(
@@ -76,5 +79,14 @@ void main() {
           .read<String>('value_json'),
       'null',
     );
+  });
+  test('invalid highlight values fail without resetting saved preferences', () async {
+    for (final raw in ['null', '42', '"unknown"']) {
+      await db.customStatement(
+        "INSERT OR REPLACE INTO experience_preferences VALUES('highlight_color',?,1)",
+        [raw],
+      );
+      await expectLater(store.read(), throwsA(isA<BookFailure>()));
+    }
   });
 }

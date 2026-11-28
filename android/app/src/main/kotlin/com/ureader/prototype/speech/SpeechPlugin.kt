@@ -109,7 +109,7 @@ internal class SpeechPlugin(
             "capabilities" -> result.success(mapOf("protocolVersion" to 1,
                 "alignment" to mapOf("version" to 1, "available" to (engine?.alignmentAvailable == true && !disposed), "validated" to (engine?.alignmentValidated == true && !disposed)),
                 "languages" to if (engine != null && !disposed) listOf("fr") else emptyList<String>(),
-                "voices" to if (engine != null && !disposed) listOf("estelle") else emptyList<String>()))
+                "voices" to if (engine != null && !disposed) listOf(engine!!.voiceId) else emptyList<String>()))
             "loadBundle" -> load(command, result)
             "synthesize" -> synthesize(command, result)
             "cancel" -> {
@@ -172,7 +172,7 @@ internal class SpeechPlugin(
         val owner = engine
         if (disposed || owner == null || sink == null) { error(result, "engineUnavailable"); return }
         if (active != null) { error(result, "resourceInUse"); return }
-        if (command.payload["bundleId"] != bundle!![0] || command.payload["voiceId"] != "estelle") {
+        if (command.payload["bundleId"] != bundle!![0] || command.payload["voiceId"] != engine!!.voiceId) {
             error(result, "modelMissing"); return
         }
         val token = command.token!!

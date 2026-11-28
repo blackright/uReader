@@ -42,6 +42,40 @@ void main() {
     await db.close();
     await root.delete(recursive: true);
   });
+  testWidgets('installed voice opens explicit preview without starting audio', (
+    tester,
+  ) async {
+    await tester.runAsync(() => installer.install());
+    expect(installer.state, ModelSetupState.ready);
+    var opened = false;
+    await tester.pumpWidget(
+      MaterialApp(
+        home: Scaffold(
+          body: ModelSetupScreen(
+            installer: installer,
+            removal: removal,
+            onPreview: () => opened = true,
+          ),
+        ),
+      ),
+    );
+    await tester.pumpAndSettle();
+    expect(opened, isFalse);
+    for (
+      var i = 0;
+      i < 100 && installer.state == ModelSetupState.checking;
+      i++
+    ) {
+      await tester.runAsync(
+        () => Future<void>.delayed(const Duration(milliseconds: 20)),
+      );
+      await tester.pumpAndSettle();
+    }
+    expect(installer.state, ModelSetupState.ready);
+    await tester.scrollUntilVisible(find.text('Ouvrir la préécoute'), 200);
+    await tester.tap(find.text('Ouvrir la préécoute'));
+    expect(opened, isTrue);
+  });
   testWidgets(
     'notices include model attribution and expose dependency licenses',
     (tester) async {
@@ -110,7 +144,14 @@ void main() {
           find.text('Installer depuis un dossier'),
           200,
         );
-        await tester.tap(find.text('Installer depuis un dossier'));
+        final installButton = find.widgetWithText(
+          FilledButton,
+          'Installer depuis un dossier',
+        );
+        await tester.ensureVisible(installButton);
+        await tester.pumpAndSettle();
+        expect(installButton.hitTestable(), findsOneWidget);
+        await tester.tap(installButton);
         await tester.pumpAndSettle();
         expect(find.text('Installer la voix française ?'), findsOneWidget);
         await tester.tap(find.text('Annuler'));

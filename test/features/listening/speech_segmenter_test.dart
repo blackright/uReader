@@ -67,22 +67,22 @@ void main() {
       isTrue,
     );
   });
-  test(
-    'Deux-points et point-virgule donnent des frontières de pause',
-    () async {
-      const source =
-          'Réponse : oui, les documents utiles ; le reste peut attendre.';
-      final text = DemoText(
-        id: 't',
-        corpusVersion: 1,
-        title: 'Essai',
-        passages: [Passage(id: 'p', textId: 't', ordinal: 0, text: source)],
-      );
-      final parts = await SpeechSegmenter((_) async => 10).segment(text);
-      expect(parts.length, 3);
-      expect(parts.first.source.endsWith(':'), isTrue);
-      expect(parts[1].source.endsWith(';'), isTrue);
-      expect(parts.map((s) => s.source).join(), source);
-    },
-  );
+  test('Les courtes propositions gardent leur contexte et leur ponctuation interne', () async {
+    const source =
+        'Réponse : oui, les documents utiles ; le reste peut attendre.';
+    final text = DemoText(
+      id: 't',
+      corpusVersion: 1,
+      title: 'Essai',
+      passages: [Passage(id: 'p', textId: 't', ordinal: 0, text: source)],
+    );
+    final parts = await SpeechSegmenter((_) async => 10).segment(text);
+    expect(parts.length, 1);
+    expect(parts.single.source, source);
+    expect(
+      parts.single.synthesis,
+      'Réponse, oui, les documents utiles, le reste peut attendre.',
+    );
+    expect(parts.map((s) => s.source).join(), source);
+  });
 }
