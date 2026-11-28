@@ -3,43 +3,22 @@ import 'package:prototype/features/listening/prepared_text_map.dart';
 import 'package:prototype/features/listening/speech_segmenter.dart';
 
 void main() {
-  test('preparation remains exactly compatible with the prior algorithm', () {
-    String legacy(String value) {
-      var text = value
-          .replaceAll(RegExp('["“”„«»()\\[\\]]'), '')
-          .replaceAll('’', "'")
-          .replaceAll('‘', "'")
-          .replaceAll(':', ',')
-          .replaceAll(';', ',')
-          .replaceAll(RegExp(r'\s+,'), ',')
-          .trim();
-      if (!RegExp(r'[\p{L}\p{N}]', unicode: true).hasMatch(text)) return '';
-      text = text.substring(0, 1).toUpperCase() + text.substring(1);
-      if (!RegExp(r'[.!?,]$').hasMatch(text)) text += '.';
-      return text;
-    }
-
-    const atoms = [
-      '(',
-      ')',
-      '«',
-      '»',
-      'e\u0301',
-      '😀',
-      'ß',
-      ' ',
-      '\n',
-      '\u00a0',
-      ':',
-      ';',
-      ',',
-      '’',
-    ];
-    for (final a in atoms) {
-      for (final b in atoms) {
-        final text = '$a$b jardin';
-        expect(SpeechSegmenter.prepare(text), legacy(text), reason: text);
-      }
+  test('preparation preserves model-compatible punctuation and whitespace', () {
+    const cases = {
+      '« Bonjour ! »': 'Bonjour !',
+      'deux mots,': 'Deux mots.',
+      'une pause ;': 'Une pause.',
+      'la mer…': 'La mer…',
+      '  école\u00a0\u00a0et\n\t jardin  ': 'École et jardin.',
+      'l’amitié': "L'amitié.",
+      'e\u0301cole 😀': 'E\u0301cole 😀.',
+    };
+    for (final entry in cases.entries) {
+      expect(
+        SpeechSegmenter.prepare(entry.key),
+        entry.value,
+        reason: entry.key,
+      );
     }
   });
   test('expansion keeps full absolute source range through preparation', () {

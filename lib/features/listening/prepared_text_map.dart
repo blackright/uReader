@@ -25,7 +25,7 @@ class PreparedTextMap {
     this.prepared,
     List<PreparedTextSpan> spans,
   ) : spans = List.unmodifiable(spans);
-  static const version = 'prepared-map-v1';
+  static const version = 'prepared-map-v2';
   final String source, prepared;
   final int sourceOffset;
   final List<PreparedTextSpan> spans;
@@ -86,11 +86,27 @@ class PreparedTextMap {
           _Unit(codeUnit, original.range),
     ]) {
       if (RegExp('["“”„«»()\\[\\]]').hasMatch(unit.text)) continue;
-      final text = unit.text
+      var text = unit.text
           .replaceAll('’', "'")
           .replaceAll('‘', "'")
           .replaceAll(':', ',')
           .replaceAll(';', ',');
+      // Match the model's reference preparation without losing source ranges.
+      if (RegExp(r'^\s$').hasMatch(text)) {
+        text = ' ';
+        if (units.isNotEmpty && units.last.text == ' ') {
+          final previous = units.removeLast();
+          units.add(
+            _Unit(
+              ' ',
+              previous.range == null || unit.range == null
+                  ? null
+                  : SourceSpan(previous.range!.start, unit.range!.end),
+            ),
+          );
+          continue;
+        }
+      }
       if (text == ',') {
         while (units.isNotEmpty && RegExp(r'^\s$').hasMatch(units.last.text)) {
           units.removeLast();
@@ -118,7 +134,12 @@ class PreparedTextMap {
       ),
     );
     text = units.map((u) => u.text).join();
-    if (!RegExp(r'[.!?,]$').hasMatch(text)) units.add(const _Unit('.', null));
+    if (RegExp(r'[,\-–—]$').hasMatch(text)) {
+      final terminal = units.removeLast();
+      units.add(_Unit('.', terminal.range));
+    } else if (!RegExp(r'[.!?…]$').hasMatch(text)) {
+      units.add(const _Unit('.', null));
+    }
     final spans = <PreparedTextSpan>[];
     var at = 0;
     for (final unit in units) {

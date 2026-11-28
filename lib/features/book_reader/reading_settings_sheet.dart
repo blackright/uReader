@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../domain/book_reader.dart';
 import '../../domain/reader_experience.dart';
 import '../../app/reader_theme.dart';
+import '../../app/highlight_colors.dart';
 
 typedef ReadingSettings = ({
   ReaderPreferences reader,
@@ -28,6 +29,7 @@ class _ReadingSettingsSheetState extends State<ReadingSettingsSheet> {
   late ReaderTheme theme = widget.preferences.theme;
   late ReaderMode mode = widget.experience.mode;
   late AudioPresentation presentation = widget.experience.presentation;
+  late HighlightColor highlight = widget.experience.highlightColor;
   late double line = widget.experience.lineHeight,
       margins = widget.experience.margins;
   Widget choices<T>(
@@ -85,6 +87,8 @@ class _ReadingSettingsSheetState extends State<ReadingSettingsSheet> {
                     child: Text(
                       'Prendre le temps de lire.\nLa lumière traverse les feuilles.',
                       style: TextStyle(
+                        backgroundColor: ReadingHighlight.resolve(highlight)
+                            .withValues(alpha: .24),
                         fontFamily: 'serif',
                         fontSize: 18 * scale,
                         height: line,
@@ -145,6 +149,18 @@ class _ReadingSettingsSheetState extends State<ReadingSettingsSheet> {
                     ),
                   ],
                   choices(
+                    'Couleur du surlignage',
+                    [
+                      (value: HighlightColor.yellow, label: 'Jaune'),
+                      (value: HighlightColor.green, label: 'Vert'),
+                      (value: HighlightColor.blue, label: 'Bleu'),
+                      (value: HighlightColor.pink, label: 'Rose'),
+                      (value: HighlightColor.purple, label: 'Violet'),
+                    ],
+                    highlight,
+                    (v) => highlight = v,
+                  ),
+                  choices(
                     'Player audio',
                     [
                       (value: AudioPresentation.full, label: 'Complet'),
@@ -163,6 +179,7 @@ class _ReadingSettingsSheetState extends State<ReadingSettingsSheet> {
                         margins: margins,
                         followEnabled: widget.experience.followEnabled,
                         presentation: presentation,
+                        highlightColor: highlight,
                       ),
                     )),
                     child: const Text('Appliquer'),

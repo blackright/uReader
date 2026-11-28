@@ -6,15 +6,18 @@ import java.util.concurrent.Executors
 import java.util.concurrent.atomic.AtomicBoolean
 
 /** Serial native owner. Loading/inference/cleanup never run on the caller's UI thread.
- * No Flutter capability is exposed until a trusted product bundle and G0 are ready.
+ * The host qualifies a trusted bundle (G0, or an explicit debug native probe)
+ * before exposing Flutter capabilities. This owner never selects a substitute voice.
  */
 internal class PocketSpeechEngine(
     private val backend: (Request, () -> Unit) -> NativeAudio,
     private val closeBackend: () -> Unit = {},
     private val tokenCounter: ((String) -> Int)? = null,
     val alignmentAvailable: Boolean = false,
-    val alignmentValidated: Boolean = false
+    val alignmentValidated: Boolean = false,
+    val voiceId: String = "estelle"
 ) {
+    init { require(validId(voiceId)) }
     data class Token(val sessionId: String, val generation: Long) {
         init { require(validId(sessionId) && generation >= 0) }
     }

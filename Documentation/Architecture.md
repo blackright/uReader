@@ -16,7 +16,7 @@ Android est confirmé comme première plateforme et le français comme langue pr
 | Persistance | SQLite avec Drift pour requêtes typées, transactions et observation des données | Proposé |
 | État et injection | Contrôleurs par fonctionnalité et injection par constructeur ; bibliothèque d’état à choisir lors du squelette Flutter | Contrats définis, outil ouvert |
 | Audio | `audio_service` pour commandes système et session ; `just_audio` comme lecteur de segments générés | Candidats à prototyper |
-| Synthèse | Adaptateur Pocket TTS local derrière `SpeechEngine` | Moteur demandé, runtime mobile à valider |
+| Synthèse | Adaptateurs locaux derrière `SpeechEngine` : Kokoro SIWIS en développement, Pocket historique explicite | ADR-0011 ; qualifications natives et produit distinctes |
 | Rendu EPUB | Adaptateur `ReaderEngine`, avec document assaini et ancrages partagés avec TTS | Moteur de rendu à sélectionner par prototype |
 | Concurrence | Traitements lourds hors du fil UI ; coordination unique de l’audio et des écritures de position | Exigence architecturale |
 
@@ -109,6 +109,17 @@ SQLite et les fichiers ne partagent pas une transaction atomique : un journal d�
 Pour supprimer : invalider et arrêter la session audio du livre, le marquer `deleting` et journaliser, supprimer ses fichiers de manière idempotente, puis supprimer les lignes en transaction avec cascades. Un échec conserve l’opération à reprendre ; il n’est pas annoncé comme une suppression terminée. Aucun chemin du fichier original n’est utilisé pour cette opération.
 
 ## 6. Pocket TTS et audio
+
+Évolution du 26 novembre : Kokoro SIWIS utilise le même propriétaire natif et les
+mêmes canaux derrière `SpeechEngine`, avec ONNX Runtime 1.25.0 et eSpeak 1.52.0
+épinglé. Le manifeste Kokoro et sa preuve technique sont distincts du gate G0
+Pocket. Le profil de développement est bloqué en product/profile et sans
+FLAG_DEBUGGABLE. La sélection explicite du profil traverse catalogue, coordinateur,
+résolveur et cache ; aucun modèle ni serveur de substitution n'est choisi en erreur.
+Les données phonétiques dérivées sont extraites sous quotas dans un dossier privé
+identifié par empreinte et libérées à la fermeture du backend. Le suivi de paragraphe
+est préservé ; les durées phonétiques ne qualifient pas le suivi précis des mots.
+Voir [ADR-0011](ADR/0011-kokoro-siwis.md).
 
 La référence officielle Pocket TTS présente une interface Python et une génération audio en streaming sur CPU. Cela ne démontre pas une intégration Flutter/Android prête à distribuer. Le pont proposé est donc une frontière d’architecture, pas un SDK mobile présumé disponible. Source : [dépôt officiel Pocket TTS](https://github.com/kyutai-labs/pocket-tts).
 

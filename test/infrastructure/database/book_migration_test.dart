@@ -43,7 +43,7 @@ void main() {
               .data
               .values
               .single,
-          3,
+          4,
         );
         expect(
           (await db.customSelect('SELECT * FROM positions').getSingle())
@@ -99,7 +99,7 @@ void main() {
           .data
           .values
           .single,
-      3,
+      4,
     );
   });
   test('disk-full mid-migration rolls back schema and data then reopens', () async {
@@ -174,7 +174,7 @@ void main() {
             .data
             .values
             .single,
-        3,
+        4,
       );
     } finally {
       await reopened.close();

@@ -1,7 +1,7 @@
 # PRD — uReader
 
-Version : 0.2
-Date : 10 novembre 2026  
+Version : 0.3
+Date : 26 novembre 2026
 Statut : proposition produit à valider  
 Document source : [Cahier des charges](Cahier-des-charges.md)
 
@@ -11,9 +11,15 @@ Ce Product Requirements Document décrit ce que fait uReader, les comportements 
 
 Les exigences ci-dessous définissent le comportement proposé pour la première version. Flutter et Pocket TTS sont demandés ; les autres choix de périmètre restent soumis aux décisions de la section 13. Les numéros de sections techniques ne prescrivent aucune bibliothèque ni architecture détaillée.
 
+Mise à jour du 26 novembre : le porteur a choisi Kokoro SIWIS, avec corrections
+lexicales minimales, pour le prototype de narration française (DEC-10,
+[ADR-0011](ADR/0011-kokoro-siwis.md)). Pocket reste un profil historique explicite.
+Le prototype Kokoro est local et réservé au développement ; ses preuves natives
+ne qualifient ni l'endurance, ni l'alignement mot à mot, ni une publication.
+
 ## 2. Vision et valeur produit
 
-uReader permet de lire ses propres livres numériques et de les écouter avec Pocket TTS, en retrouvant facilement le passage courant. L’utilisateur garde le contrôle sur ses fichiers, ses préférences et ses données.
+uReader permet de lire ses propres livres numériques et de les écouter avec la voix locale choisie, en retrouvant facilement le passage courant. L’utilisateur garde le contrôle sur ses fichiers, ses préférences et ses données.
 
 | Utilisateur | Besoin | Résultat attendu |
 |---|---|---|
@@ -232,6 +238,7 @@ La livraison nécessite :
 | DEC-07 | Langues de l’interface et distribution | À définir | Avant préparation de publication |
 | DEC-08 | Performances et limites de ressources | Valeurs issues des prototypes | Avant recette |
 | DEC-09 | Modèle économique | À définir | Avant publication |
+| DEC-10 | Narration française du prototype | Kokoro SIWIS lexical minimal choisi explicitement par le porteur ; profil de développement lié à ses preuves natives, sans fallback silencieux | Qualification complète et distribution encore ouvertes ; ADR-0011 |
 
 Une décision validée doit mettre à jour ce PRD et le cahier des charges pour éviter deux versions contradictoires. Les règles détaillées ajoutées ici sont des propositions produit et doivent être incluses dans la revue du document.
 
@@ -239,5 +246,6 @@ Une décision validée doit mettre à jour ce PRD et le cahier des charges pour 
 
 | Version | Date | Évolution |
 |---|---|---|
+| 0.3 | 26 novembre 2026 | Choix explicite Kokoro SIWIS pour développement ; séparation de la preuve native, de l'écoute et de la qualification de publication |
 | 0.2 | 10 novembre 2026 | Confirmation Android et français pour la synthèse ; DEC-01 et DEC-03 partiellement résolues, sans preuve technique implicite |
 | 0.1 | 10 novembre 2026 | Première rédaction : périmètre, parcours, règles métier, sécurité, données et acceptation |

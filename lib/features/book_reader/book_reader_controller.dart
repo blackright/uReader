@@ -55,6 +55,7 @@ class BookReaderController extends ChangeNotifier {
       margins: previous.margins,
       followEnabled: enabled,
       presentation: previous.presentation,
+      highlightColor: previous.highlightColor,
     );
     try {
       await experienceStore?.save(value);

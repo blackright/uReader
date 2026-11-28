@@ -24,11 +24,60 @@ le proxy et les fichiers versionnés avant de modifier la configuration.
 
 ## Ressources vocales
 
+Le profil de développement par défaut est désormais Kokoro SIWIS. Son catalogue
+`assets/models/kokoro-manifest.json` décrit cinq fichiers :
+
+```text
+uReader-voice-kokoro/
+  kokoro.onnx
+  siwis.f32
+  vocab.json
+  tokenizer.json
+  espeak-data.zip
+```
+
+Il fonctionne uniquement en développement et requiert le frontend natif ci-dessous.
+`assets/models/kokoro-evidence.json` conserve les limites de la preuve Samsung ;
+un verdict de banc natif ne devient pas une qualification G0 ou une recette sonore
+de vingt minutes. Il n'existe pas de téléchargement public du bundle dérivé exact.
+Les outils d'export et d'assemblage sont dans `validation/reader/scripts/` ; ils
+nécessitent les poids locaux vérifiés et un environnement Python préparé.
+
+### Frontend Kokoro Android
+
+Dans SDK Manager, installer CMake **3.22.1** et le NDK demandé par la version Flutter
+utilisée (configuration vérifiée : NDK **28.2.13676358**). La source eSpeak doit
+correspondre à **4870adfa25b1a32b4361592f1be8a40337c58d6c**, version 1.52.0.
+Le tag ultérieur 1.52.0.1 ne reproduit pas toutes les prononciations de référence.
+Gradle ne télécharge pas cette dépendance automatiquement.
+
+Depuis la racine, sous PowerShell, pour préparer cette source publique :
+
+```powershell
+$sourceVoix = 'validation/reader/private/espeak-4870adf-source'
+New-Item -ItemType Directory -Path $sourceVoix -Force | Out-Null
+Invoke-WebRequest 'https://codeload.github.com/espeak-ng/espeak-ng/zip/4870adfa25b1a32b4361592f1be8a40337c58d6c' -OutFile "$sourceVoix/source.zip"
+if ((Get-FileHash "$sourceVoix/source.zip" -Algorithm SHA256).Hash -ine '096f0915470c3bba4f9e3ba274485e453f26dedccb5c28a33f871a84f5e064a9') {
+    throw 'Archive eSpeak non conforme'
+}
+Expand-Archive -LiteralPath "$sourceVoix/source.zip" -DestinationPath $sourceVoix
+flutter run -d IDENTIFIANT_ANDROID
+```
+
+Le build détecte ce dossier épinglé. Un autre emplacement peut être indiqué à
+Gradle par `-PureaderEspeakSource=<chemin>` ; le build vérifie la révision attendue.
+Ne remplacez pas les données phonétiques du bundle par celles d'une autre version.
+Les notices eSpeak et Kokoro sont dans `assets/models/KOKORO_NOTICES.txt` ; revoir
+les obligations de distribution du frontend avant publication d'un APK.
+
+### Profil Pocket historique
+
 Le catalogue `assets/models/manifest.json` définit les fichiers exacts attendus,
 leurs tailles, empreintes SHA-256, provenance et interfaces. Le moteur ne doit pas
 accepter des poids de provenance ou d’interface différentes sous le même nom.
 
-Le bundle courant attend ces sept fichiers au même niveau :
+Ce profil, sélectionné par `--dart-define=UREADER_SPEECH_PROFILE=pocket`, attend
+ces sept fichiers au même niveau :
 
 ```text
 uReader-voice-fr/

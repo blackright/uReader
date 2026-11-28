@@ -167,6 +167,7 @@ class PlayerPresenter extends ChangeNotifier {
           lineHeight: old.lineHeight,
           margins: old.margins,
           followEnabled: old.followEnabled,
+          highlightColor: old.highlightColor,
           presentation: value,
         );
         await preferences.save(next);

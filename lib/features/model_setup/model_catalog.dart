@@ -19,6 +19,24 @@ class ModelCatalog {
   final bool demonstrated;
   final List<Object?> notices;
   String get language => 'fr';
+  String get voiceId =>
+      ((jsonDecode(utf8.decode(embeddedBytes)) as Map)['voice'] as Map)['id']
+          as String;
+  bool get developmentPreview =>
+      (jsonDecode(utf8.decode(embeddedBytes)) as Map)['deliveryMode'] ==
+      'local_native_preview';
+  // Kokoro adds up to 64 MiB of expanded frontend data. Reserve the bounded
+  // audio cache as well, so copying the model cannot consume its playback space.
+  int get requiredInstallationBytes =>
+      totalBytes + (developmentPreview ? 144 : 8) * 1024 * 1024;
+  String get voiceDisplayName =>
+      (((jsonDecode(utf8.decode(embeddedBytes)) as Map)['voice']
+              as Map)['displayName']
+          as String?) ??
+      (voiceId == 'estelle' ? 'Estelle' : voiceId);
+  String get licenseSummary => developmentPreview
+      ? 'Kokoro : Apache-2.0 ; eSpeak NG : GPLv3. Attribution SIWIS conservée.'
+      : 'Kyutai : CC-BY-4.0 ; moteur et runtime : MIT.';
 
   /// Only the embedded, digest-pinned manifest can qualify an optional aligner.
   /// Existing manifests have no such entry and keep the feature unavailable.
@@ -69,12 +87,20 @@ class ModelCatalog {
     try {
       if (bytes.length > 1024 * 1024) throw const FormatException();
       final m = jsonDecode(utf8.decode(bytes)) as Map<String, dynamic>;
+      requireIdentifier((m['voice'] as Map)['id'] as String);
       final limits = m['limits'] as Map;
+      final preview = m['deliveryMode'] == 'local_native_preview';
+      if (preview &&
+          (m['engine'] != 'kokoro' ||
+              m['bundleId'] != 'fr-kokoro-siwis' ||
+              (m['voice'] as Map)['id'] != 'ff_siwis')) {
+        throw const FormatException();
+      }
       if (m['schemaVersion'] != 1 ||
           m['engineProtocolVersion'] != 1 ||
           m['language'] != 'fr' ||
           (m['voice'] as Map)['language'] != 'fr' ||
-          m['deliveryMode'] != 'local_g0_derivation' ||
+          (!preview && m['deliveryMode'] != 'local_g0_derivation') ||
           limits['maxDownloadBytes'] != 0 ||
           (m['localInstallation'] as Map?)?['enabled'] != true) {
         throw const FormatException();
@@ -91,8 +117,20 @@ class ModelCatalog {
           files.length > 32) {
         throw const FormatException();
       }
+      if (preview &&
+          (files.length != 5 ||
+              !files.map((f) => f.relativePath).toSet().containsAll({
+                'kokoro.onnx',
+                'siwis.f32',
+                'vocab.json',
+                'tokenizer.json',
+                'espeak-data.zip',
+              }))) {
+        throw const FormatException();
+      }
       final size = files.fold<int>(0, (n, f) => n + f.byteSize);
-      if (size > limits['maxBundleBytes'] || size > 256 * 1024 * 1024) {
+      if (size > limits['maxBundleBytes'] ||
+          size > (preview ? 512 : 256) * 1024 * 1024) {
         throw const FormatException();
       }
       return ModelCatalog._(
@@ -104,7 +142,19 @@ class ModelCatalog {
           files: files,
         ),
         size,
-        (m['activationGate'] as Map)['g0Verdict'] == 'passed',
+        preview
+            ? !const bool.fromEnvironment('dart.vm.product') &&
+                  !const bool.fromEnvironment('dart.vm.profile') &&
+                  (m['activationGate'] as Map)['mode'] ==
+                      'development_preview' &&
+                  (m['activationGate'] as Map)['requiresNativeProbe'] == true &&
+                  (m['activationGate'] as Map)['nativeProbeVerdict'] ==
+                      'passed' &&
+                  RegExp(r'^[a-f0-9]{64}$').hasMatch(
+                    (m['activationGate'] as Map)['evidenceSha256'] as String? ??
+                        '',
+                  )
+            : (m['activationGate'] as Map)['g0Verdict'] == 'passed',
         List<Object?>.unmodifiable(m['licenseNotices'] as List),
       );
     } catch (_) {

@@ -4,12 +4,13 @@ import 'package:drift/native.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:prototype/infrastructure/database/prototype_database.dart';
 import 'package:prototype/domain/app_error.dart';
+import 'package:prototype/infrastructure/database/reader_schema.dart';
 
 import '../../fixtures/reader_schema_v2.dart';
 import 'book_migration_test.dart' show historicalSchema;
 
 void main() {
-  for (final version in [0, 1, 2]) {
+  for (final version in [0, 1, 2, 3]) {
     test('reader migrates exact v$version without replacing legacy data', () async {
       final dir = await Directory.systemTemp.createTemp('reader-migration-');
       addTearDown(() => dir.delete(recursive: true));
@@ -21,10 +22,18 @@ void main() {
             for (final sql in historicalSchema) {
               raw.execute(sql);
             }
-            if (version == 2) {
+            if (version >= 2) {
               for (final sql in FrozenBookSchemaV2.statements) {
                 raw.execute(sql);
               }
+            }
+            if (version == 3) {
+              for (final sql in ReaderSchema.statements) {
+                raw.execute(sql);
+              }
+              raw.execute(
+                "INSERT INTO experience_preferences VALUES('audio_presentation','\"simple\"',1)",
+              );
             }
             raw.execute(
               "INSERT INTO positions VALUES('demo','audio',1,'p0',0,7,1)",
@@ -38,12 +47,26 @@ void main() {
       );
       try {
         await db.initialize();
+        if (version == 3) {
+          expect(
+            (await db
+                    .customSelect(
+                      "SELECT value_json FROM experience_preferences WHERE preference_key='audio_presentation'",
+                    )
+                    .getSingle())
+                .read<String>('value_json'),
+            '"simple"',
+          );
+          await db.customStatement(
+            "INSERT INTO experience_preferences VALUES('highlight_color','\"blue\"',1)",
+          );
+        }
         expect(
           (await db.customSelect('PRAGMA user_version').getSingle())
               .data
               .values
               .single,
-          3,
+          4,
         );
         expect(
           (await db.customSelect('SELECT revision FROM positions').getSingle())

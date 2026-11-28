@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
 import '../domain/app_error.dart';
-import '../features/feasibility/feasibility_screen.dart';
 import '../features/model_setup/model_setup_screen.dart';
 import '../features/demo_reader/demo_reader_screen.dart';
 import '../features/library/library_controller.dart';
@@ -15,6 +14,8 @@ import '../features/library/library_screen.dart';
 import '../features/book_reader/book_reader_screen.dart';
 import 'dependencies.dart';
 import 'reader_theme.dart';
+import 'brand_mark.dart';
+import '../features/welcome/welcome_screen.dart';
 import '../domain/books.dart';
 import '../features/audio_player/full_player_screen.dart';
 import '../features/audio_player/mini_player.dart';
@@ -142,7 +143,8 @@ class _PrototypeAppState extends State<PrototypeApp> {
       future: _initialization,
       builder: (context, snapshot) {
         final ready = snapshot.hasData;
-        return Scaffold(
+        if (!ready && !snapshot.hasError) return const BrandedSplash();
+        final content = Scaffold(
           appBar: ready && _selected == 0
               ? null
               : AppBar(title: const Text('uReader')),
@@ -150,6 +152,15 @@ class _PrototypeAppState extends State<PrototypeApp> {
             child: ready && _selected == 0
                 ? LibraryScreen(
                     library: _library!,
+                    onWelcome: () => Navigator.of(context).push<void>(
+                      MaterialPageRoute(
+                        builder: (ctx) => WelcomeScreen(
+                          onFinish: () async {
+                            Navigator.of(ctx).pop();
+                          },
+                        ),
+                      ),
+                    ),
                     importController: _import!,
                     recoveryIssues: snapshot.data!.bookRecoveryIssues,
                     images: snapshot.data!.bookContent,
@@ -166,14 +177,6 @@ class _PrototypeAppState extends State<PrototypeApp> {
                     ),
                   )
                 : ready && _selected == 1
-                ? DemoReaderScreen(
-                    corpus: snapshot.data!.corpus,
-                    reader: snapshot.data!.reader,
-                    playback: snapshot.data!.playback,
-                  )
-                : ready && _selected == 3
-                ? FeasibilityScreen(repository: snapshot.data!.reports)
-                : ready && _selected == 2
                 ? snapshot.data!.models == null
                       ? const Center(
                           child: Text(
@@ -183,6 +186,20 @@ class _PrototypeAppState extends State<PrototypeApp> {
                       : ModelSetupScreen(
                           installer: snapshot.data!.models!,
                           removal: snapshot.data!.modelRemoval,
+                          onPreview: () => Navigator.of(context).push<void>(
+                            MaterialPageRoute(
+                              builder: (_) => Scaffold(
+                                appBar: AppBar(
+                                  title: const Text('Préécoute de la voix'),
+                                ),
+                                body: DemoReaderScreen(
+                                  corpus: snapshot.data!.corpus,
+                                  reader: snapshot.data!.reader,
+                                  playback: snapshot.data!.playback,
+                                ),
+                              ),
+                            ),
+                          ),
                         )
                 : SingleChildScrollView(
                     padding: const EdgeInsets.all(24),
@@ -223,16 +240,8 @@ class _PrototypeAppState extends State<PrototypeApp> {
                           label: 'Livres',
                         ),
                         NavigationDestination(
-                          icon: Icon(Icons.science_outlined),
-                          label: 'Démo',
-                        ),
-                        NavigationDestination(
                           icon: Icon(Icons.record_voice_over),
                           label: 'Voix',
-                        ),
-                        NavigationDestination(
-                          icon: Icon(Icons.fact_check_outlined),
-                          label: 'Bilan',
                         ),
                       ],
                     ),
@@ -240,6 +249,12 @@ class _PrototypeAppState extends State<PrototypeApp> {
                 )
               : null,
         );
+        return ready
+            ? WelcomeGate(
+                store: WelcomeStore(snapshot.data!.files.root),
+                child: content,
+              )
+            : content;
       },
     ),
   );

@@ -12,6 +12,7 @@ import '../../domain/content.dart';
 import '../../domain/ports.dart';
 import '../../domain/storage.dart';
 import '../../features/listening/french_text_normalizer.dart';
+import '../../features/listening/prepared_text_map.dart';
 import '../files/audio_cache.dart';
 import '../audio/punctuation_audio.dart';
 import 'speech_messages.dart';
@@ -150,6 +151,7 @@ class PlatformSpeechEngine implements SpeechEngine {
     bundleDigest: _bundle!.manifestDigest,
     voice: request.voiceId,
     text: jsonEncode([
+      PreparedTextMap.version,
       request.synthesisText,
       request.start.textId,
       request.start.corpusVersion,

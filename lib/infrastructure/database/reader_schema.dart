@@ -32,4 +32,12 @@ abstract final class ReaderSchema {
  value_json TEXT NOT NULL CHECK(length(value_json) BETWEEN 1 AND 16384),
  version INTEGER NOT NULL CHECK(version>0))""",
   ];
+
+  static List<String> get currentStatements => [
+    for (final sql in statements)
+      sql.replaceFirst(
+        "'audio_presentation'))",
+        "'audio_presentation','highlight_color'))",
+      ),
+  ];
 }

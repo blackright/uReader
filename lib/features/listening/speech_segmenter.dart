@@ -48,6 +48,7 @@ class SpeechSegmenter {
       }
     }
     var start = 0, last = 0;
+    var sentenceEnd = 0, clauseEnd = 0;
     SpeechSegment? pending;
     SpeechSegment? emit(int end) {
       final prepared = prepare(normalized.speech.substring(start, end));
@@ -102,38 +103,101 @@ class SpeechSegmenter {
       return completed;
     }
 
-    for (final end in ends) {
-      var prepared = prepare(normalized.speech.substring(start, end));
-      if (prepared.isEmpty) {
-        last = end;
-        continue;
+    var base = 0;
+    while (base < ends.length) {
+      final checked = <int, bool>{};
+      Future<bool> fits(int index) async {
+        if (checked.containsKey(index)) return checked[index]!;
+        final end = ends[index];
+        final value = prepare(normalized.speech.substring(start, end));
+        final range = normalized.sourceRange(start, end);
+        final valid =
+            value.isEmpty ||
+            (value.length <= 4096 &&
+                range.end - range.start <= 4096 &&
+                await countTokens(value) <= 50);
+        checked[index] = valid;
+        return valid;
       }
-      final sourceRange = normalized.sourceRange(start, end);
-      if (prepared.length > 4096 ||
-          sourceRange.end - sourceRange.start > 4096 ||
-          await countTokens(prepared) > 50) {
-        if (last <= start ||
-            prepare(normalized.speech.substring(start, last)).isEmpty) {
-          throw const AppError(ErrorCode.storageLimitExceeded);
+
+      // Exponential search bounds token-count RPCs even in a very long block.
+      var good = base - 1, bad = ends.length, step = 1;
+      while (true) {
+        final probe = (base + step - 1).clamp(base, ends.length - 1);
+        if (await fits(probe)) {
+          good = probe;
+          if (probe == ends.length - 1) break;
+          step *= 2;
+        } else {
+          bad = probe;
+          break;
         }
-        final completed = emit(last);
-        if (completed != null) yield completed;
-        prepared = prepare(normalized.speech.substring(start, end));
-        if (prepared.isNotEmpty &&
-            (prepared.length > 4096 || await countTokens(prepared) > 50)) {
-          throw const AppError(ErrorCode.storageLimitExceeded);
+      }
+      var low = good + 1, high = bad - 1;
+      while (low <= high) {
+        final middle = (low + high) ~/ 2;
+        if (await fits(middle)) {
+          good = middle;
+          low = middle + 1;
+        } else {
+          high = middle - 1;
         }
       }
-      last = end;
-      if (RegExp(r'[.!?;:]$')
-          .hasMatch(normalized.speech.substring(start, end).trim())) {
-        final completed = emit(end);
-        if (completed != null) yield completed;
+      if (good < base) throw const AppError(ErrorCode.storageLimitExceeded);
+      last = ends[good];
+      sentenceEnd = 0;
+      clauseEnd = 0;
+      for (var i = base; i <= good; i++) {
+        final tail = normalized.speech
+            .substring(start, ends[i])
+            .trimRight()
+            .replaceAll(RegExp(r'[»”"\u0027’\]\)]+$'), '')
+            .trimRight();
+        if (RegExp(r'[.!?…]$').hasMatch(tail)) sentenceEnd = ends[i];
+        if (RegExp(r'[,;:]$').hasMatch(tail)) clauseEnd = ends[i];
       }
-    }
-    if (last > start) {
-      final completed = emit(last);
+      var boundary = last;
+      if (good < ends.length - 1) {
+        var useClause = sentenceEnd <= start;
+        if (!useClause && clauseEnd > sentenceEnd) {
+          final suffix = normalized.speech.substring(sentenceEnd);
+          final terminal = RegExp(r'[.!?…](?:[»”"\u0027’\]\)])*(?=\s|$)')
+              .firstMatch(suffix);
+          final whole = prepare(
+            suffix.substring(0, terminal?.end ?? suffix.length),
+          );
+          useClause = whole.length > 4096 || await countTokens(whole) > 50;
+        }
+        boundary = sentenceEnd > start && !useClause
+            ? sentenceEnd
+            : clauseEnd > start
+            ? clauseEnd
+            : last;
+        final index = ends.indexOf(boundary, base);
+        // Token counts need not be strictly monotone for every tokenizer. Always
+        // revalidate a selected natural boundary, falling back to a checked one.
+        if (!await fits(index) ||
+            prepare(normalized.speech.substring(start, boundary)).isEmpty) {
+          boundary = last;
+        }
+      }
+      final completed = emit(boundary);
       if (completed != null) yield completed;
+      while (base < ends.length && ends[base] <= start) {
+        base++;
+      }
+      // Once the next prefix contains words, trailing punctuation can no longer
+      // extend this segment. Publish now rather than preparing a second chunk.
+      final lookaheadEnd = bad < ends.length
+          ? ends[bad]
+          : normalized.speech.length;
+      if (pending != null &&
+          start < lookaheadEnd &&
+          prepare(normalized.speech.substring(start, lookaheadEnd))
+              .isNotEmpty) {
+        yield pending!;
+        pending = null;
+      }
     }
     if (pending != null) yield pending!;
   }
@@ -143,90 +207,18 @@ class SpeechSegmenter {
   Future<List<SpeechSegment>> segment(DemoText text) async {
     final result = <SpeechSegment>[];
     for (final passage in text.passages) {
-      final normalized = const FrenchTextNormalizer().normalize(passage.text);
-      final ends = <int>[];
-      for (final span in normalized.spans) {
-        if (span.replaced) {
-          ends.add(span.speechEnd);
-        } else {
-          for (final match in RegExp(r'\s+|\S+').allMatches(
-            normalized.speech.substring(span.speechStart, span.speechEnd),
-          )) {
-            ends.add(span.speechStart + match.end);
-          }
-        }
+      // Retain the demo input bound while sharing the streaming book policy.
+      if (passage.text.length > 4096) {
+        throw ArgumentError('Text exceeds preparation limit');
       }
-      var start = 0;
-      var last = 0;
-      void emit(int end) {
-        final prepared = prepare(normalized.speech.substring(start, end));
-        final range = normalized.sourceRange(start, end);
-        if (prepared.isEmpty) {
-          if (result.isEmpty ||
-              result.last.end.passageId != passage.id ||
-              result.last.end.offsetUtf16 != range.start) {
-            throw const AppError(ErrorCode.invalidContent);
-          }
-          final previous = result.removeLast();
-          result.add(
-            SpeechSegment(
-              passage.text.substring(previous.start.offsetUtf16, range.end),
-              previous.synthesis,
-              previous.start,
-              Locator(
-                textId: text.id,
-                corpusVersion: text.corpusVersion,
-                passageId: passage.id,
-                offsetUtf16: range.end,
-              ),
-            ),
-          );
-          start = end;
-          return;
-        }
-        Locator locator(int offset) => Locator(
+      result.addAll(
+        await streamPassage(
           textId: text.id,
-          corpusVersion: text.corpusVersion,
+          version: text.corpusVersion,
           passageId: passage.id,
-          offsetUtf16: offset,
-        );
-        result.add(
-          SpeechSegment(
-            passage.text.substring(range.start, range.end),
-            prepared,
-            locator(range.start),
-            locator(range.end),
-          ),
-        );
-        start = end;
-      }
-
-      for (final end in ends) {
-        var prepared = prepare(normalized.speech.substring(start, end));
-        if (prepared.isEmpty) {
-          last = end;
-          continue;
-        }
-        if (prepared.length > 4096 || await countTokens(prepared) > 50) {
-          if (last <= start ||
-              prepare(normalized.speech.substring(start, last)).isEmpty) {
-            throw const AppError(ErrorCode.storageLimitExceeded);
-          }
-          emit(last);
-          prepared = prepare(normalized.speech.substring(start, end));
-          if (prepared.isNotEmpty &&
-              (prepared.length > 4096 || await countTokens(prepared) > 50)) {
-            throw const AppError(ErrorCode.storageLimitExceeded);
-          }
-        }
-        last = end;
-        // Prefer sentence ends and never split a normalized expression.
-        if (RegExp(r'[.!?;:]$')
-            .hasMatch(normalized.speech.substring(start, end).trim())) {
-          emit(end);
-        }
-      }
-      if (last > start) emit(last);
+          source: passage.text,
+        ).toList(),
+      );
     }
     if (result.isEmpty) throw const AppError(ErrorCode.invalidContent);
     return List.unmodifiable(result);

@@ -46,7 +46,10 @@ void main() {
         count++;
       }
       expect(seen, {'b0', 'b1', 'b3', 'b4', 'b5', 'b6', 'b7'});
-      expect(count, greaterThan(7));
+      expect(
+        count,
+        7,
+      ); // Both short sentences fit together in each eligible block.
       expect(await cursor.next(), isNull);
       await cursor.close();
     },

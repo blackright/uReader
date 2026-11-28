@@ -35,5 +35,8 @@ flutter:
     - assets/reports/interim.json
     - assets/corpus/fr_demo.json
     - assets/models/manifest.json
+    - assets/models/kokoro-manifest.json
+    - assets/models/kokoro-evidence.json
+    - assets/models/KOKORO_NOTICES.txt
     - assets/models/POCKET_TTS_LICENSE.txt
     - assets/models/THIRD_PARTY_NOTICES.txt

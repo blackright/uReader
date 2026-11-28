@@ -3,7 +3,9 @@
 **Vos livres, votre rythme. Lire et écouter ses EPUB sur Android.**
 
 uReader est un lecteur EPUB développé avec Flutter, avec une bibliothèque locale,
-un lecteur personnalisable et une narration française embarquée avec Pocket TTS.
+un lecteur personnalisable et une narration française embarquée. Le profil de
+développement courant utilise Kokoro SIWIS ; Pocket TTS reste disponible comme
+profil historique explicite.
 Les livres restent sur l’appareil ; la lecture ne dépend pas d’un compte ni d’un
 service de synthèse distant.
 
@@ -109,11 +111,11 @@ ou reconstruire le paquet exact. Le suivi de cette limitation est dans
 
 Si vous disposez déjà du bundle compatible :
 
-1. Consultez le [catalogue vocal](assets/models/manifest.json). Les sept fichiers,
+1. Consultez le [catalogue Kokoro](assets/models/kokoro-manifest.json). Les cinq fichiers,
    leur taille et leur SHA-256 doivent correspondre exactement ; ne remplacez pas
    les graphes par d’autres modèles portant des noms semblables.
-2. Copiez les sept fichiers dans un même sous-dossier du téléphone, par exemple
-   `Téléchargements/uReader-voice-fr`. Ne sélectionnez pas le dossier Téléchargements
+2. Copiez les cinq fichiers dans un même sous-dossier du téléphone, par exemple
+   `Téléchargements/uReader-voice-kokoro`. Ne sélectionnez pas le dossier Téléchargements
    lui-même si Android en interdit l’accès.
 3. Ouvrez **Voix → Installer depuis un dossier**. Entrez dans ce sous-dossier,
    choisissez **Utiliser ce dossier**, puis autorisez l’accès.
@@ -121,11 +123,17 @@ Si vous disposez déjà du bundle compatible :
 5. Revenez dans un livre français. Utilisez **Écouter ici**, ou un appui long sur
    un mot/paragraphe et l’action de départ proposée. Le player permet pause et arrêt.
 
-Le catalogue debug actuel vise `1.1.0-alignment-preview`. Le nom `manifest.json`
-dans le paquet vocal désigne le manifeste d’exécution ; il ne faut pas y copier
-le catalogue de l’application `assets/models/manifest.json`.
-Le surlignage mot à mot reste expérimental. La commande distincte de préparation
+Le profil Kokoro est un prototype **debug**, dont les preuves natives sont séparées
+de la qualification française complète. Il nécessite aussi le frontend eSpeak
+1.52.0 compilé dans l’APK : voir le [guide de développement](Documentation/Developpement.md#frontend-kokoro-android).
+La qualification du suivi mot à mot n’est pas fournie par ce changement de voix.
+La commande distincte de préparation
 préalable du chapitre peut imposer une attente plus longue que l’écoute ordinaire.
+
+Le profil Pocket historique reste sélectionnable explicitement à la compilation :
+`flutter run --dart-define=UREADER_SPEECH_PROFILE=pocket`. Il conserve son
+[catalogue à sept fichiers](assets/models/manifest.json). Ne mélangez pas les
+deux bundles ; aucun fallback automatique ne change la voix à votre insu.
 
 Le [guide de développement](Documentation/Developpement.md) détaille les fichiers,
 la vérification et les prérequis des outils d’export.
@@ -139,7 +147,7 @@ la vérification et les prérequis des outils d’export.
 | SDK ou licences Android manquants | SDK Manager, Command-line Tools et `flutter doctor --android-licenses` |
 | Téléchargement Gradle, Java ou dépendances bloqué | Connexion/proxy, sortie complète de la compilation et configuration du wrapper ; le premier build n’est pas hors ligne |
 | Import refusé | EPUB sans DRM à mise en page adaptable, fichier non tronqué ; conserver le message précis du refus |
-| Voix absente ou bundle refusé | Bundle compatible complet, sept empreintes et bon sous-dossier ; la lecture visuelle reste possible |
+| Voix absente ou bundle refusé | Bundle du profil sélectionné : cinq fichiers Kokoro ou sept Pocket, empreintes exactes et bon sous-dossier ; la lecture visuelle reste possible |
 | Erreur de stockage | Espace libre et journal expurgé ; ne pas désinstaller ni effacer les données pour contourner le problème |
 
 Si le problème persiste, ouvrez une [issue](https://github.com/blackright/uReader/issues)

@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
 
+import '../domain/reader_experience.dart';
+import 'highlight_colors.dart';
+
 /// Shared application chrome. Book typography is measured by ReaderLayout.
 abstract final class ReaderVisualTheme {
-  static ThemeData theme({bool dark = false}) {
+  static ThemeData theme({
+    bool dark = false,
+    HighlightColor highlightColor = HighlightColor.yellow,
+  }) {
     final paper = Color(dark ? 0xFF171C19 : 0xFFF7F3EA);
     final ink = Color(dark ? 0xFFEFEDE5 : 0xFF252C27);
     final accent = Color(dark ? 0xFFB8D8C4 : 0xFF365B4B);
@@ -18,6 +24,7 @@ abstract final class ReaderVisualTheme {
         );
     return ThemeData(
       useMaterial3: true,
+      extensions: [ReadingHighlight(ReadingHighlight.resolve(highlightColor))],
       colorScheme: scheme,
       scaffoldBackgroundColor: paper,
       filledButtonTheme: FilledButtonThemeData(

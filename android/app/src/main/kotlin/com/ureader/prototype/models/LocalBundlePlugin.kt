@@ -17,11 +17,26 @@ import org.json.JSONObject
 import java.io.InputStream
 import java.util.concurrent.Executors
 import java.util.concurrent.atomic.AtomicInteger
+import com.ureader.prototype.speech.SpeechWireCommand
 
 internal object LocalSourcePolicy {
     fun accepts(uri: Uri?): Boolean = uri != null && uri.scheme == "content" &&
         uri.authority in setOf("com.android.externalstorage.documents", "com.android.providers.downloads.documents") &&
         DocumentsContract.isTreeUri(uri)
+
+    fun fileNames(context: Context): Set<String> = listOf("manifest.json", "kokoro-manifest.json")
+        .flatMap { asset ->
+            val manifest = context.assets.open("flutter_assets/assets/models/$asset").use {
+                JSONObject(String(it.readBytes(), Charsets.UTF_8))
+            }
+            val files = manifest.getJSONArray("files")
+            require(files.length() in 1..32)
+            (0 until files.length()).map { index ->
+                files.getJSONObject(index).getString("relativePath").also {
+                    require(SpeechWireCommand.validId(it))
+                }
+            }
+        }.toSet()
 }
 
 /** Read-only local SAF import. No URI, absolute path or file content enters diagnostics. */
@@ -40,11 +55,7 @@ class LocalBundlePlugin : FlutterPlugin, ActivityAware, MethodChannel.MethodCall
     private lateinit var allowedNames: Set<String>
     override fun onAttachedToEngine(binding: FlutterPlugin.FlutterPluginBinding) {
         context = binding.applicationContext
-        allowedNames = runCatching {
-            val manifest = context.assets.open("flutter_assets/assets/models/manifest.json").use { JSONObject(String(it.readBytes(), Charsets.UTF_8)) }
-            val files = manifest.getJSONArray("files")
-            (0 until files.length()).map { files.getJSONObject(it).getString("relativePath") }.toSet()
-        }.getOrElse { emptySet() }
+        allowedNames = runCatching { LocalSourcePolicy.fileNames(context) }.getOrElse { emptySet() }
         channel = MethodChannel(binding.binaryMessenger, "com.ureader.prototype/local_bundle/v1")
         channel.setMethodCallHandler(this)
     }

@@ -12,9 +12,11 @@ class ModelSetupScreen extends StatefulWidget {
     super.key,
     required this.installer,
     required this.removal,
+    this.onPreview,
   });
   final ModelInstaller installer;
   final ModelRemovalService removal;
+  final VoidCallback? onPreview;
   @override
   State<ModelSetupScreen> createState() => _ModelSetupScreenState();
 }
@@ -57,8 +59,10 @@ class _ModelSetupScreenState extends State<ModelSetupScreen> {
   Future<void> _install() async {
     final catalog = widget.installer.catalog;
     if (!await _confirm(
-      'Installer la voix française ?',
-      'La voix permet une écoute hors ligne. Choisissez le dossier local contenant les ${catalog.bundle.files.length} fichiers validés. ${catalog.totalBytes} octets seront copiés dans le stockage privé ; le dossier source sera conservé. Aucun téléchargement réseau. Kyutai : CC-BY-4.0 ; moteur et runtime : MIT.',
+      catalog.developmentPreview
+          ? 'Installer ${catalog.voiceDisplayName} ?'
+          : 'Installer la voix française ?',
+      'La voix permet une écoute hors ligne. Choisissez le dossier local contenant les ${catalog.bundle.files.length} fichiers validés. ${catalog.totalBytes} octets seront copiés dans le stockage privé ; le dossier source sera conservé. Aucun téléchargement réseau. ${catalog.licenseSummary}',
     )) {
       return;
     }
@@ -108,7 +112,9 @@ class _ModelSetupScreenState extends State<ModelSetupScreen> {
 
   Future<void> _notices() async {
     final text = await rootBundle.loadString(
-      'assets/models/THIRD_PARTY_NOTICES.txt',
+      widget.installer.catalog.developmentPreview
+          ? 'assets/models/KOKORO_NOTICES.txt'
+          : 'assets/models/THIRD_PARTY_NOTICES.txt',
     );
     if (!mounted) return;
     await showDialog<void>(
@@ -169,12 +175,18 @@ class _ModelSetupScreenState extends State<ModelSetupScreen> {
           const Text(
             'Une voix française pour écouter sans réseau. Aucune installation ni lecture automatique.',
           ),
+          Text('Voix : ${installer.catalog.voiceDisplayName}'),
           Text(
             'Taille : ${(installer.catalog.totalBytes / 1000000).toStringAsFixed(1)} Mo (${installer.catalog.bundle.files.length} fichiers). Prévoir aussi de la place pour les fichiers temporaires et le cache audio.',
           ),
           Text(
-            installer.catalog.demonstrated
-                ? 'Français vérifié sur la configuration Samsung/API 29 évaluée.'
+            'Espace libre requis : ${(installer.catalog.requiredInstallationBytes / 1000000).toStringAsFixed(1)} Mo, voix et fichiers temporaires compris.',
+          ),
+          Text(
+            installer.catalog.developmentPreview
+                ? 'Voix de développement : qualification complémentaire en cours.'
+                : installer.catalog.demonstrated
+                ? 'Français vérifié sur la configuration de référence.'
                 : 'Compatibilité française déclarée, écoute Android non démontrée.',
           ),
           Semantics(liveRegion: true, child: Text(_message ?? status)),
@@ -205,6 +217,16 @@ class _ModelSetupScreenState extends State<ModelSetupScreen> {
               onPressed: () => unawaited(installer.cancel()),
               child: const Text('Annuler la préparation'),
             ),
+          if (installer.state == ModelSetupState.ready &&
+              widget.onPreview != null) ...[
+            OutlinedButton(
+              onPressed: busy ? null : widget.onPreview,
+              child: const Text('Ouvrir la préécoute'),
+            ),
+            const Text(
+              'Choisissez un texte d’essai, puis lancez l’écoute avec les commandes du lecteur.',
+            ),
+          ],
           OutlinedButton(
             onPressed: busy || !installer.resourcesPresent ? null : _remove,
             child: const Text('Supprimer la voix'),

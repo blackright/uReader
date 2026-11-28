@@ -143,7 +143,7 @@ void main() {
     db = PrototypeDatabase(
       NativeDatabase(
         file,
-        setup: (connection) => connection.execute('PRAGMA user_version = 3'),
+        setup: (connection) => connection.execute('PRAGMA user_version = 4'),
       ),
     );
     expect(
@@ -204,7 +204,7 @@ void main() {
       db = PrototypeDatabase(
         NativeDatabase(
           file,
-          setup: (raw) => raw.execute('PRAGMA user_version=3'),
+          setup: (raw) => raw.execute('PRAGMA user_version=4'),
         ),
       );
       await db.initialize();
@@ -217,7 +217,7 @@ void main() {
             .data
             .values
             .single,
-        3,
+        4,
       );
     } finally {
       await db.close();

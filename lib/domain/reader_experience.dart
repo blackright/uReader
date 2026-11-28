@@ -4,6 +4,8 @@ enum ReaderMode { paged, scroll }
 
 enum AudioPresentation { full, simple }
 
+enum HighlightColor { yellow, green, blue, pink, purple }
+
 class ExperiencePreferences {
   ExperiencePreferences({
     this.mode = ReaderMode.paged,
@@ -11,6 +13,7 @@ class ExperiencePreferences {
     this.margins = 20,
     this.followEnabled = true,
     this.presentation = AudioPresentation.full,
+    this.highlightColor = HighlightColor.yellow,
   }) {
     if (!lineHeight.isFinite ||
         !const [1.2, 1.5, 1.8].contains(lineHeight) ||
@@ -22,6 +25,7 @@ class ExperiencePreferences {
   final double lineHeight, margins;
   final bool followEnabled;
   final AudioPresentation presentation;
+  final HighlightColor highlightColor;
 }
 
 /// Half-open range in canonical block order, including non-text resources.

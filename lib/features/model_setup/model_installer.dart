@@ -138,7 +138,7 @@ class ModelInstaller extends ChangeNotifier {
         }
       } else {
         if (hasSpace != null &&
-            !await hasSpace!(catalog.totalBytes + 8 * 1024 * 1024)) {
+            !await hasSpace!(catalog.requiredInstallationBytes)) {
           throw const AppError(ErrorCode.storageUnavailable);
         }
         for (final file in b.files) {

@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
+import '../../app/highlight_colors.dart';
+import '../../domain/reader_experience.dart';
+
 /// Paints measured selection rectangles behind text without changing its metrics.
 /// No live region or per-word accessibility announcement is introduced.
 class WordHighlightOverlay extends StatelessWidget {
@@ -17,13 +20,18 @@ class WordHighlightOverlay extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colors = Theme.of(context).colorScheme;
+    final highlight =
+        Theme.of(context).extension<ReadingHighlight>()?.color ??
+        ReadingHighlight.resolve(HighlightColor.yellow);
     return CustomPaint(
       painter: _HighlightPainter(
         paragraphKey,
         words,
         paragraphs,
-        colors.primary.withValues(alpha: .27),
-        colors.onSurface.withValues(alpha: .06),
+        highlight.withValues(alpha: .38),
+        highlight.withValues(
+          alpha: colors.brightness == Brightness.dark ? .24 : .20,
+        ),
       ),
       child: child,
     );

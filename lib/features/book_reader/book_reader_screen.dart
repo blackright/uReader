@@ -506,9 +506,8 @@ class _BookReaderScreenState extends State<BookReaderScreen>
       resumeSaved: resumeSaved,
       from: from,
     );
-    if (mounted && reader.ownsPlayback && reader.narrationMessage == null) {
-      widget.onOpenPlayer?.call();
-    }
+    // Keep the source visible so starting narration cannot suspend its follow.
+    // The full player remains available through the explicit footer action.
   }
 
   int _selectionIntent = 0;
@@ -996,6 +995,18 @@ class _BookReaderScreenState extends State<BookReaderScreen>
         alignment: WrapAlignment.center,
         spacing: 8,
         children: [
+          if (reader.follow.paragraphActive)
+            TextButton.icon(
+              onPressed: reader.follow.mode == FollowMode.following
+                  ? null
+                  : reader.follow.resume,
+              icon: const Icon(Icons.my_location),
+              label: Text(
+                reader.follow.mode == FollowMode.following
+                    ? reader.follow.message
+                    : 'Reprendre le suivi',
+              ),
+            ),
           if (reader.playback != null &&
               reader.narrationLanguage != NarrationLanguage.unsupported)
             FilledButton.tonalIcon(
@@ -1107,6 +1118,7 @@ class _BookReaderScreenState extends State<BookReaderScreen>
   Widget build(BuildContext context) => Theme(
     data: ReaderVisualTheme.theme(
       dark: reader.preferences.theme == ReaderTheme.dark,
+      highlightColor: reader.experience.highlightColor,
     ),
     child: Builder(
       builder: (ctx) {

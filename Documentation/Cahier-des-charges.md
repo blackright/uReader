@@ -1,5 +1,11 @@
 # Cahier des charges — uReader
 
+Actualisation du 26 novembre 2026 : le prototype de narration française évolue
+vers Kokoro SIWIS lexical minimal, choisi explicitement par le porteur. Le traitement
+reste local ; Pocket demeure un profil historique explicite. Cette décision ne
+vaut pas qualification de publication ou d'endurance. Voir DEC-10 du [PRD](PRD.md)
+et [ADR-0011](ADR/0011-kokoro-siwis.md).
+
 Version : 0.2
 Date : 10 novembre 2026  
 Statut : première version de travail

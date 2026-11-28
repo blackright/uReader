@@ -14,7 +14,7 @@ import 'reader_schema.dart';
 class PrototypeDatabase extends GeneratedDatabase implements PrototypeStore {
   PrototypeDatabase(super.executor);
   @override
-  int get schemaVersion => 3;
+  int get schemaVersion => 4;
   @override
   Iterable<TableInfo<Table, Object?>> get allTables => const [];
 
@@ -34,31 +34,48 @@ class PrototypeDatabase extends GeneratedDatabase implements PrototypeStore {
         }
         for (final sql in [
           ...BookSchema.statements,
-          ...ReaderSchema.statements,
+          ...ReaderSchema.currentStatements,
         ]) {
           await customStatement(sql);
         }
         // La version est durable avec les tables, pas seulement après leur COMMIT.
-        await customStatement('PRAGMA user_version = 3');
+        await customStatement('PRAGMA user_version = 4');
       });
     },
     onUpgrade: (_, from, to) async {
-      if ((from != 1 && from != 2) || to != 3) {
+      if ((from != 1 && from != 2 && from != 3) || to != 4) {
         throw const AppError(ErrorCode.unsupportedSchema);
       }
       await transaction(() async {
         await _verifySchema(
-          from == 1 ? _schema : [..._schema, ...BookSchema.statements],
+          from == 1
+              ? _schema
+              : [
+                  ..._schema,
+                  ...BookSchema.statements,
+                  if (from == 3) ...ReaderSchema.statements,
+                ],
         );
         if (from == 1) {
           for (final sql in BookSchema.statements) {
             await customStatement(sql);
           }
         }
-        for (final sql in ReaderSchema.statements) {
-          await customStatement(sql);
+        if (from == 3) {
+          await customStatement(
+            'ALTER TABLE experience_preferences RENAME TO experience_preferences_v3',
+          );
+          await customStatement(ReaderSchema.currentStatements.last);
+          await customStatement(
+            'INSERT INTO experience_preferences SELECT * FROM experience_preferences_v3',
+          );
+          await customStatement('DROP TABLE experience_preferences_v3');
+        } else {
+          for (final sql in ReaderSchema.currentStatements) {
+            await customStatement(sql);
+          }
         }
-        await customStatement('PRAGMA user_version=3');
+        await customStatement('PRAGMA user_version=4');
       });
     },
     beforeOpen: (_) async {
@@ -67,7 +84,7 @@ class PrototypeDatabase extends GeneratedDatabase implements PrototypeStore {
       await _verifySchema([
         ..._schema,
         ...BookSchema.statements,
-        ...ReaderSchema.statements,
+        ...ReaderSchema.currentStatements,
       ]);
     },
   );

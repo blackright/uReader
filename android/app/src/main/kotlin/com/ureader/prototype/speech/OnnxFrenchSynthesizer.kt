@@ -28,7 +28,8 @@ internal class OnnxFrenchSynthesizer(directory: File,
     private val reuseResources: Boolean = false,
     private val tuning: RuntimeTuning = RuntimeTuning()) : AutoCloseable {
     internal data class RuntimeTuning(val threads: Int = 1,
-        val optimization: OrtSession.SessionOptions.OptLevel = OrtSession.SessionOptions.OptLevel.NO_OPT) {
+        val optimization: OrtSession.SessionOptions.OptLevel = OrtSession.SessionOptions.OptLevel.NO_OPT,
+        val allowSpinning: Boolean? = null) {
         init { require(threads in 1..4) }
     }
     private val captureAlignment get() = alignmentOutputName != null
@@ -91,6 +92,10 @@ internal class OnnxFrenchSynthesizer(directory: File,
             OrtSession.SessionOptions().use { options ->
                 options.setIntraOpNumThreads(tuning.threads); options.setInterOpNumThreads(1)
                 options.setOptimizationLevel(tuning.optimization)
+                tuning.allowSpinning?.let { enabled ->
+                    options.addConfigEntry("session.intra_op.allow_spinning", if (enabled) "1" else "0")
+                    options.addConfigEntry("session.inter_op.allow_spinning", if (enabled) "1" else "0")
+                }
                 checkActive(); main = env.createSession(File(directory, "flow_lm_main_int8.onnx").path, options)
                 if (captureAlignment) require(main!!.outputNames.contains(alignmentOutputName)) { "Trusted graph has no alignment output" }
                 checkActive(); flow = env.createSession(File(directory, "flow_lm_flow_int8.onnx").path, options)

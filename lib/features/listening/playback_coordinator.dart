@@ -24,18 +24,24 @@ class PlaybackCoordinator extends ChangeNotifier {
     required this.segmenter,
     required this.prepareEngine,
     required this.discardAudio,
+    this.voiceId = 'estelle',
+    this.bundleId = 'fr-official-aligned',
     this.unloadEngine,
     this.requestAudioFocus,
     this.saveAudioPosition,
     this.saveBookAudioPosition,
     this.holdPreparedAudio,
     this.releaseAudioBatch,
-    this.initialBuffer = const Duration(seconds: 10),
-    this.targetBuffer = const Duration(seconds: 60),
+    this.initialBuffer = const Duration(seconds: 20),
+    // Bank fast passages before a slower stretch; a one-minute ceiling ran dry
+    // despite generation being faster than playback over the complete book test.
+    this.targetBuffer = const Duration(seconds: 120),
     this.maxBufferedSegments = 12,
     this.maxPreparedSegments = 64,
     this.adaptiveBuffer = true,
   }) {
+    requireIdentifier(voiceId);
+    requireIdentifier(bundleId);
     if (initialBuffer < Duration.zero ||
         targetBuffer < initialBuffer ||
         maxBufferedSegments < 2 ||
@@ -70,6 +76,7 @@ class PlaybackCoordinator extends ChangeNotifier {
   bool get _buffered => player is BufferedAudioPlayer;
   BufferedAudioPlayer get _playlist => player as BufferedAudioPlayer;
   final _queued = <int>{};
+  final _pendingRetirement = <SessionToken>[];
   bool _producerDone = false, _producerBusy = false;
   int _nextProduce = 0;
   Future<void>? _producerWork;
@@ -83,6 +90,7 @@ class PlaybackCoordinator extends ChangeNotifier {
       ? 'Préparation de l’écoute : ${(preparedAudioMs / 1000).toStringAsFixed(1)} s prêtes'
       : 'Préparation de la voix';
   final SpeechEngine speech;
+  final String voiceId, bundleId;
   final AudioPlayer player;
   final SpeechSegmenter segmenter;
   final Future<void> Function() prepareEngine;
@@ -540,6 +548,7 @@ class PlaybackCoordinator extends ChangeNotifier {
     _producerBusy = false;
     _nextProduce = 0;
     _queued.clear();
+    _pendingRetirement.clear();
     for (final release in _preparedLeases.values) {
       release();
     }
@@ -814,8 +823,8 @@ class PlaybackCoordinator extends ChangeNotifier {
         end: segment.end,
         text: segment.source,
         synthesisText: segment.synthesis,
-        voiceId: 'estelle',
-        bundleId: 'fr-official-aligned',
+        voiceId: voiceId,
+        bundleId: bundleId,
         bookOwner: _book?.key,
       ),
     );
@@ -940,6 +949,15 @@ class PlaybackCoordinator extends ChangeNotifier {
     if (!_currentPlayer(event.token)) return;
     switch (event.kind) {
       case PlayerEventKind.started:
+        if (_buffered) {
+          // A source-completed callback can precede the native current-source
+          // update. Retire that source only once its successor really starts.
+          for (final retired in List<SessionToken>.of(_pendingRetirement)) {
+            await _playlist.retire(retired);
+            if (!_currentPlayer(event.token)) return;
+            _pendingRetirement.remove(retired);
+          }
+        }
         if (state != PlaybackState.paused) {
           playedLocator =
               (_book != null ? _bookSegments[_index]! : _segments[_index])
@@ -969,15 +987,22 @@ class PlaybackCoordinator extends ChangeNotifier {
         if (_buffered) {
           final seamless =
               _queued.contains(_index + 1) &&
-              _playlist.isCurrent(
+              _playlist.contains(
                 SessionToken('reader-player-${_index + 1}', _generation),
               );
           if (seamless) {
-            await _playlist.retire(event.token);
+            if (_playlist.isCurrent(
+              SessionToken('reader-player-${_index + 1}', _generation),
+            )) {
+              await _playlist.retire(event.token);
+            } else {
+              _pendingRetirement.add(event.token);
+            }
           } else {
             await player.stop();
             _opened = false;
             _queued.clear();
+            _pendingRetirement.clear();
           }
           _queued.remove(_index);
           final old = _outputs.remove(_index);

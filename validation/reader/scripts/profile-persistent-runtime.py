@@ -3,8 +3,8 @@ import argparse,hashlib,json,os,re,shutil,subprocess,time
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[3];PACKAGE='com.ureader.prototype'
 def main():
- p=argparse.ArgumentParser(description=__doc__);p.add_argument('--run-id',required=True);p.add_argument('--throughput',action='store_true');p.add_argument('--sustained',action='store_true');args=p.parse_args()
- if args.sustained:args.throughput=True
+ p=argparse.ArgumentParser(description=__doc__);p.add_argument('--run-id',required=True);p.add_argument('--throughput',action='store_true');p.add_argument('--sustained',action='store_true');p.add_argument('--parity-only',action='store_true');args=p.parse_args()
+ if args.sustained or args.parity_only:args.throughput=True
  if not re.fullmatch(r'[a-z0-9-]{1,50}',args.run_id):raise ValueError('Run ID')
  private=ROOT/'validation/reader/private'/args.run_id;private.mkdir(exist_ok=False)
  adb=str(Path(os.environ['LOCALAPPDATA'])/'Android/sdk/platform-tools/adb.exe')
@@ -27,7 +27,7 @@ def main():
  try:
   print('Installing silent profiling build',flush=True)
   command('install','-r',str(app));command('install','-r','-t',str(test))
-  output=command('shell','am','instrument','-w','-r','-e','sustained',str(args.sustained).lower(),'-e','class',
+  output=command('shell','am','instrument','-w','-r','-e','sustained',str(args.sustained).lower(),'-e','parity',str(args.parity_only).lower(),'-e','class',
     ('com.ureader.prototype.speech.SpeechThroughputTest' if args.throughput else 'com.ureader.prototype.speech.PersistentSpeechRuntimeTest'),PACKAGE+'.test/androidx.test.runner.AndroidJUnitRunner',timeout=660)
   (private/'instrumentation.log').write_bytes(output)
   if not re.search(rb'OK \(1 test\)',output):raise ValueError('Instrumentation did not pass')

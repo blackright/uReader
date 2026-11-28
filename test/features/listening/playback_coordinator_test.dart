@@ -60,11 +60,13 @@ void main() {
     corpusVersion: 1,
     title: 'Test',
     passages: [
+      Passage(id: 'p', textId: id, ordinal: 0, text: 'Bonjour le jardin.'),
+      // Separate passages keep these transport tests independent of prosody grouping.
       Passage(
-        id: 'p',
+        id: 'p-next',
         textId: id,
-        ordinal: 0,
-        text: 'Bonjour le jardin. Voici trois pommes.',
+        ordinal: 1,
+        text: 'Voici trois pommes.',
       ),
     ],
   );
@@ -98,6 +100,37 @@ void main() {
     );
   });
   tearDown(() => coordinator.close());
+
+  test(
+    'uses the configured voice and bundle without substituting Estelle',
+    () async {
+      await coordinator.close();
+      speech = RecordingSpeech();
+      player = RecordingPlayer();
+      coordinator = PlaybackCoordinator(
+        speech: speech,
+        player: player,
+        segmenter: SpeechSegmenter((s) async => s.length),
+        discardAudio: (_) async {},
+        prepareEngine: () => speech.loadBundle(
+          BundleDescriptor(
+            id: 'fr-kokoro-siwis',
+            version: 'v1',
+            manifestDigest: 'a' * 64,
+            files: [
+              BundleFile(relativePath: 'model', byteSize: 1, sha256: 'b' * 64),
+            ],
+          ),
+        ),
+        voiceId: 'ff_siwis',
+        bundleId: 'fr-kokoro-siwis',
+      );
+      await coordinator.play(text());
+      expect(speech.requests, isNotEmpty);
+      expect(speech.requests.single.voiceId, 'ff_siwis');
+      expect(speech.requests.single.bundleId, 'fr-kokoro-siwis');
+    },
+  );
 
   test(
     'suspending voice fences every entry and requires explicit fresh playback',

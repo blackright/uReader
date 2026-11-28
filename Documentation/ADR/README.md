@@ -30,6 +30,8 @@ Pour accepter une proposition, consigner ici et dans l’ADR la date, le respons
 | [ADR-0009](0009-contenus-non-fiables.md) | Traiter les livres importés comme des entrées non fiables | Proposé — concrétisation de SEC-01 à SEC-06 |
 | [ADR-0010](0010-modeles-et-confidentialite.md) | Vérifier les modèles et limiter les données conservées | Proposé — politique de distribution à préciser |
 
+| [ADR-0011](0011-kokoro-siwis.md) | Intégrer Kokoro SIWIS derrière SpeechEngine | Choix produit accepté ; runtime Android et distribution à qualifier |
+
 ## Choix encore ouverts
 
 Le porteur du projet a confirmé Android comme première plateforme et le français comme langue prioritaire de synthèse le 2026-11-10 (DEC-01 et DEC-03 du PRD). Restent ouverts les appareils et versions minimum, les voix françaises et leur faisabilité, le mode de navigation visuelle, le modèle économique et la synchronisation : voir le registre des décisions du PRD. Le runtime mobile Pocket TTS, le moteur EPUB, les versions des dépendances, l’outil de gestion d’état et les seuils de ressources doivent être précisés après les validations décrites.

@@ -18,6 +18,19 @@ import java.util.concurrent.TimeUnit
 
 /** Real MethodChannel/EventChannel codec with an in-memory transport, no Dart playback claim. */
 class SpeechPluginTest {
+    @Test fun capabilitiesExposeTheLoadedVoiceInsteadOfEstelle() {
+        val messenger = Messenger()
+        val owner = PocketSpeechEngine(backend = { _, _ -> error("No inference requested") }, voiceId = "ff_siwis")
+        val plugin = SpeechPlugin { _, _, _ -> owner }
+        main { plugin.attach(messenger) }
+        try {
+            val before = call(messenger, "capabilities").get(5, TimeUnit.SECONDS) as Map<*, *>
+            assertTrue((before["voices"] as List<*>).isEmpty())
+            call(messenger, "loadBundle", wire("loadBundle", bundle)).get(5, TimeUnit.SECONDS)
+            val after = call(messenger, "capabilities").get(5, TimeUnit.SECONDS) as Map<*, *>
+            assertEquals(listOf("ff_siwis"), after["voices"])
+        } finally { main { plugin.detach() }; owner.dispose().get(5, TimeUnit.SECONDS) }
+    }
     @Test fun alignmentCapabilityRequiresExplicitHostQualification() {
         for (qualified in listOf(false, true)) {
             val messenger = Messenger()

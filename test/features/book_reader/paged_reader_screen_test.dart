@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:prototype/domain/books.dart';
+import 'package:prototype/domain/content.dart';
 import 'package:prototype/domain/book_reader.dart';
 import 'package:prototype/domain/reader_experience.dart';
+import 'package:prototype/domain/word_alignment.dart';
+import 'package:prototype/features/book_reader/follow_controller.dart';
 import 'package:prototype/features/book_reader/book_reader_controller.dart';
 import 'package:prototype/features/book_reader/book_reader_screen.dart';
 import 'package:prototype/features/book_reader/paged_book_view.dart';
@@ -75,6 +78,50 @@ Future<void> waitForReaderControl(WidgetTester tester, Finder control) async {
 }
 
 void main() {
+  testWidgets('paragraph follow can be resumed without restarting audio', (
+    tester,
+  ) async {
+    final f = ReaderFixture();
+    await tester.runAsync(f.open);
+    final key = (await tester.runAsync(
+      () => f.book('resume-follow', blocks: 2),
+    ))!;
+    final reader = BookReaderController(
+      book: Book(key: key, title: 'Suivi', authors: [], languages: ['fr']),
+      content: f.content,
+    );
+    await runReaderOperation(tester, reader.initialize);
+    await tester.pumpWidget(
+      MaterialApp(
+        home: BookReaderScreen(
+          book: reader.book,
+          content: f.content,
+          controller: reader,
+        ),
+      ),
+    );
+    await settleReader(tester, reader);
+    reader.follow.select(
+        token: SessionToken('preview', 1),
+      segmentId: 'segment',
+      alignment: null,
+      passageId: reader.visible!.blockId,
+      paragraph: SourceSpan(0, 1),
+    );
+    reader.userNavigation();
+    await tester.pump();
+    expect(reader.follow.mode, FollowMode.suspended);
+    final resume = find.text('Reprendre le suivi');
+    await tester.ensureVisible(resume);
+    await tester.tap(resume);
+    await tester.pump();
+    expect(reader.follow.mode, FollowMode.following);
+    expect(find.text('Suivi du paragraphe actif'), findsOneWidget);
+    await tester.pumpWidget(const SizedBox.shrink());
+    await tester.runAsync(reader.close);
+    await tester.runAsync(f.close);
+  });
+
   testWidgets(
     'product pages persist passage across typography, mode and reopen',
     (tester) async {
